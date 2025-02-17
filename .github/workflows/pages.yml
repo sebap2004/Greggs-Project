@@ -1,4 +1,5 @@
-﻿# Your GitHub workflow file under .github/workflows/
+name: Update Documentation Website
+ # Your GitHub workflow file under .github/workflows/
 # Trigger the action on push to main
 on:
   push:
