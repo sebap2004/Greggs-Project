@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 
 namespace SoftwareProject.Components.Layout;
-public partial class MainLayout
+public partial class MainLayout : LayoutComponentBase
 {
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
