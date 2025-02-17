@@ -1,9 +1,11 @@
-﻿# Your GitHub workflow file under .github/workflows/
+name: Update Documentation Website
+ # Your GitHub workflow file under .github/workflows/
 # Trigger the action on push to main
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -19,6 +21,7 @@ concurrency:
 
 jobs:
   publish-docs:
+    name: Update Documentation Website
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,9 +33,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 9.x
-
+          
+      - run: dotnet restore
       - run: dotnet tool update -g docfx
-      - run: docfx <docfx-project-path>/docfx.json
+      - run: docfx docfx.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
