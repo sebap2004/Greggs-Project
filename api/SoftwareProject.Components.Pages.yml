@@ -1,0 +1,44 @@
+### YamlMime:ManagedReference
+items:
+- uid: SoftwareProject.Components.Pages
+  commentId: N:SoftwareProject.Components.Pages
+  id: SoftwareProject.Components.Pages
+  children:
+  - SoftwareProject.Components.Pages.Counter
+  - SoftwareProject.Components.Pages.Error
+  - SoftwareProject.Components.Pages.Home
+  - SoftwareProject.Components.Pages.Weather
+  langs:
+  - csharp
+  - vb
+  name: SoftwareProject.Components.Pages
+  nameWithType: SoftwareProject.Components.Pages
+  fullName: SoftwareProject.Components.Pages
+  type: Namespace
+  assemblies:
+  - SoftwareProject
+references:
+- uid: SoftwareProject.Components.Pages.Error
+  commentId: T:SoftwareProject.Components.Pages.Error
+  href: SoftwareProject.Components.Pages.Error.html
+  name: Error
+  nameWithType: Error
+  fullName: SoftwareProject.Components.Pages.Error
+- uid: SoftwareProject.Components.Pages.Home
+  commentId: T:SoftwareProject.Components.Pages.Home
+  href: SoftwareProject.Components.Pages.Home.html
+  name: Home
+  nameWithType: Home
+  fullName: SoftwareProject.Components.Pages.Home
+- uid: SoftwareProject.Components.Pages.Counter
+  commentId: T:SoftwareProject.Components.Pages.Counter
+  href: SoftwareProject.Components.Pages.Counter.html
+  name: Counter
+  nameWithType: Counter
+  fullName: SoftwareProject.Components.Pages.Counter
+- uid: SoftwareProject.Components.Pages.Weather
+  commentId: T:SoftwareProject.Components.Pages.Weather
+  href: SoftwareProject.Components.Pages.Weather.html
+  name: Weather
+  nameWithType: Weather
+  fullName: SoftwareProject.Components.Pages.Weather

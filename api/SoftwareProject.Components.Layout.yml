@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: SoftwareProject.Components.Layout
+  commentId: N:SoftwareProject.Components.Layout
+  id: SoftwareProject.Components.Layout
+  children:
+  - SoftwareProject.Components.Layout.MainLayout
+  - SoftwareProject.Components.Layout.NavMenu
+  langs:
+  - csharp
+  - vb
+  name: SoftwareProject.Components.Layout
+  nameWithType: SoftwareProject.Components.Layout
+  fullName: SoftwareProject.Components.Layout
+  type: Namespace
+  assemblies:
+  - SoftwareProject
+references:
+- uid: SoftwareProject.Components.Layout.MainLayout
+  commentId: T:SoftwareProject.Components.Layout.MainLayout
+  href: SoftwareProject.Components.Layout.MainLayout.html
+  name: MainLayout
+  nameWithType: MainLayout
+  fullName: SoftwareProject.Components.Layout.MainLayout
+- uid: SoftwareProject.Components.Layout.NavMenu
+  commentId: T:SoftwareProject.Components.Layout.NavMenu
+  href: SoftwareProject.Components.Layout.NavMenu.html
+  name: NavMenu
+  nameWithType: NavMenu
+  fullName: SoftwareProject.Components.Layout.NavMenu

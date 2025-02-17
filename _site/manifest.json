@@ -1,0 +1,218 @@
+{
+  "source_base_path": "C:/Users/sebap/RiderProjects/Greggs-Project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.App.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Layout.MainLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Layout.MainLayout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Layout.NavMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Layout.NavMenu.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Layout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Layout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.Counter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.Counter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.Error.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.Home.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.Home.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.Weather.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.Weather.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Routes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Routes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.TestClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.TestClass.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

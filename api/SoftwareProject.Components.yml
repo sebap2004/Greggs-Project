@@ -1,0 +1,44 @@
+### YamlMime:ManagedReference
+items:
+- uid: SoftwareProject.Components
+  commentId: N:SoftwareProject.Components
+  id: SoftwareProject.Components
+  children:
+  - SoftwareProject.Components.App
+  - SoftwareProject.Components.Routes
+  - SoftwareProject.Components.TestClass
+  - SoftwareProject.Components._Imports
+  langs:
+  - csharp
+  - vb
+  name: SoftwareProject.Components
+  nameWithType: SoftwareProject.Components
+  fullName: SoftwareProject.Components
+  type: Namespace
+  assemblies:
+  - SoftwareProject
+references:
+- uid: SoftwareProject.Components.TestClass
+  commentId: T:SoftwareProject.Components.TestClass
+  href: SoftwareProject.Components.TestClass.html
+  name: TestClass
+  nameWithType: TestClass
+  fullName: SoftwareProject.Components.TestClass
+- uid: SoftwareProject.Components.App
+  commentId: T:SoftwareProject.Components.App
+  href: SoftwareProject.Components.App.html
+  name: App
+  nameWithType: App
+  fullName: SoftwareProject.Components.App
+- uid: SoftwareProject.Components._Imports
+  commentId: T:SoftwareProject.Components._Imports
+  href: SoftwareProject.Components._Imports.html
+  name: _Imports
+  nameWithType: _Imports
+  fullName: SoftwareProject.Components._Imports
+- uid: SoftwareProject.Components.Routes
+  commentId: T:SoftwareProject.Components.Routes
+  href: SoftwareProject.Components.Routes.html
+  name: Routes
+  nameWithType: Routes
+  fullName: SoftwareProject.Components.Routes

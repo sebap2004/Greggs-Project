@@ -1,0 +1,82 @@
+{
+  "api/SoftwareProject.Components.App.html": {
+    "href": "api/SoftwareProject.Components.App.html",
+    "title": "Class App | Software Project",
+    "keywords": "Class App Namespace SoftwareProject.Components Assembly SoftwareProject.dll public class App : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase App Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.Layout.MainLayout.html": {
+    "href": "api/SoftwareProject.Components.Layout.MainLayout.html",
+    "title": "Class MainLayout | Software Project",
+    "keywords": "Class MainLayout Namespace SoftwareProject.Components.Layout Assembly SoftwareProject.dll public class MainLayout : LayoutComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase LayoutComponentBase MainLayout Implements IComponent IHandleEvent IHandleAfterRender Inherited Members LayoutComponentBase.SetParametersAsync(ParameterView) LayoutComponentBase.Body ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Properties DarkLightModeButtonIcon public string DarkLightModeButtonIcon { get; } Property Value string Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder OnInitialized() Method invoked when the component is ready to start, having received its initial parameters from its parent in the render tree. protected override void OnInitialized()"
+  },
+  "api/SoftwareProject.Components.Layout.NavMenu.html": {
+    "href": "api/SoftwareProject.Components.Layout.NavMenu.html",
+    "title": "Class NavMenu | Software Project",
+    "keywords": "Class NavMenu Namespace SoftwareProject.Components.Layout Assembly SoftwareProject.dll public class NavMenu : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase NavMenu Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.Layout.html": {
+    "href": "api/SoftwareProject.Components.Layout.html",
+    "title": "Namespace SoftwareProject.Components.Layout | Software Project",
+    "keywords": "Namespace SoftwareProject.Components.Layout Classes MainLayout NavMenu"
+  },
+  "api/SoftwareProject.Components.Pages.Counter.html": {
+    "href": "api/SoftwareProject.Components.Pages.Counter.html",
+    "title": "Class Counter | Software Project",
+    "keywords": "Class Counter Namespace SoftwareProject.Components.Pages Assembly SoftwareProject.dll [Route(\"/counter\")] public class Counter : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase Counter Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.Pages.Error.html": {
+    "href": "api/SoftwareProject.Components.Pages.Error.html",
+    "title": "Class Error | Software Project",
+    "keywords": "Class Error Namespace SoftwareProject.Components.Pages Assembly SoftwareProject.dll [Route(\"/Error\")] public class Error : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase Error Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder OnInitialized() Method invoked when the component is ready to start, having received its initial parameters from its parent in the render tree. protected override void OnInitialized()"
+  },
+  "api/SoftwareProject.Components.Pages.Home.html": {
+    "href": "api/SoftwareProject.Components.Pages.Home.html",
+    "title": "Class Home | Software Project",
+    "keywords": "Class Home Namespace SoftwareProject.Components.Pages Assembly SoftwareProject.dll [Route(\"/\")] public class Home : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase Home Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.Pages.Weather.html": {
+    "href": "api/SoftwareProject.Components.Pages.Weather.html",
+    "title": "Class Weather | Software Project",
+    "keywords": "Class Weather Namespace SoftwareProject.Components.Pages Assembly SoftwareProject.dll [Route(\"/weather\")] public class Weather : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase Weather Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder OnInitializedAsync() Method invoked when the component is ready to start, having received its initial parameters from its parent in the render tree. Override this method if you will perform an asynchronous operation and want the component to refresh when that operation is completed. protected override Task OnInitializedAsync() Returns Task A Task representing any asynchronous operation."
+  },
+  "api/SoftwareProject.Components.Pages.html": {
+    "href": "api/SoftwareProject.Components.Pages.html",
+    "title": "Namespace SoftwareProject.Components.Pages | Software Project",
+    "keywords": "Namespace SoftwareProject.Components.Pages Classes Counter Error Home Weather"
+  },
+  "api/SoftwareProject.Components.Routes.html": {
+    "href": "api/SoftwareProject.Components.Routes.html",
+    "title": "Class Routes | Software Project",
+    "keywords": "Class Routes Namespace SoftwareProject.Components Assembly SoftwareProject.dll public class Routes : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase Routes Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.TestClass.html": {
+    "href": "api/SoftwareProject.Components.TestClass.html",
+    "title": "Class TestClass | Software Project",
+    "keywords": "Class TestClass Namespace SoftwareProject.Components Assembly SoftwareProject.dll public class TestClass Inheritance object TestClass Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString()"
+  },
+  "api/SoftwareProject.Components._Imports.html": {
+    "href": "api/SoftwareProject.Components._Imports.html",
+    "title": "Class _Imports | Software Project",
+    "keywords": "Class _Imports Namespace SoftwareProject.Components Assembly SoftwareProject.dll public class _Imports : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender Inheritance object ComponentBase _Imports Implements IComponent IHandleEvent IHandleAfterRender Inherited Members ComponentBase.OnInitialized() ComponentBase.OnInitializedAsync() ComponentBase.OnParametersSet() ComponentBase.OnParametersSetAsync() ComponentBase.StateHasChanged() ComponentBase.ShouldRender() ComponentBase.OnAfterRender(bool) ComponentBase.OnAfterRenderAsync(bool) ComponentBase.InvokeAsync(Action) ComponentBase.InvokeAsync(Func<Task>) ComponentBase.DispatchExceptionAsync(Exception) ComponentBase.SetParametersAsync(ParameterView) ComponentBase.RendererInfo ComponentBase.Assets ComponentBase.AssignedRenderMode object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods BuildRenderTree(RenderTreeBuilder) Renders the component to the supplied RenderTreeBuilder. protected override void BuildRenderTree(RenderTreeBuilder __builder) Parameters __builder RenderTreeBuilder"
+  },
+  "api/SoftwareProject.Components.html": {
+    "href": "api/SoftwareProject.Components.html",
+    "title": "Namespace SoftwareProject.Components | Software Project",
+    "keywords": "Namespace SoftwareProject.Components Classes App Routes TestClass _Imports"
+  },
+  "docs/getting-started.html": {
+    "href": "docs/getting-started.html",
+    "title": "Getting Started | Software Project",
+    "keywords": "Getting Started"
+  },
+  "docs/introduction.html": {
+    "href": "docs/introduction.html",
+    "title": "Introduction | Software Project",
+    "keywords": "Introduction"
+  },
+  "index.html": {
+    "href": "index.html",
+    "title": "This is the HOMEPAGE. | Software Project",
+    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  }
+}
