@@ -1,7 +1,7 @@
 ﻿using MudBlazor;
+using Microsoft.AspNetCore.Components;
 
 namespace SoftwareProject.Components.Layout;
-
 public partial class MainLayout
 {
     private bool _drawerOpen = true;
