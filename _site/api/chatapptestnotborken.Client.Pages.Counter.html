@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class TestClass | Software Project </title>
+      <title>Class Counter | Software Project </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class TestClass | Software Project ">
+      <meta name="title" content="Class Counter | Software Project ">
       
-      <meta name="description" content="Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years, using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March of a non-leap year.">
+      
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/sebap2004/Greggs-Project/new/master/apiSpec/new?filename=SoftwareProject_Components_TestClass.md&amp;value=---%0Auid%3A%20SoftwareProject.Components.TestClass%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="SoftwareProject.Components.TestClass">
+        <article data-uid="chatapptestnotborken.Client.Pages.Counter">
 
 
 
-  <h1 id="SoftwareProject_Components_TestClass" data-uid="SoftwareProject.Components.TestClass" class="text-break">
-Class TestClass  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/TestClass.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <h1 id="chatapptestnotborken_Client_Pages_Counter" data-uid="chatapptestnotborken.Client.Pages.Counter" class="text-break">
+Class Counter  
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="SoftwareProject.html">SoftwareProject</a>.<a class="xref" href="SoftwareProject.Components.html">Components</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>SoftwareProject.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="chatapptestnotborken.html">chatapptestnotborken</a>.<a class="xref" href="chatapptestnotborken.Client.html">Client</a>.<a class="xref" href="chatapptestnotborken.Client.Pages.html">Pages</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>chatapptestnotborken.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
-using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
-of a non-leap year.</p>
-</div>
+  <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TestClass</code></pre>
+    <pre><code class="lang-csharp hljs">[Route(&quot;/counter&quot;)]
+public class Counter : ComponentBase, IComponent, IHandleEvent, IHandleAfterRender</code></pre>
   </div>
 
 
@@ -114,15 +112,69 @@ of a non-leap year.</p>
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">TestClass</span></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase">ComponentBase</a></div>
+      <div><span class="xref">Counter</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent">IComponent</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent">IHandleEvent</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender">IHandleAfterRender</a></div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized">ComponentBase.OnInitialized()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitializedasync">ComponentBase.OnInitializedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.onparametersset">ComponentBase.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.onparameterssetasync">ComponentBase.OnParametersSetAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.statehaschanged">ComponentBase.StateHasChanged()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.shouldrender">ComponentBase.ShouldRender()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.onafterrender">ComponentBase.OnAfterRender(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.onafterrenderasync">ComponentBase.OnAfterRenderAsync(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.invokeasync#microsoft-aspnetcore-components-componentbase-invokeasync(system-action)">ComponentBase.InvokeAsync(Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.invokeasync#microsoft-aspnetcore-components-componentbase-invokeasync(system-func((system-threading-tasks-task)))">ComponentBase.InvokeAsync(Func&lt;Task&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.dispatchexceptionasync">ComponentBase.DispatchExceptionAsync(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.setparametersasync">ComponentBase.SetParametersAsync(ParameterView)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.rendererinfo">ComponentBase.RendererInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.assets">ComponentBase.Assets</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.assignedrendermode">ComponentBase.AssignedRenderMode</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -149,84 +201,31 @@ of a non-leap year.</p>
 
 
 
-  <h2 id="SoftwareProject_Components_TestClass_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
-within living memory.</p>
-</div>
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="SoftwareProject_Components_TestClass_TestProperty_" data-uid="SoftwareProject.Components.TestClass.TestProperty*"></a>
-
-  <h3 id="SoftwareProject_Components_TestClass_TestProperty" data-uid="SoftwareProject.Components.TestClass.TestProperty">
-  TestProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/TestClass.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
-using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
-of a non-leap year.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private int TestProperty { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>Age of the individual in years (as an integer).</p>
-</dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="SoftwareProject_Components_TestClass_TestProperty_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
-within living memory.</p>
-</div>
-
-
 
 
   <h2 class="section" id="methods">Methods
 </h2>
 
 
-  <a id="SoftwareProject_Components_TestClass_TestMethod_" data-uid="SoftwareProject.Components.TestClass.TestMethod*"></a>
+  <a id="chatapptestnotborken_Client_Pages_Counter_BuildRenderTree_" data-uid="chatapptestnotborken.Client.Pages.Counter.BuildRenderTree*"></a>
 
-  <h3 id="SoftwareProject_Components_TestClass_TestMethod_System_DateTime_System_DateTime_" data-uid="SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)">
-  TestMethod(DateTime, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/TestClass.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <h3 id="chatapptestnotborken_Client_Pages_Counter_BuildRenderTree_Microsoft_AspNetCore_Components_Rendering_RenderTreeBuilder_" data-uid="chatapptestnotborken.Client.Pages.Counter.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
+  BuildRenderTree(RenderTreeBuilder)
+  
   </h3>
 
-  <div class="markdown level1 summary"><p>Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
-using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
-of a non-leap year.</p>
+  <div class="markdown level1 summary"><p>Renders the component to the supplied <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder">RenderTreeBuilder</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void TestMethod(DateTime dateOfBirth, DateTime date)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void BuildRenderTree(RenderTreeBuilder __builder)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>dateOfBirth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>Individual's date of birth.</p>
-</dd>
-    <dt><code>date</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>Date at which to evaluate age at.</p>
-</dd>
+    <dt><code>__builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder">RenderTreeBuilder</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -236,10 +235,6 @@ of a non-leap year.</p>
 
 
 
-  <h4 class="section" id="SoftwareProject_Components_TestClass_TestMethod_System_DateTime_System_DateTime__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
-within living memory.</p>
-</div>
 
 
 
@@ -248,7 +243,6 @@ within living memory.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/TestClass.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

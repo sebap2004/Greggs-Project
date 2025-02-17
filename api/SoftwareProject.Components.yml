@@ -24,12 +24,6 @@ references:
   name: TestClass
   nameWithType: TestClass
   fullName: SoftwareProject.Components.TestClass
-- uid: SoftwareProject.Components._Imports
-  commentId: T:SoftwareProject.Components._Imports
-  href: SoftwareProject.Components._Imports.html
-  name: _Imports
-  nameWithType: _Imports
-  fullName: SoftwareProject.Components._Imports
 - uid: SoftwareProject.Components.App
   commentId: T:SoftwareProject.Components.App
   href: SoftwareProject.Components.App.html
@@ -42,3 +36,9 @@ references:
   name: Routes
   nameWithType: Routes
   fullName: SoftwareProject.Components.Routes
+- uid: SoftwareProject.Components._Imports
+  commentId: T:SoftwareProject.Components._Imports
+  href: SoftwareProject.Components._Imports.html
+  name: _Imports
+  nameWithType: _Imports
+  fullName: SoftwareProject.Components._Imports

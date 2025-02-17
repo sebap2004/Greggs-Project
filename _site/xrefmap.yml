@@ -679,35 +679,35 @@ references:
   commentId: T:SoftwareProject.Components.TestClass
   fullName: SoftwareProject.Components.TestClass
   nameWithType: TestClass
-- uid: SoftwareProject.Components.TestClass.Cracker
-  name: Cracker
-  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Cracker
-  commentId: P:SoftwareProject.Components.TestClass.Cracker
-  fullName: SoftwareProject.Components.TestClass.Cracker
-  nameWithType: TestClass.Cracker
-- uid: SoftwareProject.Components.TestClass.Cracker*
-  name: Cracker
-  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Cracker_
-  commentId: Overload:SoftwareProject.Components.TestClass.Cracker
+- uid: SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
+  name: TestMethod(DateTime, DateTime)
+  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestMethod_System_DateTime_System_DateTime_
+  commentId: M:SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
+  name.vb: TestMethod(Date, Date)
+  fullName: SoftwareProject.Components.TestClass.TestMethod(System.DateTime, System.DateTime)
+  fullName.vb: SoftwareProject.Components.TestClass.TestMethod(Date, Date)
+  nameWithType: TestClass.TestMethod(DateTime, DateTime)
+  nameWithType.vb: TestClass.TestMethod(Date, Date)
+- uid: SoftwareProject.Components.TestClass.TestMethod*
+  name: TestMethod
+  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestMethod_
+  commentId: Overload:SoftwareProject.Components.TestClass.TestMethod
   isSpec: "True"
-  fullName: SoftwareProject.Components.TestClass.Cracker
-  nameWithType: TestClass.Cracker
-- uid: SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
-  name: Hell(DateTime, DateTime)
-  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Hell_System_DateTime_System_DateTime_
-  commentId: M:SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
-  name.vb: Hell(Date, Date)
-  fullName: SoftwareProject.Components.TestClass.Hell(System.DateTime, System.DateTime)
-  fullName.vb: SoftwareProject.Components.TestClass.Hell(Date, Date)
-  nameWithType: TestClass.Hell(DateTime, DateTime)
-  nameWithType.vb: TestClass.Hell(Date, Date)
-- uid: SoftwareProject.Components.TestClass.Hell*
-  name: Hell
-  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Hell_
-  commentId: Overload:SoftwareProject.Components.TestClass.Hell
+  fullName: SoftwareProject.Components.TestClass.TestMethod
+  nameWithType: TestClass.TestMethod
+- uid: SoftwareProject.Components.TestClass.TestProperty
+  name: TestProperty
+  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestProperty
+  commentId: P:SoftwareProject.Components.TestClass.TestProperty
+  fullName: SoftwareProject.Components.TestClass.TestProperty
+  nameWithType: TestClass.TestProperty
+- uid: SoftwareProject.Components.TestClass.TestProperty*
+  name: TestProperty
+  href: api/SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestProperty_
+  commentId: Overload:SoftwareProject.Components.TestClass.TestProperty
   isSpec: "True"
-  fullName: SoftwareProject.Components.TestClass.Hell
-  nameWithType: TestClass.Hell
+  fullName: SoftwareProject.Components.TestClass.TestProperty
+  nameWithType: TestClass.TestProperty
 - uid: SoftwareProject.Components._Imports
   name: _Imports
   href: api/SoftwareProject.Components._Imports.html

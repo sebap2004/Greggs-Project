@@ -5,8 +5,8 @@ items:
   id: TestClass
   parent: SoftwareProject.Components
   children:
-  - SoftwareProject.Components.TestClass.Cracker
-  - SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
+  - SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
+  - SoftwareProject.Components.TestClass.TestProperty
   langs:
   - csharp
   - vb
@@ -48,23 +48,23 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: SoftwareProject.Components.TestClass.Cracker
-  commentId: P:SoftwareProject.Components.TestClass.Cracker
-  id: Cracker
+- uid: SoftwareProject.Components.TestClass.TestProperty
+  commentId: P:SoftwareProject.Components.TestClass.TestProperty
+  id: TestProperty
   parent: SoftwareProject.Components.TestClass
   langs:
   - csharp
   - vb
-  name: Cracker
-  nameWithType: TestClass.Cracker
-  fullName: SoftwareProject.Components.TestClass.Cracker
+  name: TestProperty
+  nameWithType: TestClass.TestProperty
+  fullName: SoftwareProject.Components.TestClass.TestProperty
   type: Property
   source:
     remote:
       path: Components/TestClass.cs
       branch: master
       repo: https://github.com/sebap2004/Greggs-Project.git
-    id: Cracker
+    id: TestProperty
     path: Components/TestClass.cs
     startLine: 23
   assemblies:
@@ -81,30 +81,30 @@ items:
         within living memory.
   example: []
   syntax:
-    content: private int Cracker { get; set; }
+    content: private int TestProperty { get; set; }
     parameters: []
     return:
       type: System.Int32
       description: Age of the individual in years (as an integer).
-    content.vb: Private Property Cracker As Integer
-  overload: SoftwareProject.Components.TestClass.Cracker*
-- uid: SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
-  commentId: M:SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
-  id: Hell(System.DateTime,System.DateTime)
+    content.vb: Private Property TestProperty As Integer
+  overload: SoftwareProject.Components.TestClass.TestProperty*
+- uid: SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
+  commentId: M:SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
+  id: TestMethod(System.DateTime,System.DateTime)
   parent: SoftwareProject.Components.TestClass
   langs:
   - csharp
   - vb
-  name: Hell(DateTime, DateTime)
-  nameWithType: TestClass.Hell(DateTime, DateTime)
-  fullName: SoftwareProject.Components.TestClass.Hell(System.DateTime, System.DateTime)
+  name: TestMethod(DateTime, DateTime)
+  nameWithType: TestClass.TestMethod(DateTime, DateTime)
+  fullName: SoftwareProject.Components.TestClass.TestMethod(System.DateTime, System.DateTime)
   type: Method
   source:
     remote:
       path: Components/TestClass.cs
       branch: master
       repo: https://github.com/sebap2004/Greggs-Project.git
-    id: Hell
+    id: TestMethod
     path: Components/TestClass.cs
     startLine: 36
   assemblies:
@@ -121,7 +121,7 @@ items:
         within living memory.
   example: []
   syntax:
-    content: public void Hell(DateTime dateOfBirth, DateTime date)
+    content: public void TestMethod(DateTime dateOfBirth, DateTime date)
     parameters:
     - id: dateOfBirth
       type: System.DateTime
@@ -129,11 +129,11 @@ items:
     - id: date
       type: System.DateTime
       description: Date at which to evaluate age at.
-    content.vb: Public Sub Hell(dateOfBirth As Date, [date] As Date)
-  overload: SoftwareProject.Components.TestClass.Hell*
-  nameWithType.vb: TestClass.Hell(Date, Date)
-  fullName.vb: SoftwareProject.Components.TestClass.Hell(Date, Date)
-  name.vb: Hell(Date, Date)
+    content.vb: Public Sub TestMethod(dateOfBirth As Date, [date] As Date)
+  overload: SoftwareProject.Components.TestClass.TestMethod*
+  nameWithType.vb: TestClass.TestMethod(Date, Date)
+  fullName.vb: SoftwareProject.Components.TestClass.TestMethod(Date, Date)
+  name.vb: TestMethod(Date, Date)
 references:
 - uid: SoftwareProject.Components
   commentId: N:SoftwareProject.Components
@@ -394,12 +394,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SoftwareProject.Components.TestClass.Cracker*
-  commentId: Overload:SoftwareProject.Components.TestClass.Cracker
-  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Cracker
-  name: Cracker
-  nameWithType: TestClass.Cracker
-  fullName: SoftwareProject.Components.TestClass.Cracker
+- uid: SoftwareProject.Components.TestClass.TestProperty*
+  commentId: Overload:SoftwareProject.Components.TestClass.TestProperty
+  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestProperty
+  name: TestProperty
+  nameWithType: TestClass.TestProperty
+  fullName: SoftwareProject.Components.TestClass.TestProperty
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -411,12 +411,12 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: SoftwareProject.Components.TestClass.Hell*
-  commentId: Overload:SoftwareProject.Components.TestClass.Hell
-  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Hell_System_DateTime_System_DateTime_
-  name: Hell
-  nameWithType: TestClass.Hell
-  fullName: SoftwareProject.Components.TestClass.Hell
+- uid: SoftwareProject.Components.TestClass.TestMethod*
+  commentId: Overload:SoftwareProject.Components.TestClass.TestMethod
+  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_TestMethod_System_DateTime_System_DateTime_
+  name: TestMethod
+  nameWithType: TestClass.TestMethod
+  fullName: SoftwareProject.Components.TestClass.TestMethod
 - uid: System.DateTime
   commentId: T:System.DateTime
   parent: System

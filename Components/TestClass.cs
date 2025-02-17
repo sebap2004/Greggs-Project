@@ -21,7 +21,7 @@ public class TestClass
     /// <returns>Age of the individual in years (as an integer).</returns>
     /// <remarks>This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
     /// within living memory.</remarks>
-    private int Cracker { get; set; }
+    private int TestProperty { get; set; }
     
     
     /// <summary>
@@ -34,7 +34,7 @@ public class TestClass
     /// <returns>Age of the individual in years (as an integer).</returns>
     /// <remarks>This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
     /// within living memory.</remarks>
-    public void Hell(DateTime dateOfBirth, DateTime date)
+    public void TestMethod(DateTime dateOfBirth, DateTime date)
     {
         
     }
