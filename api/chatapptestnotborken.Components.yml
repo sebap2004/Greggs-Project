@@ -1,0 +1,37 @@
+### YamlMime:ManagedReference
+items:
+- uid: chatapptestnotborken.Components
+  commentId: N:chatapptestnotborken.Components
+  id: chatapptestnotborken.Components
+  children:
+  - chatapptestnotborken.Components.App
+  - chatapptestnotborken.Components.Routes
+  - chatapptestnotborken.Components._Imports
+  langs:
+  - csharp
+  - vb
+  name: chatapptestnotborken.Components
+  nameWithType: chatapptestnotborken.Components
+  fullName: chatapptestnotborken.Components
+  type: Namespace
+  assemblies:
+  - chatapptestnotborken
+references:
+- uid: chatapptestnotborken.Components.App
+  commentId: T:chatapptestnotborken.Components.App
+  href: chatapptestnotborken.Components.App.html
+  name: App
+  nameWithType: App
+  fullName: chatapptestnotborken.Components.App
+- uid: chatapptestnotborken.Components._Imports
+  commentId: T:chatapptestnotborken.Components._Imports
+  href: chatapptestnotborken.Components._Imports.html
+  name: _Imports
+  nameWithType: _Imports
+  fullName: chatapptestnotborken.Components._Imports
+- uid: chatapptestnotborken.Components.Routes
+  commentId: T:chatapptestnotborken.Components.Routes
+  href: chatapptestnotborken.Components.Routes.html
+  name: Routes
+  nameWithType: Routes
+  fullName: chatapptestnotborken.Components.Routes

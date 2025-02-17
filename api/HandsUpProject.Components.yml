@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: HandsUpProject.Components
+  commentId: N:HandsUpProject.Components
+  id: HandsUpProject.Components
+  children:
+  - HandsUpProject.Components.App
+  - HandsUpProject.Components._Imports
+  langs:
+  - csharp
+  - vb
+  name: HandsUpProject.Components
+  nameWithType: HandsUpProject.Components
+  fullName: HandsUpProject.Components
+  type: Namespace
+  assemblies:
+  - HandsUpProject
+references:
+- uid: HandsUpProject.Components.App
+  commentId: T:HandsUpProject.Components.App
+  href: HandsUpProject.Components.App.html
+  name: App
+  nameWithType: App
+  fullName: HandsUpProject.Components.App
+- uid: HandsUpProject.Components._Imports
+  commentId: T:HandsUpProject.Components._Imports
+  href: HandsUpProject.Components._Imports.html
+  name: _Imports
+  nameWithType: _Imports
+  fullName: HandsUpProject.Components._Imports

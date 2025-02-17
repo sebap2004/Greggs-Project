@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: HandsUpProject.Components.Pages
+  commentId: N:HandsUpProject.Components.Pages
+  id: HandsUpProject.Components.Pages
+  children:
+  - HandsUpProject.Components.Pages.Error
+  langs:
+  - csharp
+  - vb
+  name: HandsUpProject.Components.Pages
+  nameWithType: HandsUpProject.Components.Pages
+  fullName: HandsUpProject.Components.Pages
+  type: Namespace
+  assemblies:
+  - HandsUpProject
+references:
+- uid: HandsUpProject.Components.Pages.Error
+  commentId: T:HandsUpProject.Components.Pages.Error
+  href: HandsUpProject.Components.Pages.Error.html
+  name: Error
+  nameWithType: Error
+  fullName: HandsUpProject.Components.Pages.Error
