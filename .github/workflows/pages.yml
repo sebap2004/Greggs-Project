@@ -33,7 +33,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 9.x
-
+          
+      - run: dotnet restore
       - run: dotnet tool update -g docfx
       - run: docfx docfx.json
 
