@@ -167,6 +167,15 @@ Class MainLayout
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.dispatchexceptionasync">ComponentBase.DispatchExceptionAsync(Exception)</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent">ComponentBase.IComponent.Attach(RenderHandle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent">ComponentBase.IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender">ComponentBase.IHandleAfterRender.OnAfterRenderAsync()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.rendererinfo">ComponentBase.RendererInfo</a>
     </div>
     <div>
@@ -203,6 +212,160 @@ Class MainLayout
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout__darkPalette" data-uid="SoftwareProject.Components.Layout.MainLayout._darkPalette">
+  _darkPalette
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private readonly PaletteDark _darkPalette</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PaletteDark</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout__drawerOpen" data-uid="SoftwareProject.Components.Layout.MainLayout._drawerOpen">
+  _drawerOpen
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool _drawerOpen</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout__isDarkMode" data-uid="SoftwareProject.Components.Layout.MainLayout._isDarkMode">
+  _isDarkMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool _isDarkMode</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout__lightPalette" data-uid="SoftwareProject.Components.Layout.MainLayout._lightPalette">
+  _lightPalette
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private readonly PaletteLight _lightPalette</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PaletteLight</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout__theme" data-uid="SoftwareProject.Components.Layout.MainLayout._theme">
+  _theme
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private MudTheme? _theme</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MudTheme</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -211,7 +374,7 @@ Class MainLayout
 
   <h3 id="SoftwareProject_Components_Layout_MainLayout_DarkLightModeButtonIcon" data-uid="SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon">
   DarkLightModeButtonIcon
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -274,11 +437,63 @@ Class MainLayout
 
 
 
+  <a id="SoftwareProject_Components_Layout_MainLayout_DarkModeToggle_" data-uid="SoftwareProject.Components.Layout.MainLayout.DarkModeToggle*"></a>
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout_DarkModeToggle" data-uid="SoftwareProject.Components.Layout.MainLayout.DarkModeToggle">
+  DarkModeToggle()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void DarkModeToggle()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SoftwareProject_Components_Layout_MainLayout_DrawerToggle_" data-uid="SoftwareProject.Components.Layout.MainLayout.DrawerToggle*"></a>
+
+  <h3 id="SoftwareProject_Components_Layout_MainLayout_DrawerToggle" data-uid="SoftwareProject.Components.Layout.MainLayout.DrawerToggle">
+  DrawerToggle()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void DrawerToggle()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="SoftwareProject_Components_Layout_MainLayout_OnInitialized_" data-uid="SoftwareProject.Components.Layout.MainLayout.OnInitialized*"></a>
 
   <h3 id="SoftwareProject_Components_Layout_MainLayout_OnInitialized" data-uid="SoftwareProject.Components.Layout.MainLayout.OnInitialized">
   OnInitialized()
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/sebap2004/Greggs-Project/blob/master/Components/Layout/MainLayout.razor.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method invoked when the component is ready to start, having received its

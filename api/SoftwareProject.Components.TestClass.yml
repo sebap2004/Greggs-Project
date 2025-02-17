@@ -4,7 +4,9 @@ items:
   commentId: T:SoftwareProject.Components.TestClass
   id: TestClass
   parent: SoftwareProject.Components
-  children: []
+  children:
+  - SoftwareProject.Components.TestClass.Cracker
+  - SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
   langs:
   - csharp
   - vb
@@ -19,10 +21,20 @@ items:
       repo: https://github.com/sebap2004/Greggs-Project.git
     id: TestClass
     path: Components/TestClass.cs
-    startLine: 2
+    startLine: 11
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components
+  summary: >-
+    Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
+
+    using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
+
+    of a non-leap year.
+  remarks: >-
+    This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
+        within living memory.
+  example: []
   syntax:
     content: public class TestClass
     content.vb: Public Class TestClass
@@ -36,6 +48,92 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: SoftwareProject.Components.TestClass.Cracker
+  commentId: P:SoftwareProject.Components.TestClass.Cracker
+  id: Cracker
+  parent: SoftwareProject.Components.TestClass
+  langs:
+  - csharp
+  - vb
+  name: Cracker
+  nameWithType: TestClass.Cracker
+  fullName: SoftwareProject.Components.TestClass.Cracker
+  type: Property
+  source:
+    remote:
+      path: Components/TestClass.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: Cracker
+    path: Components/TestClass.cs
+    startLine: 23
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components
+  summary: >-
+    Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
+
+    using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
+
+    of a non-leap year.
+  remarks: >-
+    This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
+        within living memory.
+  example: []
+  syntax:
+    content: private int Cracker { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: Age of the individual in years (as an integer).
+    content.vb: Private Property Cracker As Integer
+  overload: SoftwareProject.Components.TestClass.Cracker*
+- uid: SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
+  commentId: M:SoftwareProject.Components.TestClass.Hell(System.DateTime,System.DateTime)
+  id: Hell(System.DateTime,System.DateTime)
+  parent: SoftwareProject.Components.TestClass
+  langs:
+  - csharp
+  - vb
+  name: Hell(DateTime, DateTime)
+  nameWithType: TestClass.Hell(DateTime, DateTime)
+  fullName: SoftwareProject.Components.TestClass.Hell(System.DateTime, System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Components/TestClass.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: Hell
+    path: Components/TestClass.cs
+    startLine: 36
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components
+  summary: >-
+    Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
+
+    using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
+
+    of a non-leap year.
+  remarks: >-
+    This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
+        within living memory.
+  example: []
+  syntax:
+    content: public void Hell(DateTime dateOfBirth, DateTime date)
+    parameters:
+    - id: dateOfBirth
+      type: System.DateTime
+      description: Individual's date of birth.
+    - id: date
+      type: System.DateTime
+      description: Date at which to evaluate age at.
+    content.vb: Public Sub Hell(dateOfBirth As Date, [date] As Date)
+  overload: SoftwareProject.Components.TestClass.Hell*
+  nameWithType.vb: TestClass.Hell(Date, Date)
+  fullName.vb: SoftwareProject.Components.TestClass.Hell(Date, Date)
+  name.vb: Hell(Date, Date)
 references:
 - uid: SoftwareProject.Components
   commentId: N:SoftwareProject.Components
@@ -296,3 +394,37 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: SoftwareProject.Components.TestClass.Cracker*
+  commentId: Overload:SoftwareProject.Components.TestClass.Cracker
+  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Cracker
+  name: Cracker
+  nameWithType: TestClass.Cracker
+  fullName: SoftwareProject.Components.TestClass.Cracker
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SoftwareProject.Components.TestClass.Hell*
+  commentId: Overload:SoftwareProject.Components.TestClass.Hell
+  href: SoftwareProject.Components.TestClass.html#SoftwareProject_Components_TestClass_Hell_System_DateTime_System_DateTime_
+  name: Hell
+  nameWithType: TestClass.Hell
+  fullName: SoftwareProject.Components.TestClass.Hell
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date

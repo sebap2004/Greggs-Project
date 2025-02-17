@@ -7,6 +7,7 @@ items:
   children:
   - SoftwareProject.Components.Pages.Weather.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   - SoftwareProject.Components.Pages.Weather.OnInitializedAsync
+  - SoftwareProject.Components.Pages.Weather.forecasts
   langs:
   - csharp
   - vb
@@ -48,7 +49,10 @@ items:
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Action)
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Func{System.Threading.Tasks.Task})
   - Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync(System.Exception)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
   - Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
   - Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   - Microsoft.AspNetCore.Components.ComponentBase.Assets
   - Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode
@@ -93,6 +97,29 @@ items:
     content.vb: Protected Overrides Sub BuildRenderTree(__builder As RenderTreeBuilder)
   overridden: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   overload: SoftwareProject.Components.Pages.Weather.BuildRenderTree*
+- uid: SoftwareProject.Components.Pages.Weather.forecasts
+  commentId: F:SoftwareProject.Components.Pages.Weather.forecasts
+  id: forecasts
+  parent: SoftwareProject.Components.Pages.Weather
+  langs:
+  - csharp
+  - vb
+  name: forecasts
+  nameWithType: Weather.forecasts
+  fullName: SoftwareProject.Components.Pages.Weather.forecasts
+  type: Field
+  source:
+    id: forecasts
+    path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
+    startLine: 482
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Pages
+  syntax:
+    content: private Weather.WeatherForecast[]? forecasts
+    return:
+      type: SoftwareProject.Components.Pages.Weather.WeatherForecast[]
+    content.vb: Private forecasts As Weather.WeatherForecast()
 - uid: SoftwareProject.Components.Pages.Weather.OnInitializedAsync
   commentId: M:SoftwareProject.Components.Pages.Weather.OnInitializedAsync
   id: OnInitializedAsync
@@ -486,6 +513,30 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.exception
   - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  name: IComponent.Attach(RenderHandle)
+  nameWithType: ComponentBase.IComponent.Attach(RenderHandle)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IComponent.Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IComponent
+    name: IComponent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+    name: Attach
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-icomponent-attach
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.RenderHandle
+    name: RenderHandle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderhandle
+  - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
   commentId: M:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
   parent: Microsoft.AspNetCore.Components.ComponentBase
@@ -515,6 +566,56 @@ references:
     name: ParameterView
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.parameterview
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  name: IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  nameWithType: ComponentBase.IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem, object)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleEvent
+    name: IHandleEvent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+    name: HandleEventAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleevent-handleeventasync
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.EventCallbackWorkItem
+    name: EventCallbackWorkItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallbackworkitem
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  name: IHandleAfterRender.OnAfterRenderAsync()
+  nameWithType: ComponentBase.IHandleAfterRender.OnAfterRenderAsync()
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync()
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleAfterRender
+    name: IHandleAfterRender
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+    name: OnAfterRenderAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleafterrender-onafterrenderasync
+  - name: (
   - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   commentId: P:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
@@ -894,6 +995,27 @@ references:
     name: Rendering
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering
+- uid: SoftwareProject.Components.Pages.Weather.WeatherForecast[]
+  isExternal: true
+  href: SoftwareProject.Components.Pages.Weather.WeatherForecast.html
+  name: WeatherForecast[]
+  nameWithType: Weather.WeatherForecast[]
+  fullName: SoftwareProject.Components.Pages.Weather.WeatherForecast[]
+  nameWithType.vb: Weather.WeatherForecast()
+  fullName.vb: SoftwareProject.Components.Pages.Weather.WeatherForecast()
+  name.vb: WeatherForecast()
+  spec.csharp:
+  - uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
+    name: WeatherForecast
+    href: SoftwareProject.Components.Pages.Weather.WeatherForecast.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
+    name: WeatherForecast
+    href: SoftwareProject.Components.Pages.Weather.WeatherForecast.html
+  - name: (
+  - name: )
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks

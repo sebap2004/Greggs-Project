@@ -42,7 +42,10 @@ items:
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Action)
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Func{System.Threading.Tasks.Task})
   - Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync(System.Exception)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
   - Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
   - Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   - Microsoft.AspNetCore.Components.ComponentBase.Assets
   - Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode
@@ -452,6 +455,30 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.exception
   - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  name: IComponent.Attach(RenderHandle)
+  nameWithType: ComponentBase.IComponent.Attach(RenderHandle)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IComponent.Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IComponent
+    name: IComponent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+    name: Attach
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-icomponent-attach
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.RenderHandle
+    name: RenderHandle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderhandle
+  - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
   commentId: M:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
   parent: Microsoft.AspNetCore.Components.ComponentBase
@@ -481,6 +508,56 @@ references:
     name: ParameterView
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.parameterview
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  name: IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  nameWithType: ComponentBase.IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem, object)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleEvent
+    name: IHandleEvent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+    name: HandleEventAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleevent-handleeventasync
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.EventCallbackWorkItem
+    name: EventCallbackWorkItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallbackworkitem
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  name: IHandleAfterRender.OnAfterRenderAsync()
+  nameWithType: ComponentBase.IHandleAfterRender.OnAfterRenderAsync()
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync()
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleAfterRender
+    name: IHandleAfterRender
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+    name: OnAfterRenderAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleafterrender-onafterrenderasync
+  - name: (
   - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   commentId: P:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo

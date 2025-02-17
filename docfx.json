@@ -1,18 +1,19 @@
 {
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
   "metadata": [
     {
       "src": [
         {
+          "src": ".",
           "files": [
-            "*.csproj"
-          ],
-          "src": ""
+            "**/*.csproj"
+          ]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "includePrivateMembers": true
     }
   ],
-  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
   "build": {
     "content": [
       {

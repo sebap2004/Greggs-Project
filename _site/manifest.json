@@ -12,6 +12,156 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Layout.MainLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Layout.MainLayout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Layout.NavMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Layout.NavMenu.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Layout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Layout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Pages.Counter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Pages.Counter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Pages.Home.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Pages.Home.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Pages.Weather.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Pages.Weather.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Pages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.Routes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.Routes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Client.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Components.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Components.App.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Components.Pages.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Components.Pages.Error.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Components.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Components.Pages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Components._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Components._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/HandsUpProject.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/HandsUpProject.Components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SoftwareProject.Components.App.yml",
       "output": {
         ".html": {
@@ -82,6 +232,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SoftwareProject.Components.Pages.Weather.WeatherForecast.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SoftwareProject.Components.Pages.Weather.WeatherForecast.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SoftwareProject.Components.Pages.Weather.yml",
       "output": {
         ".html": {
@@ -136,6 +296,226 @@
       "output": {
         ".html": {
           "relative_path": "api/SoftwareProject.Components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Testing_Stuff.Solution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Testing_Stuff.Solution.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Testing_Stuff.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Testing_Stuff.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/__Blazor.SoftwareProject.Components.Pages.Weather.TypeInference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/__Blazor.SoftwareProject.Components.Pages.Weather.TypeInference.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/__Blazor.SoftwareProject.Components.Pages.Weather.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/__Blazor.SoftwareProject.Components.Pages.Weather.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Client.Pages.Chat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Client.Pages.Chat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Client.Pages.Counter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Client.Pages.Counter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Client.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Client.Pages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Client._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Client._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Client.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.App.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Layout.MainLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Layout.MainLayout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Layout.NavMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Layout.NavMenu.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Layout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Layout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Pages.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Pages.Error.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Pages.Home.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Pages.Home.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Pages.Weather.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Pages.Weather.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Pages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.Routes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.Routes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Hubs.ChatHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Hubs.ChatHub.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/chatapptestnotborken.Hubs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/chatapptestnotborken.Hubs.html"
         }
       },
       "version": ""

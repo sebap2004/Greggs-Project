@@ -7,7 +7,14 @@ items:
   children:
   - SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   - SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+  - SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
+  - SoftwareProject.Components.Layout.MainLayout.DrawerToggle
   - SoftwareProject.Components.Layout.MainLayout.OnInitialized
+  - SoftwareProject.Components.Layout.MainLayout._darkPalette
+  - SoftwareProject.Components.Layout.MainLayout._drawerOpen
+  - SoftwareProject.Components.Layout.MainLayout._isDarkMode
+  - SoftwareProject.Components.Layout.MainLayout._lightPalette
+  - SoftwareProject.Components.Layout.MainLayout._theme
   langs:
   - csharp
   - vb
@@ -46,6 +53,9 @@ items:
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Action)
   - Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync(System.Func{System.Threading.Tasks.Task})
   - Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync(System.Exception)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  - Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
   - Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   - Microsoft.AspNetCore.Components.ComponentBase.Assets
   - Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode
@@ -56,6 +66,254 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: SoftwareProject.Components.Layout.MainLayout._drawerOpen
+  commentId: F:SoftwareProject.Components.Layout.MainLayout._drawerOpen
+  id: _drawerOpen
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: _drawerOpen
+  nameWithType: MainLayout._drawerOpen
+  fullName: SoftwareProject.Components.Layout.MainLayout._drawerOpen
+  type: Field
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: _drawerOpen
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 6
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private bool _drawerOpen
+    return:
+      type: System.Boolean
+    content.vb: Private _drawerOpen As Boolean
+- uid: SoftwareProject.Components.Layout.MainLayout._isDarkMode
+  commentId: F:SoftwareProject.Components.Layout.MainLayout._isDarkMode
+  id: _isDarkMode
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: _isDarkMode
+  nameWithType: MainLayout._isDarkMode
+  fullName: SoftwareProject.Components.Layout.MainLayout._isDarkMode
+  type: Field
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: _isDarkMode
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 7
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private bool _isDarkMode
+    return:
+      type: System.Boolean
+    content.vb: Private _isDarkMode As Boolean
+- uid: SoftwareProject.Components.Layout.MainLayout._theme
+  commentId: F:SoftwareProject.Components.Layout.MainLayout._theme
+  id: _theme
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: _theme
+  nameWithType: MainLayout._theme
+  fullName: SoftwareProject.Components.Layout.MainLayout._theme
+  type: Field
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: _theme
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 8
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private MudTheme? _theme
+    return:
+      type: MudBlazor.MudTheme
+    content.vb: Private _theme As MudTheme
+- uid: SoftwareProject.Components.Layout.MainLayout.OnInitialized
+  commentId: M:SoftwareProject.Components.Layout.MainLayout.OnInitialized
+  id: OnInitialized
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: OnInitialized()
+  nameWithType: MainLayout.OnInitialized()
+  fullName: SoftwareProject.Components.Layout.MainLayout.OnInitialized()
+  type: Method
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: OnInitialized
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 10
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  summary: >-
+    Method invoked when the component is ready to start, having received its
+
+    initial parameters from its parent in the render tree.
+  example: []
+  syntax:
+    content: protected override void OnInitialized()
+    content.vb: Protected Overrides Sub OnInitialized()
+  overridden: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
+  overload: SoftwareProject.Components.Layout.MainLayout.OnInitialized*
+- uid: SoftwareProject.Components.Layout.MainLayout.DrawerToggle
+  commentId: M:SoftwareProject.Components.Layout.MainLayout.DrawerToggle
+  id: DrawerToggle
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: DrawerToggle()
+  nameWithType: MainLayout.DrawerToggle()
+  fullName: SoftwareProject.Components.Layout.MainLayout.DrawerToggle()
+  type: Method
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: DrawerToggle
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 22
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private void DrawerToggle()
+    content.vb: Private Sub DrawerToggle()
+  overload: SoftwareProject.Components.Layout.MainLayout.DrawerToggle*
+- uid: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
+  commentId: M:SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
+  id: DarkModeToggle
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: DarkModeToggle()
+  nameWithType: MainLayout.DarkModeToggle()
+  fullName: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle()
+  type: Method
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: DarkModeToggle
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 27
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private void DarkModeToggle()
+    content.vb: Private Sub DarkModeToggle()
+  overload: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle*
+- uid: SoftwareProject.Components.Layout.MainLayout._lightPalette
+  commentId: F:SoftwareProject.Components.Layout.MainLayout._lightPalette
+  id: _lightPalette
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: _lightPalette
+  nameWithType: MainLayout._lightPalette
+  fullName: SoftwareProject.Components.Layout.MainLayout._lightPalette
+  type: Field
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: _lightPalette
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 32
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private readonly PaletteLight _lightPalette
+    return:
+      type: MudBlazor.PaletteLight
+    content.vb: Private ReadOnly _lightPalette As PaletteLight
+- uid: SoftwareProject.Components.Layout.MainLayout._darkPalette
+  commentId: F:SoftwareProject.Components.Layout.MainLayout._darkPalette
+  id: _darkPalette
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: _darkPalette
+  nameWithType: MainLayout._darkPalette
+  fullName: SoftwareProject.Components.Layout.MainLayout._darkPalette
+  type: Field
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: _darkPalette
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 42
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: private readonly PaletteDark _darkPalette
+    return:
+      type: MudBlazor.PaletteDark
+    content.vb: Private ReadOnly _darkPalette As PaletteDark
+- uid: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+  commentId: P:SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+  id: DarkLightModeButtonIcon
+  parent: SoftwareProject.Components.Layout.MainLayout
+  langs:
+  - csharp
+  - vb
+  name: DarkLightModeButtonIcon
+  nameWithType: MainLayout.DarkLightModeButtonIcon
+  fullName: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+  type: Property
+  source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
+    id: DarkLightModeButtonIcon
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 71
+  assemblies:
+  - SoftwareProject
+  namespace: SoftwareProject.Components.Layout
+  syntax:
+    content: public string DarkLightModeButtonIcon { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property DarkLightModeButtonIcon As String
+  overload: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon*
 - uid: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   commentId: M:SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   id: BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
@@ -84,59 +342,6 @@ items:
     content.vb: Protected Overrides Sub BuildRenderTree(__builder As RenderTreeBuilder)
   overridden: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   overload: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree*
-- uid: SoftwareProject.Components.Layout.MainLayout.OnInitialized
-  commentId: M:SoftwareProject.Components.Layout.MainLayout.OnInitialized
-  id: OnInitialized
-  parent: SoftwareProject.Components.Layout.MainLayout
-  langs:
-  - csharp
-  - vb
-  name: OnInitialized()
-  nameWithType: MainLayout.OnInitialized()
-  fullName: SoftwareProject.Components.Layout.MainLayout.OnInitialized()
-  type: Method
-  source:
-    id: OnInitialized
-    path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 483
-  assemblies:
-  - SoftwareProject
-  namespace: SoftwareProject.Components.Layout
-  summary: >-
-    Method invoked when the component is ready to start, having received its
-
-    initial parameters from its parent in the render tree.
-  example: []
-  syntax:
-    content: protected override void OnInitialized()
-    content.vb: Protected Overrides Sub OnInitialized()
-  overridden: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
-  overload: SoftwareProject.Components.Layout.MainLayout.OnInitialized*
-- uid: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
-  commentId: P:SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
-  id: DarkLightModeButtonIcon
-  parent: SoftwareProject.Components.Layout.MainLayout
-  langs:
-  - csharp
-  - vb
-  name: DarkLightModeButtonIcon
-  nameWithType: MainLayout.DarkLightModeButtonIcon
-  fullName: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
-  type: Property
-  source:
-    id: DarkLightModeButtonIcon
-    path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 544
-  assemblies:
-  - SoftwareProject
-  namespace: SoftwareProject.Components.Layout
-  syntax:
-    content: public string DarkLightModeButtonIcon { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public ReadOnly Property DarkLightModeButtonIcon As String
-  overload: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon*
 references:
 - uid: SoftwareProject.Components.Layout
   commentId: N:SoftwareProject.Components.Layout
@@ -540,6 +745,80 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.exception
   - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  name: IComponent.Attach(RenderHandle)
+  nameWithType: ComponentBase.IComponent.Attach(RenderHandle)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IComponent.Attach(Microsoft.AspNetCore.Components.RenderHandle)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IComponent
+    name: IComponent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IComponent#Attach(Microsoft.AspNetCore.Components.RenderHandle)
+    name: Attach
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-icomponent-attach
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.RenderHandle
+    name: RenderHandle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderhandle
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  name: IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  nameWithType: ComponentBase.IHandleEvent.HandleEventAsync(EventCallbackWorkItem, object)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem, object)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleEvent
+    name: IHandleEvent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleEvent#HandleEventAsync(Microsoft.AspNetCore.Components.EventCallbackWorkItem,System.Object)
+    name: HandleEventAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleevent-handleeventasync
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.EventCallbackWorkItem
+    name: EventCallbackWorkItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallbackworkitem
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  name: IHandleAfterRender.OnAfterRenderAsync()
+  nameWithType: ComponentBase.IHandleAfterRender.OnAfterRenderAsync()
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync()
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.IHandleAfterRender
+    name: IHandleAfterRender
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.Microsoft#AspNetCore#Components#IHandleAfterRender#OnAfterRenderAsync
+    name: OnAfterRenderAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleafterrender-onafterrenderasync
+  - name: (
+  - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   commentId: P:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo
   parent: Microsoft.AspNetCore.Components.ComponentBase
@@ -827,6 +1106,101 @@ references:
     name: Components
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MudBlazor.MudTheme
+  commentId: T:MudBlazor.MudTheme
+  parent: MudBlazor
+  isExternal: true
+  name: MudTheme
+  nameWithType: MudTheme
+  fullName: MudBlazor.MudTheme
+- uid: MudBlazor
+  commentId: N:MudBlazor
+  isExternal: true
+  name: MudBlazor
+  nameWithType: MudBlazor
+  fullName: MudBlazor
+- uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
+  name: OnInitialized()
+  nameWithType: ComponentBase.OnInitialized()
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized()
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
+    name: OnInitialized
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
+    name: OnInitialized
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
+  - name: (
+  - name: )
+- uid: SoftwareProject.Components.Layout.MainLayout.OnInitialized*
+  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.OnInitialized
+  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_OnInitialized
+  name: OnInitialized
+  nameWithType: MainLayout.OnInitialized
+  fullName: SoftwareProject.Components.Layout.MainLayout.OnInitialized
+- uid: SoftwareProject.Components.Layout.MainLayout.DrawerToggle*
+  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DrawerToggle
+  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DrawerToggle
+  name: DrawerToggle
+  nameWithType: MainLayout.DrawerToggle
+  fullName: SoftwareProject.Components.Layout.MainLayout.DrawerToggle
+- uid: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle*
+  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
+  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkModeToggle
+  name: DarkModeToggle
+  nameWithType: MainLayout.DarkModeToggle
+  fullName: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
+- uid: MudBlazor.PaletteLight
+  commentId: T:MudBlazor.PaletteLight
+  parent: MudBlazor
+  isExternal: true
+  name: PaletteLight
+  nameWithType: PaletteLight
+  fullName: MudBlazor.PaletteLight
+- uid: MudBlazor.PaletteDark
+  commentId: T:MudBlazor.PaletteDark
+  parent: MudBlazor
+  isExternal: true
+  name: PaletteDark
+  nameWithType: PaletteDark
+  fullName: MudBlazor.PaletteDark
+- uid: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon*
+  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkLightModeButtonIcon
+  name: DarkLightModeButtonIcon
+  nameWithType: MainLayout.DarkLightModeButtonIcon
+  fullName: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
   commentId: T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
   parent: Microsoft.AspNetCore.Components.Rendering
@@ -918,48 +1292,3 @@ references:
     name: Rendering
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering
-- uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
-  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
-  parent: Microsoft.AspNetCore.Components.ComponentBase
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
-  name: OnInitialized()
-  nameWithType: ComponentBase.OnInitialized()
-  fullName: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized()
-  spec.csharp:
-  - uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
-    name: OnInitialized
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitialized
-    name: OnInitialized
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.oninitialized
-  - name: (
-  - name: )
-- uid: SoftwareProject.Components.Layout.MainLayout.OnInitialized*
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.OnInitialized
-  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_OnInitialized
-  name: OnInitialized
-  nameWithType: MainLayout.OnInitialized
-  fullName: SoftwareProject.Components.Layout.MainLayout.OnInitialized
-- uid: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon*
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
-  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkLightModeButtonIcon
-  name: DarkLightModeButtonIcon
-  nameWithType: MainLayout.DarkLightModeButtonIcon
-  fullName: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
