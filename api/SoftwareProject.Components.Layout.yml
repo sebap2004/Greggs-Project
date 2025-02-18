@@ -5,7 +5,6 @@ items:
   id: SoftwareProject.Components.Layout
   children:
   - SoftwareProject.Components.Layout.MainLayout
-  - SoftwareProject.Components.Layout.NavMenu
   langs:
   - csharp
   - vb
@@ -22,9 +21,3 @@ references:
   name: MainLayout
   nameWithType: MainLayout
   fullName: SoftwareProject.Components.Layout.MainLayout
-- uid: SoftwareProject.Components.Layout.NavMenu
-  commentId: T:SoftwareProject.Components.Layout.NavMenu
-  href: SoftwareProject.Components.Layout.NavMenu.html
-  name: NavMenu
-  nameWithType: NavMenu
-  fullName: SoftwareProject.Components.Layout.NavMenu

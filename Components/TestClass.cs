@@ -11,11 +11,10 @@
 /// within living memory.</remarks>
 public class TestClass
 {
-   /// <summary>
-   ///  Hi im a testing class hello connor
-   /// </summary>
-   /// <remarks>fejwkmsdfgadsfjkasghdjhgbsdgb</remarks>
-   /// <param>sdsfsfsfsesfs</param>
+
+    /// <summary>
+    ///  This is a test summary.
+    /// </summary>
     public int TestProperty { get; set; }
     
     

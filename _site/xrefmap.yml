@@ -310,19 +310,6 @@ references:
   commentId: T:SoftwareProject.Components.Layout.MainLayout
   fullName: SoftwareProject.Components.Layout.MainLayout
   nameWithType: MainLayout
-- uid: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  name: BuildRenderTree(RenderTreeBuilder)
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_BuildRenderTree_Microsoft_AspNetCore_Components_Rendering_RenderTreeBuilder_
-  commentId: M:SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  fullName: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  nameWithType: MainLayout.BuildRenderTree(RenderTreeBuilder)
-- uid: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree*
-  name: BuildRenderTree
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_BuildRenderTree_
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.BuildRenderTree
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree
-  nameWithType: MainLayout.BuildRenderTree
 - uid: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
   name: DarkLightModeButtonIcon
   href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkLightModeButtonIcon
@@ -393,6 +380,25 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Pages.Counter.BuildRenderTree
   nameWithType: Counter.BuildRenderTree
+- uid: SoftwareProject.Components.Pages.Counter.IncrementCount
+  name: IncrementCount()
+  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_IncrementCount
+  commentId: M:SoftwareProject.Components.Pages.Counter.IncrementCount
+  fullName: SoftwareProject.Components.Pages.Counter.IncrementCount()
+  nameWithType: Counter.IncrementCount()
+- uid: SoftwareProject.Components.Pages.Counter.IncrementCount*
+  name: IncrementCount
+  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_IncrementCount_
+  commentId: Overload:SoftwareProject.Components.Pages.Counter.IncrementCount
+  isSpec: "True"
+  fullName: SoftwareProject.Components.Pages.Counter.IncrementCount
+  nameWithType: Counter.IncrementCount
+- uid: SoftwareProject.Components.Pages.Counter.currentCount
+  name: currentCount
+  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_currentCount
+  commentId: F:SoftwareProject.Components.Pages.Counter.currentCount
+  fullName: SoftwareProject.Components.Pages.Counter.currentCount
+  nameWithType: Counter.currentCount
 - uid: SoftwareProject.Components.Pages.Error
   name: Error
   href: api/SoftwareProject.Components.Pages.Error.html

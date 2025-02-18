@@ -66,12 +66,11 @@ items:
       repo: https://github.com/sebap2004/Greggs-Project.git
     id: TestProperty
     path: Components/TestClass.cs
-    startLine: 18
+    startLine: 17
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components
-  summary: Hi im a testing class
-  remarks: fejwkmsdfgadsfgbsdgb
+  summary: This is a test summary.
   example: []
   syntax:
     content: public int TestProperty { get; set; }
@@ -98,7 +97,7 @@ items:
       repo: https://github.com/sebap2004/Greggs-Project.git
     id: TestMethod
     path: Components/TestClass.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components
