@@ -4,17 +4,8 @@ items:
   name: SoftwareProject.Components
   type: Namespace
   items:
-  - uid: SoftwareProject.Components.App
-    name: App
-    type: Class
-  - uid: SoftwareProject.Components.Routes
-    name: Routes
-    type: Class
   - uid: SoftwareProject.Components.TestClass
     name: TestClass
-    type: Class
-  - uid: SoftwareProject.Components._Imports
-    name: _Imports
     type: Class
 - uid: SoftwareProject.Components.Layout
   name: SoftwareProject.Components.Layout
@@ -22,24 +13,5 @@ items:
   items:
   - uid: SoftwareProject.Components.Layout.MainLayout
     name: MainLayout
-    type: Class
-  - uid: SoftwareProject.Components.Layout.NavMenu
-    name: NavMenu
-    type: Class
-- uid: SoftwareProject.Components.Pages
-  name: SoftwareProject.Components.Pages
-  type: Namespace
-  items:
-  - uid: SoftwareProject.Components.Pages.Counter
-    name: Counter
-    type: Class
-  - uid: SoftwareProject.Components.Pages.Error
-    name: Error
-    type: Class
-  - uid: SoftwareProject.Components.Pages.Home
-    name: Home
-    type: Class
-  - uid: SoftwareProject.Components.Pages.Weather
-    name: Weather
     type: Class
 memberLayout: SamePage

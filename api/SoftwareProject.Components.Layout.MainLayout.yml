@@ -5,7 +5,6 @@ items:
   id: MainLayout
   parent: SoftwareProject.Components.Layout
   children:
-  - SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   - SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
   - SoftwareProject.Components.Layout.MainLayout.OnInitialized
   langs:
@@ -16,9 +15,13 @@ items:
   fullName: SoftwareProject.Components.Layout.MainLayout
   type: Class
   source:
+    remote:
+      path: Components/Layout/MainLayout.razor.cs
+      branch: master
+      repo: https://github.com/sebap2004/Greggs-Project.git
     id: MainLayout
-    path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 91
+    path: Components/Layout/MainLayout.razor.cs
+    startLine: 4
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Layout
@@ -36,6 +39,7 @@ items:
   inheritedMembers:
   - Microsoft.AspNetCore.Components.LayoutComponentBase.SetParametersAsync(Microsoft.AspNetCore.Components.ParameterView)
   - Microsoft.AspNetCore.Components.LayoutComponentBase.Body
+  - Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
   - Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync
   - Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet
   - Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync
@@ -117,34 +121,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property DarkLightModeButtonIcon As String
   overload: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon*
-- uid: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  commentId: M:SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  id: BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  parent: SoftwareProject.Components.Layout.MainLayout
-  langs:
-  - csharp
-  - vb
-  name: BuildRenderTree(RenderTreeBuilder)
-  nameWithType: MainLayout.BuildRenderTree(RenderTreeBuilder)
-  fullName: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  type: Method
-  source:
-    id: BuildRenderTree
-    path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 103
-  assemblies:
-  - SoftwareProject
-  namespace: SoftwareProject.Components.Layout
-  summary: Renders the component to the supplied <xref href="Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" data-throw-if-not-resolved="false"></xref>.
-  example: []
-  syntax:
-    content: protected override void BuildRenderTree(RenderTreeBuilder __builder)
-    parameters:
-    - id: __builder
-      type: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-    content.vb: Protected Overrides Sub BuildRenderTree(__builder As RenderTreeBuilder)
-  overridden: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  overload: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree*
 references:
 - uid: SoftwareProject.Components.Layout
   commentId: N:SoftwareProject.Components.Layout
@@ -265,6 +241,36 @@ references:
   name: Body
   nameWithType: LayoutComponentBase.Body
   fullName: Microsoft.AspNetCore.Components.LayoutComponentBase.Body
+- uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
+  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
+  parent: Microsoft.AspNetCore.Components.ComponentBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
+  name: BuildRenderTree(RenderTreeBuilder)
+  nameWithType: ComponentBase.BuildRenderTree(RenderTreeBuilder)
+  fullName: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
+    name: BuildRenderTree
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
+    name: RenderTreeBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder
+  - name: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
+    name: BuildRenderTree
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
+  - name: (
+  - uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
+    name: RenderTreeBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder
+  - name: )
 - uid: Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync
   commentId: M:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync
   parent: Microsoft.AspNetCore.Components.ComponentBase
@@ -880,94 +886,3 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-  commentId: T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-  parent: Microsoft.AspNetCore.Components.Rendering
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder
-  name: RenderTreeBuilder
-  nameWithType: RenderTreeBuilder
-  fullName: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-- uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  commentId: M:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  parent: Microsoft.AspNetCore.Components.ComponentBase
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
-  name: BuildRenderTree(RenderTreeBuilder)
-  nameWithType: ComponentBase.BuildRenderTree(RenderTreeBuilder)
-  fullName: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  spec.csharp:
-  - uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-    name: BuildRenderTree
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
-  - name: (
-  - uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-    name: RenderTreeBuilder
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder
-  - name: )
-  spec.vb:
-  - uid: Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-    name: BuildRenderTree
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree
-  - name: (
-  - uid: Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder
-    name: RenderTreeBuilder
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder
-  - name: )
-- uid: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree*
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.BuildRenderTree
-  href: SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_BuildRenderTree_Microsoft_AspNetCore_Components_Rendering_RenderTreeBuilder_
-  name: BuildRenderTree
-  nameWithType: MainLayout.BuildRenderTree
-  fullName: SoftwareProject.Components.Layout.MainLayout.BuildRenderTree
-- uid: Microsoft.AspNetCore.Components.Rendering
-  commentId: N:Microsoft.AspNetCore.Components.Rendering
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/microsoft
-  name: Microsoft.AspNetCore.Components.Rendering
-  nameWithType: Microsoft.AspNetCore.Components.Rendering
-  fullName: Microsoft.AspNetCore.Components.Rendering
-  spec.csharp:
-  - uid: Microsoft
-    name: Microsoft
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft
-  - name: .
-  - uid: Microsoft.AspNetCore
-    name: AspNetCore
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
-  - name: .
-  - uid: Microsoft.AspNetCore.Components
-    name: Components
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
-  - name: .
-  - uid: Microsoft.AspNetCore.Components.Rendering
-    name: Rendering
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering
-  spec.vb:
-  - uid: Microsoft
-    name: Microsoft
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft
-  - name: .
-  - uid: Microsoft.AspNetCore
-    name: AspNetCore
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
-  - name: .
-  - uid: Microsoft.AspNetCore.Components
-    name: Components
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
-  - name: .
-  - uid: Microsoft.AspNetCore.Components.Rendering
-    name: Rendering
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.rendering
