@@ -12,9 +12,9 @@
 public class TestClass
 {
    /// <summary>
-   ///  Hi im a testing class
+   ///  Hi im a testing class hello connor
    /// </summary>
-   /// <remarks>fejwkmsdfgadsfgbsdgb</remarks>
+   /// <remarks>fejwkmsdfgadsfjkasghdjhgbsdgb</remarks>
    /// <param>sdsfsfsfsesfs</param>
     public int TestProperty { get; set; }
     
