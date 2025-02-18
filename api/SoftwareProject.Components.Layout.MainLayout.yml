@@ -25,7 +25,7 @@ items:
   source:
     id: MainLayout
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 86
+    startLine: 91
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Layout
@@ -328,7 +328,7 @@ items:
   source:
     id: BuildRenderTree
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Layout_MainLayout_razor.g.cs
-    startLine: 98
+    startLine: 103
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Layout

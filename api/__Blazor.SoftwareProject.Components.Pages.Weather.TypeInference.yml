@@ -20,7 +20,7 @@ items:
   source:
     id: TypeInference
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 516
+    startLine: 521
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather
@@ -51,7 +51,7 @@ items:
   source:
     id: CreateMudTable_0
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 518
+    startLine: 523
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather
@@ -115,7 +115,7 @@ items:
   source:
     id: CreateMudTableSortLabel_1
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 571
+    startLine: 576
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather
@@ -159,7 +159,7 @@ items:
   source:
     id: CreateMudTableSortLabel_2
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 595
+    startLine: 600
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather
@@ -199,7 +199,7 @@ items:
   source:
     id: CreateMudTableSortLabel_3
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 610
+    startLine: 615
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather
@@ -239,7 +239,7 @@ items:
   source:
     id: CreateMudTableSortLabel_4
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 625
+    startLine: 630
   assemblies:
   - SoftwareProject
   namespace: __Blazor.SoftwareProject.Components.Pages.Weather

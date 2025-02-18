@@ -18,7 +18,7 @@ items:
   source:
     id: Weather
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 85
+    startLine: 90
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -83,7 +83,7 @@ items:
   source:
     id: BuildRenderTree
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 100
+    startLine: 105
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -111,7 +111,7 @@ items:
   source:
     id: forecasts
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 482
+    startLine: 487
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -134,7 +134,7 @@ items:
   source:
     id: OnInitializedAsync
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 484
+    startLine: 489
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages

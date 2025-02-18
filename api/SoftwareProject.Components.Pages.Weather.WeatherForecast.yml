@@ -19,7 +19,7 @@ items:
   source:
     id: WeatherForecast
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 499
+    startLine: 504
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -50,7 +50,7 @@ items:
   source:
     id: Date
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 501
+    startLine: 506
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -75,7 +75,7 @@ items:
   source:
     id: TemperatureC
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 502
+    startLine: 507
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -100,7 +100,7 @@ items:
   source:
     id: Summary
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 503
+    startLine: 508
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -125,7 +125,7 @@ items:
   source:
     id: TemperatureF
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Weather_razor.g.cs
-    startLine: 504
+    startLine: 509
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages

@@ -20,7 +20,7 @@ items:
   source:
     id: Error
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 91
+    startLine: 96
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -85,7 +85,7 @@ items:
   source:
     id: BuildRenderTree
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 106
+    startLine: 111
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -113,7 +113,7 @@ items:
   source:
     id: HttpContext
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 160
+    startLine: 165
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -148,7 +148,7 @@ items:
   source:
     id: RequestId
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 163
+    startLine: 168
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -173,7 +173,7 @@ items:
   source:
     id: ShowRequestId
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 164
+    startLine: 169
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -198,7 +198,7 @@ items:
   source:
     id: OnInitialized
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Error_razor.g.cs
-    startLine: 166
+    startLine: 171
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages

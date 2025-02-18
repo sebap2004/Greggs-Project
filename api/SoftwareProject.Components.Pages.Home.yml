@@ -16,7 +16,7 @@ items:
   source:
     id: Home
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Home_razor.g.cs
-    startLine: 85
+    startLine: 90
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
@@ -82,7 +82,7 @@ items:
   source:
     id: BuildRenderTree
     path: Microsoft.CodeAnalysis.Razor.Compiler\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Components_Pages_Home_razor.g.cs
-    startLine: 100
+    startLine: 105
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components.Pages
