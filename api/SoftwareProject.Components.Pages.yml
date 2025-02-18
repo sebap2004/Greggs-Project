@@ -8,7 +8,6 @@ items:
   - SoftwareProject.Components.Pages.Error
   - SoftwareProject.Components.Pages.Home
   - SoftwareProject.Components.Pages.Weather
-  - SoftwareProject.Components.Pages.Weather.WeatherForecast
   langs:
   - csharp
   - vb
@@ -19,34 +18,6 @@ items:
   assemblies:
   - SoftwareProject
 references:
-- uid: SoftwareProject.Components.Pages.Weather
-  commentId: T:SoftwareProject.Components.Pages.Weather
-  href: SoftwareProject.Components.Pages.Weather.html
-  name: Weather
-  nameWithType: Weather
-  fullName: SoftwareProject.Components.Pages.Weather
-- uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
-  commentId: T:SoftwareProject.Components.Pages.Weather.WeatherForecast
-  href: SoftwareProject.Components.Pages.Weather.html
-  name: Weather.WeatherForecast
-  nameWithType: Weather.WeatherForecast
-  fullName: SoftwareProject.Components.Pages.Weather.WeatherForecast
-  spec.csharp:
-  - uid: SoftwareProject.Components.Pages.Weather
-    name: Weather
-    href: SoftwareProject.Components.Pages.Weather.html
-  - name: .
-  - uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
-    name: WeatherForecast
-    href: SoftwareProject.Components.Pages.Weather.WeatherForecast.html
-  spec.vb:
-  - uid: SoftwareProject.Components.Pages.Weather
-    name: Weather
-    href: SoftwareProject.Components.Pages.Weather.html
-  - name: .
-  - uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
-    name: WeatherForecast
-    href: SoftwareProject.Components.Pages.Weather.WeatherForecast.html
 - uid: SoftwareProject.Components.Pages.Counter
   commentId: T:SoftwareProject.Components.Pages.Counter
   href: SoftwareProject.Components.Pages.Counter.html
@@ -65,3 +36,9 @@ references:
   name: Error
   nameWithType: Error
   fullName: SoftwareProject.Components.Pages.Error
+- uid: SoftwareProject.Components.Pages.Weather
+  commentId: T:SoftwareProject.Components.Pages.Weather
+  href: SoftwareProject.Components.Pages.Weather.html
+  name: Weather
+  nameWithType: Weather
+  fullName: SoftwareProject.Components.Pages.Weather

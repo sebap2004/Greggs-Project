@@ -2,6 +2,10 @@
 _layout: landing
 ---
 
-# Greggs Software Project Code Documentation
+# This is the **HOMEPAGE**.
 
-This website contains the documentation for all code written by the project members. Click the API tab to get a comprehensive list of namespaces to search from.
+Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
+
+## Quick Start Notes:
+
+1. Add images to the *images* folder if the file is referencing an image.

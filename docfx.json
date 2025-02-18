@@ -4,14 +4,13 @@
     {
       "src": [
         {
-          "src": ".",
+          "src": "../.",
           "files": [
             "**/*.csproj"
           ]
         }
       ],
-      "dest": "api",
-      "includePrivateMembers": true
+      "dest": "api"
     }
   ],
   "build": {
@@ -38,10 +37,10 @@
       "modern"
     ],
     "globalMetadata": {
-      "_appName": "Software Project",
-      "_appTitle": "Software Project",
+      "_appName": "softwareproject",
+      "_appTitle": "softwareproject",
       "_enableSearch": true,
-      "pdf": true
+      "pdf": false
     }
   }
 }

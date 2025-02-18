@@ -336,32 +336,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Layout.MainLayout.DarkLightModeButtonIcon
   nameWithType: MainLayout.DarkLightModeButtonIcon
-- uid: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
-  name: DarkModeToggle()
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkModeToggle
-  commentId: M:SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
-  fullName: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle()
-  nameWithType: MainLayout.DarkModeToggle()
-- uid: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle*
-  name: DarkModeToggle
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DarkModeToggle_
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Layout.MainLayout.DarkModeToggle
-  nameWithType: MainLayout.DarkModeToggle
-- uid: SoftwareProject.Components.Layout.MainLayout.DrawerToggle
-  name: DrawerToggle()
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DrawerToggle
-  commentId: M:SoftwareProject.Components.Layout.MainLayout.DrawerToggle
-  fullName: SoftwareProject.Components.Layout.MainLayout.DrawerToggle()
-  nameWithType: MainLayout.DrawerToggle()
-- uid: SoftwareProject.Components.Layout.MainLayout.DrawerToggle*
-  name: DrawerToggle
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_DrawerToggle_
-  commentId: Overload:SoftwareProject.Components.Layout.MainLayout.DrawerToggle
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Layout.MainLayout.DrawerToggle
-  nameWithType: MainLayout.DrawerToggle
 - uid: SoftwareProject.Components.Layout.MainLayout.OnInitialized
   name: OnInitialized()
   href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout_OnInitialized
@@ -375,36 +349,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Layout.MainLayout.OnInitialized
   nameWithType: MainLayout.OnInitialized
-- uid: SoftwareProject.Components.Layout.MainLayout._darkPalette
-  name: _darkPalette
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout__darkPalette
-  commentId: F:SoftwareProject.Components.Layout.MainLayout._darkPalette
-  fullName: SoftwareProject.Components.Layout.MainLayout._darkPalette
-  nameWithType: MainLayout._darkPalette
-- uid: SoftwareProject.Components.Layout.MainLayout._drawerOpen
-  name: _drawerOpen
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout__drawerOpen
-  commentId: F:SoftwareProject.Components.Layout.MainLayout._drawerOpen
-  fullName: SoftwareProject.Components.Layout.MainLayout._drawerOpen
-  nameWithType: MainLayout._drawerOpen
-- uid: SoftwareProject.Components.Layout.MainLayout._isDarkMode
-  name: _isDarkMode
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout__isDarkMode
-  commentId: F:SoftwareProject.Components.Layout.MainLayout._isDarkMode
-  fullName: SoftwareProject.Components.Layout.MainLayout._isDarkMode
-  nameWithType: MainLayout._isDarkMode
-- uid: SoftwareProject.Components.Layout.MainLayout._lightPalette
-  name: _lightPalette
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout__lightPalette
-  commentId: F:SoftwareProject.Components.Layout.MainLayout._lightPalette
-  fullName: SoftwareProject.Components.Layout.MainLayout._lightPalette
-  nameWithType: MainLayout._lightPalette
-- uid: SoftwareProject.Components.Layout.MainLayout._theme
-  name: _theme
-  href: api/SoftwareProject.Components.Layout.MainLayout.html#SoftwareProject_Components_Layout_MainLayout__theme
-  commentId: F:SoftwareProject.Components.Layout.MainLayout._theme
-  fullName: SoftwareProject.Components.Layout.MainLayout._theme
-  nameWithType: MainLayout._theme
 - uid: SoftwareProject.Components.Layout.NavMenu
   name: NavMenu
   href: api/SoftwareProject.Components.Layout.NavMenu.html
@@ -449,25 +393,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Pages.Counter.BuildRenderTree
   nameWithType: Counter.BuildRenderTree
-- uid: SoftwareProject.Components.Pages.Counter.IncrementCount
-  name: IncrementCount()
-  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_IncrementCount
-  commentId: M:SoftwareProject.Components.Pages.Counter.IncrementCount
-  fullName: SoftwareProject.Components.Pages.Counter.IncrementCount()
-  nameWithType: Counter.IncrementCount()
-- uid: SoftwareProject.Components.Pages.Counter.IncrementCount*
-  name: IncrementCount
-  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_IncrementCount_
-  commentId: Overload:SoftwareProject.Components.Pages.Counter.IncrementCount
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Pages.Counter.IncrementCount
-  nameWithType: Counter.IncrementCount
-- uid: SoftwareProject.Components.Pages.Counter.currentCount
-  name: currentCount
-  href: api/SoftwareProject.Components.Pages.Counter.html#SoftwareProject_Components_Pages_Counter_currentCount
-  commentId: F:SoftwareProject.Components.Pages.Counter.currentCount
-  fullName: SoftwareProject.Components.Pages.Counter.currentCount
-  nameWithType: Counter.currentCount
 - uid: SoftwareProject.Components.Pages.Error
   name: Error
   href: api/SoftwareProject.Components.Pages.Error.html
@@ -487,19 +412,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Pages.Error.BuildRenderTree
   nameWithType: Error.BuildRenderTree
-- uid: SoftwareProject.Components.Pages.Error.HttpContext
-  name: HttpContext
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_HttpContext
-  commentId: P:SoftwareProject.Components.Pages.Error.HttpContext
-  fullName: SoftwareProject.Components.Pages.Error.HttpContext
-  nameWithType: Error.HttpContext
-- uid: SoftwareProject.Components.Pages.Error.HttpContext*
-  name: HttpContext
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_HttpContext_
-  commentId: Overload:SoftwareProject.Components.Pages.Error.HttpContext
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Pages.Error.HttpContext
-  nameWithType: Error.HttpContext
 - uid: SoftwareProject.Components.Pages.Error.OnInitialized
   name: OnInitialized()
   href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_OnInitialized
@@ -513,32 +425,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Pages.Error.OnInitialized
   nameWithType: Error.OnInitialized
-- uid: SoftwareProject.Components.Pages.Error.RequestId
-  name: RequestId
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_RequestId
-  commentId: P:SoftwareProject.Components.Pages.Error.RequestId
-  fullName: SoftwareProject.Components.Pages.Error.RequestId
-  nameWithType: Error.RequestId
-- uid: SoftwareProject.Components.Pages.Error.RequestId*
-  name: RequestId
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_RequestId_
-  commentId: Overload:SoftwareProject.Components.Pages.Error.RequestId
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Pages.Error.RequestId
-  nameWithType: Error.RequestId
-- uid: SoftwareProject.Components.Pages.Error.ShowRequestId
-  name: ShowRequestId
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_ShowRequestId
-  commentId: P:SoftwareProject.Components.Pages.Error.ShowRequestId
-  fullName: SoftwareProject.Components.Pages.Error.ShowRequestId
-  nameWithType: Error.ShowRequestId
-- uid: SoftwareProject.Components.Pages.Error.ShowRequestId*
-  name: ShowRequestId
-  href: api/SoftwareProject.Components.Pages.Error.html#SoftwareProject_Components_Pages_Error_ShowRequestId_
-  commentId: Overload:SoftwareProject.Components.Pages.Error.ShowRequestId
-  isSpec: "True"
-  fullName: SoftwareProject.Components.Pages.Error.ShowRequestId
-  nameWithType: Error.ShowRequestId
 - uid: SoftwareProject.Components.Pages.Home
   name: Home
   href: api/SoftwareProject.Components.Pages.Home.html
@@ -648,12 +534,6 @@ references:
   isSpec: "True"
   fullName: SoftwareProject.Components.Pages.Weather.WeatherForecast.TemperatureF
   nameWithType: Weather.WeatherForecast.TemperatureF
-- uid: SoftwareProject.Components.Pages.Weather.forecasts
-  name: forecasts
-  href: api/SoftwareProject.Components.Pages.Weather.html#SoftwareProject_Components_Pages_Weather_forecasts
-  commentId: F:SoftwareProject.Components.Pages.Weather.forecasts
-  fullName: SoftwareProject.Components.Pages.Weather.forecasts
-  nameWithType: Weather.forecasts
 - uid: SoftwareProject.Components.Routes
   name: Routes
   href: api/SoftwareProject.Components.Routes.html

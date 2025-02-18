@@ -66,27 +66,19 @@ items:
       repo: https://github.com/sebap2004/Greggs-Project.git
     id: TestProperty
     path: Components/TestClass.cs
-    startLine: 23
+    startLine: 18
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components
-  summary: >-
-    Calculates the age of a person on a certain date based on the supplied date of birth.  Takes account of leap years,
-
-    using the convention that someone born on 29th February in a leap year is not legally one year older until 1st March
-
-    of a non-leap year.
-  remarks: >-
-    This code is not guaranteed to be correct for non-UK locales, as some countries have skipped certain dates
-        within living memory.
+  summary: Hi im a testing class
+  remarks: fejwkmsdfgadsfgbsdgb
   example: []
   syntax:
-    content: private int TestProperty { get; set; }
+    content: public int TestProperty { get; set; }
     parameters: []
     return:
       type: System.Int32
-      description: Age of the individual in years (as an integer).
-    content.vb: Private Property TestProperty As Integer
+    content.vb: Public Property TestProperty As Integer
   overload: SoftwareProject.Components.TestClass.TestProperty*
 - uid: SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
   commentId: M:SoftwareProject.Components.TestClass.TestMethod(System.DateTime,System.DateTime)
@@ -106,7 +98,7 @@ items:
       repo: https://github.com/sebap2004/Greggs-Project.git
     id: TestMethod
     path: Components/TestClass.cs
-    startLine: 36
+    startLine: 31
   assemblies:
   - SoftwareProject
   namespace: SoftwareProject.Components

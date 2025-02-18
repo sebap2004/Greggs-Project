@@ -42,14 +42,4 @@ items:
   - uid: SoftwareProject.Components.Pages.Weather
     name: Weather
     type: Class
-  - uid: SoftwareProject.Components.Pages.Weather.WeatherForecast
-    name: Weather.WeatherForecast
-    type: Class
-- uid: __Blazor.SoftwareProject.Components.Pages.Weather
-  name: __Blazor.SoftwareProject.Components.Pages.Weather
-  type: Namespace
-  items:
-  - uid: __Blazor.SoftwareProject.Components.Pages.Weather.TypeInference
-    name: TypeInference
-    type: Class
 memberLayout: SamePage
