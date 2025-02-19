@@ -74,4 +74,15 @@ public partial class MainLayout : LayoutComponentBase
         true => Icons.Material.Rounded.AutoMode,
         false => Icons.Material.Outlined.DarkMode,
     };
+    
+    MudTheme DefaultTheme = new MudTheme()
+    {
+        Typography = new Typography()
+        {
+            Default = new DefaultTypography()
+            {
+                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"]
+            }
+        }
+    };
 }

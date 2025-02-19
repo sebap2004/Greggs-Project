@@ -11,7 +11,7 @@ public partial class WelcomePageLayout : LayoutComponentBase
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
+    
         _theme = new()
         {
             PaletteLight = _lightPalette,
@@ -38,6 +38,7 @@ public partial class WelcomePageLayout : LayoutComponentBase
         DrawerBackground = "#ffffff",
         GrayLight = "#e8e8e8",
         GrayLighter = "#f9f9f9",
+        
     };
 
     private readonly PaletteDark _darkPalette = new()
@@ -73,5 +74,16 @@ public partial class WelcomePageLayout : LayoutComponentBase
     {
         true => Icons.Material.Rounded.AutoMode,
         false => Icons.Material.Outlined.DarkMode,
+    };
+    
+    MudTheme DefaultTheme = new MudTheme()
+    {
+        Typography = new Typography()
+        {
+            Default = new DefaultTypography()
+            {
+                FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
+            }
+        }
     };
 }

@@ -1,11 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
+<MudThemeProvider Theme="@DefaultTheme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
-    <MudMainContent Class="pa-4">
+    <MudAppBar Elevation="1">
+        <MudSpacer />
+        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
+        <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Log In</MudButton>
+        <MudButton Variant="Variant.Filled"  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Sign Up</MudButton>
+    </MudAppBar>
+    <MudMainContent Class="pa-4 mt-16">
         @Body
     </MudMainContent>
 </MudLayout>
