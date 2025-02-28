@@ -4,13 +4,26 @@
 
 <PageTitle>Welcome</PageTitle>
 
-<div class="is-align-content-center is-align-items-center is-flex is-flex-wrap-wrap is-flex-direction-column">
-    <MudText Typo="Typo.h1">Welcome to Novachat</MudText>
-    <MudText>We make AI awesome!!!!</MudText>
-    <br/>
-    <MudText Typo="Typo.h2" Class="mt-6">So what is Novachat?</MudText>
-    <MudText>Yeah so erm I don't fuckin know. We haven't decided yet</MudText>
-    <br/>
-    <MudText Typo="Typo.h2" Class="mt-6">Seems pretty fuckin stupid</MudText>
-    <MudText>Dude I don't care you went on this site</MudText>
+<div style="height: 90vh" class="is-align-content-center is-align-items-center is-flex is-flex-wrap-wrap is-flex-direction-column">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="py-8 px-4 text-center d-flex flex-column justify-center align-center">
+        <!-- Main Heading -->
+        <MudText Typo="Typo.h1" Align="Align.Center" Class="mb-4">
+            Welcome to NovaChat
+        </MudText>
+
+        <!-- Description -->
+        <MudText Typo="Typo.h5" HtmlTag="p" Align="Align.Center" Class="mb-8">
+            A bespoke AI chatbot experience. We make speaking to chat freaking epic. I love AI oooooh boy!
+        </MudText>
+
+        <!-- Buttons -->
+        <MudStack Spacing="2" Class="mb-8" Row="true" Justify="Justify.Center">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="px-5 py-3">
+                Learn more
+                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="ml-2" />
+            </MudButton>
+        </MudStack>
+        
+    </MudContainer>
+    
 </div>
