@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@DefaultTheme" IsDarkMode="_isDarkMode" />
+<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -11,7 +11,7 @@
         <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Log In</MudButton>
         <MudButton Variant="Variant.Filled"  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Sign Up</MudButton>
     </MudAppBar>
-    <MudMainContent Class="pa-4 mt-16">
+    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="pt-4 overflow-y-auto mt-16">
         @Body
     </MudMainContent>
 </MudLayout>

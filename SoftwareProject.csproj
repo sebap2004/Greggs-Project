@@ -110,4 +110,10 @@
     <_ContentIncludedByDefault Remove="wwwroot\bulma\versions\bulma-no-helpers.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\bulma\versions\bulma-prefixed.scss" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\Fonts\worksans.woff" />
+    <None Include="wwwroot\Fonts\worksansitalic.woff" />
+  </ItemGroup>
 </Project>
