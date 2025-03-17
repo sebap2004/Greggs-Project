@@ -8,8 +8,8 @@
     <MudAppBar Elevation="1">
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Log In</MudButton>
-        <MudButton Variant="Variant.Filled"  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" >Sign Up</MudButton>
+        <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" Href="/login">Log In</MudButton>
+        <MudButton Variant="Variant.Filled"  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" Href="/login">Sign Up</MudButton>
     </MudAppBar>
     <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="pt-4 overflow-y-auto mt-16">
         @Body

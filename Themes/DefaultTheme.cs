@@ -13,6 +13,7 @@ public class DefaultTheme : MudTheme
 * Based on Bootstrap
 */
 
+
     public DefaultTheme()
     {
         PaletteLight = new PaletteLight()
