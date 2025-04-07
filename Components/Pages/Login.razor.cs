@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SoftwareProject.Data;
 using SoftwareProject.Services;
 
@@ -9,8 +10,8 @@ public partial class Login : ComponentBase
 {
     private Account account = new Account();
     
-    private LoginModel loginModel = new();
-    private RegisterModel registerModel = new();
+    // private LoginModel loginModel = new();
+    // private RegisterModel registerModel = new();
     
     /// <summary>
     /// Takes the information a user input in the form and calls the CRUD operation for the account table.
@@ -22,11 +23,26 @@ public partial class Login : ComponentBase
         newAccount.account_id = 0;
         accountService.CreateAccount(newAccount);
     }
+    
+    /// <summary>
+    /// Takes the information a user input in the form and checks the account table for a valid login.
+    /// </summary>
+    private async Task LoginSubmit()
+    {
+        var checkAccount = await accountService.LoginAccount(account.email, account.password);
+
+        if (checkAccount != null)
+        {
+            navigationManager.NavigateTo("/");
+        }
+    }
+    
+    
 }
 
 public class LoginModel
 {
-    
+
 }
 
 public class RegisterModel

@@ -3,6 +3,7 @@
 @using SoftwareProject.Services
 @layout WelcomePageLayout
 @inject AccountService accountService
+@inject NavigationManager navigationManager
 
 <MudPaper Elevation="0" Style="background-color: transparent" Class="d-flex flex-column is-align-items-center">
     <MudText GutterBottom="true" Typo="Typo.h3"><b>Sign Up or Log In</b></MudText>
@@ -30,13 +31,13 @@
                 </EditForm>
             </MudTabPanel>
             <MudTabPanel Text="Log In">
-                <EditForm Model="loginModel">
+                <EditForm Model=@account OnValidSubmit="LoginSubmit">
                     <DataAnnotationsValidator/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
-                            <MudTextField T="string" Label="Email" Class="mt-3"/>
-                            <MudTextField T="string" Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                            <MudTextField @bind-Value="account.email" T="string" Label="Email" Class="mt-3"/>
+                            <MudTextField @bind-Value="account.password" T="string" Label="Password" HelperText="Choose a strong password" Class="mt-3"
                                           InputType="InputType.Password"/>
                         </MudCardContent>
                         <MudCardActions>

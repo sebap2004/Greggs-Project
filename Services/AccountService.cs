@@ -35,5 +35,19 @@ public class AccountService
         }
     }
     
+    /// <summary>
+    /// Checks the database for a valid account to log into.
+    /// </summary>
+    /// <param name="email">Stores user input Email</param>
+    /// <param name="password">Stores user input password</param>
+    /// <returns></returns>
+    public async Task<Account?> LoginAccount(string email, string password)
+    {
+        using (var context = dbContextFactory.CreateDbContext())
+        {
+            return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
+        }
+    }
+    
     
 }

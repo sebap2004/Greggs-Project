@@ -13,6 +13,7 @@ builder.Services.AddMudServices();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// MAKE TEST
 // Add database configurations.
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
