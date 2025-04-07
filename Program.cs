@@ -1,5 +1,8 @@
 using MudBlazor.Services;
 using SoftwareProject.Components;
+using SoftwareProject.Data;
+using Microsoft.EntityFrameworkCore;
+using SoftwareProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,12 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// MAKE TEST
+// Add database configurations.
+builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
+builder.Services.AddTransient<AccountService>();
 
 var app = builder.Build();
 
