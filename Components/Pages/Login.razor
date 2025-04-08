@@ -17,9 +17,9 @@
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Sign Up</b></MudText>
                             <MudTextField @bind-Value="account.email" T="string" Label="Email" Class="mt-3"/>
                             <MudTextField @bind-Value="account.username" T="string" Label="Username" Class="mt-3"/>
-                            <MudTextField @bind-Value="account.password" T="string" Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                            <MudTextField @bind-Value="firstPassword" T="string" Label="Password" HelperText="Choose a strong password" Class="mt-3"
                                           InputType="InputType.Password"/>
-                            <MudTextField T="string" Label="Password" HelperText="Repeat the password" Class="mt-3"
+                            <MudTextField @bind-Value="secondPassword" T="string" Label="Password" HelperText="Repeat the password" Class="mt-3"
                                           InputType="InputType.Password"/>
                         </MudCardContent>
                         <MudCardActions>

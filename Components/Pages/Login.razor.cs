@@ -11,6 +11,9 @@ public partial class Login : ComponentBase
 {
     private Account account = new Account();
     
+    private string firstPassword = "";
+    private string secondPassword = "";
+    
     // private LoginModel loginModel = new();
     // private RegisterModel registerModel = new();
     
@@ -20,15 +23,26 @@ public partial class Login : ComponentBase
     /// <param name="editContext">Tracks the changes made in the form</param>
     public async Task registerAccount(EditContext editContext)
     {
-        try
+        // Validates password.
+        if (firstPassword == secondPassword)
         {
-            var newAccount = (Account)editContext.Model;
-            newAccount.account_id = 0;
-            await accountService.CreateAccount(newAccount);
+            account.password = firstPassword;
+            
+            // Insert into table.
+            try
+            {
+                var newAccount = (Account)editContext.Model;
+                newAccount.account_id = 0;
+                await accountService.CreateAccount(newAccount);
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+            }
         }
-        catch (SqlException e)
+        else
         {
-            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+            Console.WriteLine("Passwords do not match");
         }
     }
     
@@ -39,8 +53,8 @@ public partial class Login : ComponentBase
     {
         try
         {
+            // Redirect to <webpage> if an account is found.
             var checkAccount = await accountService.LoginAccount(account.email, account.password);
-
             if (checkAccount != null)
             {
                 navigationManager.NavigateTo("/");
