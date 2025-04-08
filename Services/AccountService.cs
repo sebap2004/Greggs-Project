@@ -26,12 +26,12 @@ public class AccountService
     /// Adds a user created accounts to the database.
     /// </summary>
     /// <param name="account">Stores the account table</param>
-    public void CreateAccount(Account account)
+    public async Task CreateAccount(Account account)
     {
         using (var context = dbContextFactory.CreateDbContext())
         {
-            context.Account.Add(account);
-            context.SaveChanges();
+            await context.Account.AddAsync(account);
+            await context.SaveChangesAsync();
         }
     }
     
@@ -48,6 +48,4 @@ public class AccountService
             return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
         }
     }
-    
-    
 }

@@ -8,9 +8,7 @@ namespace SoftwareProject.Data;
 /// </summary>
 public class ChatbotDbContext : DbContext
 {
-    public ChatbotDbContext(DbContextOptions<ChatbotDbContext> options) : base(options)
-    {
-    }
+    public ChatbotDbContext(DbContextOptions<ChatbotDbContext> options) : base(options) { }
     
     /// <summary>
     /// Calls the Account table from the greggsproject database.

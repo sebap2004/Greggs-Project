@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using MudBlazor.Services;
 using SoftwareProject.Components;
 using SoftwareProject.Data;
@@ -13,7 +14,6 @@ builder.Services.AddMudServices();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// MAKE TEST
 // Add database configurations.
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
