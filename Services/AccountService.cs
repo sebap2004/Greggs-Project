@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftwareProject.Data;
+using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Services;
+
 /// <summary>
 /// AccountService contains the operations for the account table.
 /// Use this for CRUD operations on the account table.
 /// </summary>
-public class AccountService
+public class AccountService : IAccountService 
 {
     // CLASS VARIABLES
     // Assign DbContext
