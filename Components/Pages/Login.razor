@@ -30,14 +30,14 @@
                     </MudCard>
                 </EditForm>
             </MudTabPanel>
-            <MudTabPanel Text="Log In">
+            <MudTabPanel Text="Sign In">
                 <EditForm Model=@account OnValidSubmit="loginModel.LoginSubmit">
                     <DataAnnotationsValidator/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
-                            <MudTextField @bind-Value="account.email" T="string" Label="Email" Class="mt-3"/>
-                            <MudTextField @bind-Value="account.password" T="string" Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                            <MudTextField @bind-Value="account.email" T="string" Label="Email"  id="email" Class="mt-3"/>
+                            <MudTextField @bind-Value="account.password" T="string" Label="Password"  id="password" HelperText="Choose a strong password" Class="mt-3"
                                           InputType="InputType.Password"/>
                         </MudCardContent>
                         <MudCardActions>
