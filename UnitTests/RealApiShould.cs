@@ -6,7 +6,7 @@ namespace UnitTests;
 public class RealApiShould
 {
     [Fact]
-    public async Task GetResponse_OnSuccess__ReturnsTextFromValidApiResponse()
+    public async Task GetResponse_OnSuccess_ReturnsTextFromValidApiResponse()
     {
         //arrange
         var fakeResponse = "Hello from the API!";
