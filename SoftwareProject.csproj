@@ -11,6 +11,14 @@
     <Content Remove="UnitTests\**" />
     <EmbeddedResource Remove="UnitTests\**" />
     <None Remove="UnitTests\**" />
+    <Compile Remove="PlaywriteTests\**" />
+    <EmbeddedResource Remove="PlaywriteTests\**" />
+    <Content Remove="PlaywriteTests\**" />
+    <None Remove="PlaywriteTests\**" />
+    <Compile Remove="FrontEndTests\**" />
+    <EmbeddedResource Remove="FrontEndTests\**" />
+    <Content Remove="FrontEndTests\**" />
+    <None Remove="FrontEndTests\**" />
   </ItemGroup>
 
 
@@ -122,6 +130,19 @@
     <_ContentIncludedByDefault Remove="wwwroot\bulma\versions\bulma-no-helpers-prefixed.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\bulma\versions\bulma-no-helpers.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\bulma\versions\bulma-prefixed.scss" />
+    <_ContentIncludedByDefault Remove="PlaywriteTests\obj\PlaywriteTests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="PlaywriteTests\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="PlaywriteTests\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\bin\Debug\net9.0\FrontEndTests.deps.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\bin\Debug\net9.0\FrontEndTests.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\bin\Debug\net9.0\PlaywriteTests.deps.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\bin\Debug\net9.0\PlaywriteTests.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\Debug\net9.0\FrontEndTests.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\Debug\net9.0\PlaywriteTests.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\FrontEndTests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\PlaywriteTests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="FrontEndTests\obj\project.packagespec.json" />
   </ItemGroup>
 
 
