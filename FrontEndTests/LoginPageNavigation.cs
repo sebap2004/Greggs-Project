@@ -5,7 +5,7 @@ using Microsoft.Playwright;
 
 namespace FrontEndTests;
 
-public class UnitTest1
+public class LoginPageNavigation
 {
     [Fact]
     public async Task LoginPageShouldRedirect()

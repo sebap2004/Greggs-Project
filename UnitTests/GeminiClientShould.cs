@@ -64,7 +64,6 @@ public class GeminiClientShould
     public async Task GeminiCall_ReturnsNull_FromJsonError()
     {
         // Arrange
-        var fakeResponse = "Hello from the API!";
         var fakePrompt = "Say hello";
         var fakeKey = "fake-key";
 
@@ -82,5 +81,49 @@ public class GeminiClientShould
 
         // Assert
         Assert.Null(result);
+    }
+    
+    [Fact]
+    public async Task TestGeminiConnection_ReturnsTrue_UponSuccess()
+    {
+        // Arrange
+        var fakeKey = "fake-key";
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={fakeKey}")
+            .Respond(HttpStatusCode.OK);
+                 
+
+        var httpClient = new HttpClient(mockHttp);
+        
+        var geminiClient = new GeminiClient(httpClient, fakeKey);
+
+        // Act
+        var result = await geminiClient.TestGeminiConnection();
+
+        // Assert
+        Assert.True(result);
+    }
+    
+    [Fact]
+    public async Task TestGeminiConnection_ReturnsFalse_UponFailure()
+    {
+        // Arrange
+        var fakeKey = "fake-key";
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={fakeKey}")
+            .Respond(HttpStatusCode.InternalServerError);
+                 
+
+        var httpClient = new HttpClient(mockHttp);
+        
+        var geminiClient = new GeminiClient(httpClient, fakeKey);
+
+        // Act
+        var result = await geminiClient.TestGeminiConnection();
+
+        // Assert
+        Assert.False(result);
     }
 }
