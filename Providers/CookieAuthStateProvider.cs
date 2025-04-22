@@ -5,6 +5,7 @@ namespace SoftwareProject.Providers;
 public class CookieAuthStateProvider : AuthenticationStateProvider
 {
     private readonly HttpClient _httpClient;
+    private AuthenticationState _cachedAuthState = new(new ClaimsPrincipal(new ClaimsIdentity()));
 
     public CookieAuthStateProvider(HttpClient httpClient)
     {
@@ -15,28 +16,37 @@ public class CookieAuthStateProvider : AuthenticationStateProvider
     {
         try
         {
+            Console.WriteLine("CookieAuthStateProvider: Getting authentication state");
             var response = await _httpClient.GetAsync("api/authentication/user");
+            Console.WriteLine($"Auth state response: {response.StatusCode}");
+            
             if (response.IsSuccessStatusCode)
             {
                 var claims = await response.Content.ReadFromJsonAsync<List<ClaimDto>>();
-                var identity = new ClaimsIdentity(
-                    claims?.Select(c => new Claim(c.Type, c.Value)),
-                    "cookie"
-                );
-                var principal = new ClaimsPrincipal(identity);
-                return new AuthenticationState(principal);
+                if (claims != null && claims.Any())
+                {
+                    Console.WriteLine($"Found {claims.Count} claims from API");
+                    var identity = new ClaimsIdentity(
+                        claims.Select(c => new Claim(c.Type, c.Value)),
+                        "cookie"
+                    );
+                    var principal = new ClaimsPrincipal(identity);
+                    _cachedAuthState = new AuthenticationState(principal);
+                    return _cachedAuthState;
+                }
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // ignored
+            Console.WriteLine($"Error in GetAuthenticationStateAsync: {ex.Message}");
         }
 
-        return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+        return _cachedAuthState;
     }
 
     public void NotifyAuthenticationStateChanged()
     {
+        Console.WriteLine("Authentication state change notified");
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }
 }
@@ -44,6 +54,6 @@ public class CookieAuthStateProvider : AuthenticationStateProvider
 
 public class ClaimDto
 {
-    public string Type { get; set; }
-    public string Value { get; set; }
+    public string Type { get; set; } = string.Empty;
+    public string Value { get; set; } = string.Empty;
 }

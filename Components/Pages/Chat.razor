@@ -24,7 +24,7 @@
          <AuthorizeView>
             <Authorized>
                <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-               <p>Logged in as @context.User.FindFirst(ClaimTypes.Role)?.Value - ID: @context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value</p>
+               <p>Logged in as @context.User.FindFirst(ClaimTypes.Name)?.Value - ID: @context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value</p>
             </Authorized>
             <NotAuthorized>
                <p>Not Logged In</p>
