@@ -1,9 +1,11 @@
 ﻿@page "/login"
+@using Microsoft.AspNetCore.Components.Authorization
 @using SoftwareProject.Components.Layout
 @using SoftwareProject.Services
 @layout WelcomePageLayout
 @inject AccountService accountService
 @inject NavigationManager navigationManager
+@inject AuthenticationStateProvider AuthStateProvider
 @inject HttpClient http
 @inject ISnackbar snackbar
 

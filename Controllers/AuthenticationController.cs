@@ -36,9 +36,23 @@ public class AuthenticationController : ControllerBase
                 
             var identity = new ClaimsIdentity(claims, "Cookies");
             var principal = new ClaimsPrincipal(identity);
+            
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true,
+                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(1)
+            };
+            
 
-            await HttpContext.SignInAsync("Cookies", principal);
-
+            await HttpContext.SignInAsync("Cookies", principal, authProperties);
+            var authResult = await HttpContext.AuthenticateAsync("Cookies");
+            Console.WriteLine($"Auth result succeeded: {authResult.Succeeded}");
+            if (!authResult.Succeeded)
+            {
+                Console.WriteLine($"Auth failure reason: {authResult.Failure?.Message}");
+            }
+            Console.WriteLine($"User signed in. Server time: {DateTime.UtcNow}");
+            
             return Ok();
         }
         return BadRequest();
@@ -90,6 +104,14 @@ public class AuthenticationController : ControllerBase
             Console.Error.WriteLine($"Registration error: {e.Message}");
             return BadRequest($"Registration failed: {e.Message}");
         }
+        
+        
     }
 
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync("Cookies");
+        return Ok();
+    }
 }

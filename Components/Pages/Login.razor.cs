@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MudBlazor;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
+using SoftwareProject.Providers;
 using SoftwareProject.Services;
 
 namespace SoftwareProject.Components.Pages;
@@ -22,17 +23,22 @@ public partial class Login : ComponentBase
     /// </summary>
     protected override void OnInitialized()
     {
-        registerModel = new RegisterModel(account, navigationManager, http);
-        loginModel = new LoginModel(account, navigationManager, http);
+        registerModel = new RegisterModel(account, http);
+        loginModel = new LoginModel(account, http);
     }
 
     private async Task AttemptLogin()
     {
         var loginAttempt = await loginModel.LoginSubmit();
+        
         if (loginAttempt == LoginStatus.Success)
         {
-            snackbar.Add("Login Successful!", Severity.Success);
-            navigationManager.NavigateTo("/chat");
+            if (AuthStateProvider is CookieAuthStateProvider customProvider)
+            {
+                customProvider.NotifyAuthenticationStateChanged();
+                snackbar.Add("Login Successful!", Severity.Success);
+                navigationManager.NavigateTo("/chat");
+            }
         }
         else
         {
@@ -45,8 +51,12 @@ public partial class Login : ComponentBase
         var registerAttempt = await registerModel.RegisterAccount(editContext);
         if (registerAttempt == RegisterStatus.Success)
         {
-            snackbar.Add("Register Successful!", Severity.Success);
-            navigationManager.NavigateTo("/chat");
+            if (AuthStateProvider is CookieAuthStateProvider customProvider)
+            {
+                customProvider.NotifyAuthenticationStateChanged();
+                snackbar.Add("Register Successful!", Severity.Success);
+                navigationManager.NavigateTo("/chat");
+            }
         }
         else
         {
@@ -59,22 +69,20 @@ public class RegisterModel
 {
     // CLASS VARIABLES
     private Account account;
-    private NavigationManager navigationManager;
     private HttpClient httpClient;
 
     public string firstPassword = "";
     public string secondPassword = "";
-    
+
     /// <summary>
     /// CONSTRUCTOR
     /// </summary>
     /// <param name="pAccount">Stores the account table</param>
-    /// <param name="pAccountService">Stores the AccountService class</param>
-    public RegisterModel(Account pAccount, NavigationManager pNavigationManager, HttpClient pClient)
+    /// <param name="pClient">Reference to httpClient for making API requests.</param>
+    public RegisterModel(Account pAccount, HttpClient pClient)
     {
         httpClient = pClient;
         account = pAccount;
-        navigationManager = pNavigationManager;
     }
 
     /// <summary>
@@ -130,20 +138,17 @@ public class LoginModel
 {
     // CLASS VARIABLES
     private Account account;
-    private NavigationManager navigationManager;
     private HttpClient httpClient;
     
     /// <summary>
     /// CONSTRUCTOR
     /// </summary>
     /// <param name="pAccount">Stores the account table</param>
-    /// <param name="pAccountService">Stores the AccountService class</param>
-    /// <param name="pNavigationManager">Stores the Navigation Manager</param>
-    public LoginModel(Account pAccount, NavigationManager pNavigationManager, HttpClient pClient)
+    /// /// <param name="pClient">Reference to httpClient for making API requests.</param>
+    public LoginModel(Account pAccount, HttpClient pClient)
     {
         httpClient = pClient;
         account = pAccount;
-        navigationManager = pNavigationManager;
     }
     
     /// <summary>
@@ -161,14 +166,22 @@ public class LoginModel
             account.role = "login";
             account.username = "login";
             
-            // Sends a post request to the authentication api.
+            var jsonContent = System.Text.Json.JsonSerializer.Serialize(account.AccountModel);
+            Console.WriteLine($"Request body: {jsonContent}");
+            // Sends a post request to the authentication api. 
             var checkAccount = await httpClient.PostAsJsonAsync("api/authentication/login", account.AccountModel);
+            // *** Add this check ***
+            Console.WriteLine(checkAccount.Headers.TryGetValues("Set-Cookie", out var setCookieValues)
+                ? $"HttpClient received Set-Cookie header(s): {string.Join("; ", setCookieValues)}"
+                : "HttpClient did NOT receive Set-Cookie header from API call.");
+
             if (checkAccount.IsSuccessStatusCode)
             {
                 // Redirect to <webpage> if an account is found.
                 return LoginStatus.Success;
             }
 
+            // Detailed Error Logging.
             Console.WriteLine(checkAccount.StatusCode);
             Console.WriteLine(checkAccount.ReasonPhrase);
             Console.WriteLine(checkAccount.RequestMessage);
