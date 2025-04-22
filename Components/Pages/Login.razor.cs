@@ -21,8 +21,8 @@ public partial class Login : ComponentBase
     /// </summary>
     protected override void OnInitialized()
     {
-        registerModel = new RegisterModel(account, accountService, navigationManager);
-        loginModel = new LoginModel(account, accountService, navigationManager);
+        registerModel = new RegisterModel(account, navigationManager, http);
+        loginModel = new LoginModel(account, navigationManager, http);
     }
 }
 
@@ -30,8 +30,8 @@ public class RegisterModel
 {
     // CLASS VARIABLES
     private Account account;
-    private IAccountService accountService;
     private NavigationManager navigationManager;
+    private HttpClient httpClient;
 
     public string firstPassword = "";
     public string secondPassword = "";
@@ -41,17 +41,18 @@ public class RegisterModel
     /// </summary>
     /// <param name="pAccount">Stores the account table</param>
     /// <param name="pAccountService">Stores the AccountService class</param>
-    public RegisterModel(Account pAccount, IAccountService pAccountService, NavigationManager pNavigationManager)
+    public RegisterModel(Account pAccount, NavigationManager pNavigationManager, HttpClient pClient)
     {
+        httpClient = pClient;
         account = pAccount;
-        accountService = pAccountService;
         navigationManager = pNavigationManager;
     }
-    
+
     /// <summary>
     /// Takes the information a user input in the form and calls the CRUD operation for the account table.
     /// </summary>
     /// <param name="editContext">Tracks the changes made in the form</param>
+    /// <param name="httpClient">HTTP client used for making requests to the authentication api</param>
     public async Task RegisterAccount(EditContext editContext)
     {
         // Validates password.
@@ -64,10 +65,23 @@ public class RegisterModel
             {
                 var newAccount = (Account)editContext.Model;
                 newAccount.account_id = 0;
-                var registerAttempt = await accountService.CreateAccount(newAccount);
-                if (registerAttempt == RegisterStatus.Success)
+                newAccount.role = "Fuck you";
+                Console.WriteLine("Starting Register Process.");
+                var jsonContent = System.Text.Json.JsonSerializer.Serialize(newAccount.AccountModel);
+                Console.WriteLine($"Request body: {jsonContent}");
+
+                var registerAttempt = await httpClient.PostAsJsonAsync("api/authentication/register", newAccount.AccountModel);
+                if (registerAttempt.IsSuccessStatusCode)
                 {
-                    navigationManager.NavigateTo("/login");
+                    navigationManager.NavigateTo("/chat");
+                }
+                else
+                {
+                    Console.WriteLine(registerAttempt.StatusCode);
+                    Console.WriteLine(registerAttempt.ReasonPhrase);
+                    Console.WriteLine(registerAttempt.RequestMessage);
+                    var content = await registerAttempt.Content.ReadAsStringAsync();
+                    Console.WriteLine(content);
                 }
             }
             catch (SqlException e)
@@ -86,8 +100,8 @@ public class LoginModel
 {
     // CLASS VARIABLES
     private Account account;
-    private IAccountService accountService;
     private NavigationManager navigationManager;
+    private HttpClient httpClient;
     
     /// <summary>
     /// CONSTRUCTOR
@@ -95,23 +109,25 @@ public class LoginModel
     /// <param name="pAccount">Stores the account table</param>
     /// <param name="pAccountService">Stores the AccountService class</param>
     /// <param name="pNavigationManager">Stores the Navigation Manager</param>
-    public LoginModel(Account pAccount, IAccountService pAccountService, NavigationManager pNavigationManager)
+    public LoginModel(Account pAccount, NavigationManager pNavigationManager, HttpClient pClient)
     {
+        httpClient = pClient;
         account = pAccount;
-        accountService = pAccountService;
         navigationManager = pNavigationManager;
     }
     
     /// <summary>
     /// Takes the information a user input in the form and checks the account table for a valid login.
+    /// <param name="httpClient">HTTP client used for making requests to the authentication api</param>
     /// </summary>
     public async Task LoginSubmit()
     {
         try
         {
+            Console.WriteLine("Starting Login Process.");
             // Redirect to <webpage> if an account is found.
-            var checkAccount = await accountService.LoginAccount(account.email, account.password);
-            if (checkAccount != null)
+            var checkAccount = await httpClient.PostAsJsonAsync("api/authentication/login", account.AccountModel);
+            if (checkAccount.IsSuccessStatusCode)
             {
                 navigationManager.NavigateTo("/");
             }
