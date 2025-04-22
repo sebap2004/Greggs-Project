@@ -5,7 +5,7 @@ namespace SoftwareProject.Interfaces;
 public interface IAccountService
 {
     Task <LoginStatus> LoginAccount(string email, string password);
-    Task CreateAccount(Account account);
+    Task<RegisterStatus> CreateAccount(Account account);
 }
 
 public enum LoginStatus

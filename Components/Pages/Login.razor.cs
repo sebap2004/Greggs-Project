@@ -64,17 +64,20 @@ public class RegisterModel
             {
                 var newAccount = (Account)editContext.Model;
                 newAccount.account_id = 0;
-                await accountService.CreateAccount(newAccount);
-                navigationManager.NavigateTo("/login");
+                var registerAttempt = await accountService.CreateAccount(newAccount);
+                if (registerAttempt == RegisterStatus.Success)
+                {
+                    navigationManager.NavigateTo("/login");
+                }
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+                await Console.Error.WriteLineAsync($"Error Connecting to Database: \n{e.Message}");
             }
         }
         else
         {
-            Console.WriteLine("Passwords do not match");
+            await Console.Error.WriteLineAsync("Passwords do not match");
         }
     }
 }

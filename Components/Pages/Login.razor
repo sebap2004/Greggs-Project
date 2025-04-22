@@ -4,6 +4,8 @@
 @layout WelcomePageLayout
 @inject AccountService accountService
 @inject NavigationManager navigationManager
+@rendermode InteractiveServer
+@attribute [ExcludeFromInteractiveRouting]
 
 <MudPaper Elevation="0" Style="background-color: transparent" Class="d-flex flex-column is-align-items-center">
     <MudText GutterBottom="true" Typo="Typo.h3"><b>Sign Up or Log In</b></MudText>
