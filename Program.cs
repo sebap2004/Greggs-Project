@@ -18,6 +18,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<AccountService>();
+builder.Services.AddTransient<ApiService>();
 
 var app = builder.Build();
 

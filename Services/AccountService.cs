@@ -13,19 +13,21 @@ public class AccountService : IAccountService
     // CLASS VARIABLES
     // Assign DbContext
     private IDbContextFactory<ChatbotDbContext> dbContextFactory;
+    private IHttpContextAccessor httpContextAccessor;
 
     /// <summary>
     /// CONSTRUCTOR
     /// Assigns the Chatbot DbContext so that the database can be accessed.
     /// </summary>
     /// <param name="pDbContextFactory">Stores the DbContext class</param>
-    public AccountService(IDbContextFactory<ChatbotDbContext> pDbContextFactory)
+    public AccountService(IDbContextFactory<ChatbotDbContext> pDbContextFactory, IHttpContextAccessor pHttpContextAccessor)
     {
         dbContextFactory = pDbContextFactory;
+        httpContextAccessor = pHttpContextAccessor;
     }
 
     /// <summary>
-    /// Adds a user created accounts to the database.
+    /// Adds user-created accounts to the database.
     /// </summary>
     /// <param name="account">Stores the account table</param>
     public async Task CreateAccount(Account account)
@@ -43,11 +45,13 @@ public class AccountService : IAccountService
     /// <param name="email">Stores user input Email</param>
     /// <param name="password">Stores user input password</param>
     /// <returns></returns>
-    public async Task<Account?> LoginAccount(string email, string password)
+    public async Task<LoginStatus> LoginAccount(string email, string password)
     {
         using (var context = dbContextFactory.CreateDbContext())
         {
-            return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
+            var account = await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
+            return account != null ? LoginStatus.Success : LoginStatus.Failure;
         }
     }
 }
+
