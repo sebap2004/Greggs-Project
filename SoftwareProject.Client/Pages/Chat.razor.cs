@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.VisualBasic;
 using MudBlazor;
-using SoftwareProject.Themes;
+using SoftwareProject.Client.Themes;
 
 namespace SoftwareProject.Client.Pages;
 

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor;
 using MudBlazor.Services;
+using SoftwareProject.Client.Providers;
 using SoftwareProject.Data;
-using SoftwareProject.Providers;
 using SoftwareProject.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

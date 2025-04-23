@@ -1,7 +1,10 @@
 ﻿using MudBlazor;
 
-namespace SoftwareProject.Themes;
+namespace SoftwareProject.Client.Themes;
 
+/// <summary>
+/// Default theme of the website
+/// </summary>
 public class DefaultTheme : MudTheme
 {
 /*
@@ -13,7 +16,9 @@ public class DefaultTheme : MudTheme
 * Based on Bootstrap
 */
 
-
+    /// <summary>
+    /// Constructor containing all the color values.
+    /// </summary>
     public DefaultTheme()
     {
         PaletteLight = new PaletteLight()
@@ -287,6 +292,6 @@ public class DefaultTheme : MudTheme
             Dialog = 1400,
             Snackbar = 1500,
             Tooltip = 1600,
-        }; 
+        };
     }
 }

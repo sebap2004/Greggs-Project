@@ -6,18 +6,34 @@ using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Controllers;
-
+/// <summary>
+/// API Controller for authentication.
+/// This controller handles the login, registration, getting and logging out of users.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
+    /// <summary>
+    /// Factory to create DB context instances
+    /// </summary>
     private IDbContextFactory<ChatbotDbContext> dbContextFactory;
 
+    /// <summary>
+    /// CONSTRUCTOR
+    /// Assigns the Chatbot DbContext so that the database can be accessed.
+    /// </summary>
+    /// <param name="pDbContextFactory">Stores the DbContext class</param>
     public AuthenticationController(IDbContextFactory<ChatbotDbContext> pdbContextFactory)
     {
         dbContextFactory = pdbContextFactory;
     }
 
+    /// <summary>
+    /// Authenticates a user by verifying their credentials against the database and initiates a session with authentication cookies.
+    /// </summary>
+    /// <param name="pAccount">Account model that has been passed from the http request body</param>
+    /// <returns>Result of action</returns>
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] AccountModel pAccount)
     {
@@ -79,6 +95,12 @@ public class AuthenticationController : ControllerBase
         return BadRequest("Invalid credentials");
     }
 
+    
+    /// <summary>
+    /// Creates a new account in the database and initiates a session with authentication cookies.
+    /// </summary>
+    /// <param name="account">Account model that has been passed from the http request body</param>
+    /// <returns>Result of action</returns>
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] AccountModel account)
     {
@@ -135,6 +157,10 @@ public class AuthenticationController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Gets the authentication status of the user.
+    /// </summary>
+    /// <returns>Result of action</returns>
     [HttpGet("user")]
     public async Task<IActionResult> GetCurrentUser()
     {
@@ -148,6 +174,10 @@ public class AuthenticationController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Logs out active user.
+    /// </summary>
+    /// <returns>Result of action</returns>
     [HttpPost("logout")]
     public async Task<IActionResult> Logout()
     {

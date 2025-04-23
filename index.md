@@ -2,10 +2,8 @@
 _layout: landing
 ---
 
-# This is the **HOMEPAGE**.
+# Software Project Documentation
 
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write **markdown** files.
+Landing page for the project documentation website.
 
-## Quick Start Notes:
-
-1. Add images to the *images* folder if the file is referencing an image.
+Access the API documentation and the docs via the navbar.

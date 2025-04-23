@@ -5,7 +5,7 @@ using MudBlazor.Services;
 using SoftwareProject.Data;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor;
-using SoftwareProject.Providers;
+using SoftwareProject.Client.Providers;
 using SoftwareProject.Services;
 using SoftwareProject.Components;
 
