@@ -26,7 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SoftwareProject.csproj" />
+      <ProjectReference Include="..\SoftwareProject.Client\SoftwareProject.Client.csproj" />
+      <ProjectReference Include="..\SoftwareProject\SoftwareProject.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,10 +1,11 @@
 using Bunit;
 using Bunit.TestDoubles;
 using Moq;
-using SoftwareProject.Components.Pages;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using SoftwareProject.Client.Pages;
+
 namespace UnitTests;
 
 public class LoginModelShould

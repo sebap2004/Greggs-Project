@@ -1,0 +1,60 @@
+﻿@page "/chat"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using SoftwareProject.Services
+@inject AuthenticationStateProvider AuthStateProvider
+@inject HttpClient http
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+   <MudAppBar Elevation="1">
+      <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+      <MudText Typo="Typo.h5" Class="ml-3">Novachat</MudText>
+      <MudSpacer />
+      <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
+      <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Logout">Logout</MudButton>
+      <CascadingAuthenticationState>
+         <AuthorizeView>
+            <Authorized>
+               <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+               <p>Logged in as @context.User.FindFirst(ClaimTypes.Name)?.Value - ID: @context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value</p>
+            </Authorized>
+            <NotAuthorized>
+               <p>Not Logged In</p>
+            </NotAuthorized>
+         </AuthorizeView>
+      </CascadingAuthenticationState>
+      
+   </MudAppBar>
+   <MudDrawer id="nav-drawer" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+      <NavMenu />
+   </MudDrawer>
+   <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
+      <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
+         <MudPaper Elevation="0" Class="is-flex-grow-1">
+      
+         </MudPaper>
+         <MudPaper Elevation="0" Style="background-color: transparent" Height="10%" >
+            <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
+               <MudPaper Style="background-color: transparent" Elevation="0" Width="89%">
+                  <MudTextField  T="string" Immediate="true" Variant="Variant.Outlined" Label="Message"/>
+               </MudPaper>
+               <MudPaper Style="background-color: transparent" Elevation="0" Width="10%" Class="d-flex justify-center">
+                  <MudButton StartIcon="@Icons.Material.Filled.Send" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Send</MudButton>
+               </MudPaper>
+            </MudPaper>
+         </MudPaper>
+      </MudPaper>
+   </MudMainContent>
+</MudLayout>
+<div id="blazor-error-ui" data-nosnippet>
+   An unhandled error has occurresd.
+   <a href="." class="reload">Reload</a>
+   <span class="dismiss">🗙</span>
+</div>

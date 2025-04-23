@@ -3,7 +3,7 @@ using Bunit.TestDoubles;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using SoftwareProject.Components.Pages;
+using SoftwareProject.Client.Pages;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
 
