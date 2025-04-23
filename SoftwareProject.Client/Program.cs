@@ -13,12 +13,14 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
 });
 
+
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
-builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
+
 builder.Services.AddTransient<AccountService>();
 builder.Services.AddTransient<ApiService>();
 builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
 
 builder.Services.AddMudServices();
 

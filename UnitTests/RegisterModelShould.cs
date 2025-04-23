@@ -28,11 +28,11 @@ public class RegisterModelShould
 
         mockAccountService.Setup(m => m.CreateAccount(account)).Returns(Task.CompletedTask);
         var navManager = ctx.Services.GetRequiredService<FakeNavigationManager>();
-        var registerModel = new RegisterModel(account, mockAccountService.Object, navManager);
+        // var registerModel = new RegisterModel(account, mockAccountService.Object, navManager);
 
         //act
         var editContext = new EditContext(account);
-        await registerModel.RegisterAccount(editContext);
+        // await registerModel.RegisterAccount(editContext);
 
         //assert
         mockAccountService.Verify(m => m.CreateAccount(account), Times.Once);

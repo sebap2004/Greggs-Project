@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthStateProvider
+
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
@@ -8,6 +11,7 @@
     <MudAppBar Elevation="1">
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
+        <CascadingAuthenticationState></CascadingAuthenticationState>
         <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" Href="/login">Log In</MudButton>
         <MudButton Variant="Variant.Filled"  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary" Href="/login">Sign Up</MudButton>
     </MudAppBar>

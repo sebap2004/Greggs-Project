@@ -30,6 +30,13 @@ public partial class Chat : ComponentBase
         _isDarkMode = !_isDarkMode;
     }
 
+    private async Task CheckAuthenticationState()
+    {
+        Console.WriteLine("Starting check");
+        var check = await AuthStateProvider.GetAuthenticationStateAsync();
+        Console.WriteLine(check.User);
+    }
+
     public string DarkLightModeButtonIcon => _isDarkMode switch
     {
         true => Icons.Material.Rounded.LightMode,
