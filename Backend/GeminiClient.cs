@@ -4,10 +4,22 @@ using System.Text.Json;
 
 namespace SoftwareProject.Backend;
 
+/// <summary>
+/// Connects to the Gemini API.
+/// Used to communicate requests and receive responses
+/// </summary>
 public class GeminiClient(HttpClient httpClient, string apiKey) : IApiClient
 {
+    // LOCAL VARIABLES
+    // Creates RealApi class used to call to Gemini
     private readonly RealApi _realApi = new();
 
+    /// <summary>
+    /// Sends prompt to Gemini API and gets it response
+    /// Catches exceptions
+    /// </summary>
+    /// <param name="prompt">Stores the user input to be sent to the API</param>
+    /// <returns></returns>
     public async Task<string> GeminiCall(string prompt)
     {
         try
@@ -30,6 +42,10 @@ public class GeminiClient(HttpClient httpClient, string apiKey) : IApiClient
         }
     }
 
+    /// <summary>
+    /// Tests connection status with the Gemini API using the key
+    /// </summary>
+    /// <returns></returns>
     public async Task<bool> TestGeminiConnection()
     {
         try
