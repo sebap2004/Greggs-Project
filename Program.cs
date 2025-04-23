@@ -13,9 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add MudBlazor services
 builder.Services.AddMudServices();
 
-// builder.Services.AddHttpClient();
-
-// Replace your current HttpClient registration
 builder.Services.AddScoped(sp => 
 {
     var httpClientHandler = new HttpClientHandler
@@ -49,19 +46,19 @@ builder.Services.AddCors(options =>
     });
 });
 
-
+// Update your cookie configuration
 builder.Services.AddAuthentication("Cookies")
     .AddCookie("Cookies", options =>
     {
         options.Cookie.Name = "auth_token";
         options.Cookie.MaxAge = TimeSpan.FromDays(1);
         options.ExpireTimeSpan = TimeSpan.FromDays(1);
-        options.AccessDeniedPath = "/access-denied";
         options.Cookie.Path = "/";
         options.LoginPath = "/login";
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
-        options.Cookie.SameSite = SameSiteMode.None; 
+        
+        options.Cookie.HttpOnly = true; // Security best practice
+        
+        options.SessionStore = null; // Don't use session store - store in cookie
         
         options.Events = new CookieAuthenticationEvents
         {
@@ -71,37 +68,26 @@ builder.Services.AddAuthentication("Cookies")
                 Console.WriteLine("OnRedirectToLogin triggered");
                 return Task.CompletedTask;
             },
-            OnValidatePrincipal = context =>
-            {
-                Console.WriteLine($"OnValidatePrincipal: IsAuthenticated={context.Principal.Identity?.IsAuthenticated}");
-                foreach (var claim in context.Principal.Claims)
-                {
-                    Console.WriteLine($"Claim: {claim.Type} = {claim.Value}");
-                }
-                context.Properties.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1);
-                Console.WriteLine($"OnValidatePrincipal: Expiration set to: {context.Properties.ExpiresUtc}");
-                return Task.CompletedTask;
-            },
-            OnSigningIn = context => 
-            {
-                Console.WriteLine("OnSigningIn called");
-                return Task.CompletedTask;
-            },
-            OnSignedIn = context => 
-            {
-                Console.WriteLine("OnSignedIn called");
-                return Task.CompletedTask;
-            }
+            // Other events...
         };
     });
 
-
+// Add explicit CookiePolicy configuration
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => false; // Don't require consent
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
+    // In development, allow insecure cookies for localhost
+    options.Secure = builder.Environment.IsDevelopment() 
+        ? CookieSecurePolicy.SameAsRequest 
+        : CookieSecurePolicy.Always;
+});
+builder.Services.AddAuthorization();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
 builder.Services.AddAntiforgery(options => {
     options.HeaderName = "X-CSRF-TOKEN";
     options.SuppressXFrameOptionsHeader = false;
 });
-builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
 

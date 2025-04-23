@@ -42,8 +42,9 @@ public class AuthenticationController : ControllerBase
 
             var authProperties = new AuthenticationProperties
             {
+                AllowRefresh = true,
+                ExpiresUtc = DateTimeOffset.Now.AddDays(1),
                 IsPersistent = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1)
             };
 
             // Standard auth cookie creation
@@ -114,8 +115,15 @@ public class AuthenticationController : ControllerBase
 
             var identity = new ClaimsIdentity(claims, "Cookies");
             var principal = new ClaimsPrincipal(identity);
+            
+            var authProperties = new AuthenticationProperties
+            {
+                AllowRefresh = true,
+                ExpiresUtc = DateTimeOffset.Now.AddDays(1),
+                IsPersistent = true,
+            };
 
-            await HttpContext.SignInAsync("Cookies", principal);
+            await HttpContext.SignInAsync("Cookies", principal, authProperties);
 
             Console.WriteLine($"Registration successful for: {account.Email}");
 
