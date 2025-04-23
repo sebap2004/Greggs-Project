@@ -30,7 +30,7 @@ public class ApiService
         } else if (!useFake)
         {
             response = await _geminiClient.GeminiCall(prompt);
-        }
+        }                            
 
         return response;
     }
