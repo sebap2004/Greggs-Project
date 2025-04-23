@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthStateProvider
+
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode"/>
+<MudPopoverProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudSpacer/>
+        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle"/>
+        <CascadingAuthenticationState>
+            <AuthorizeView>
+                <Authorized>
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Outlined.ChatBubble"
+                               Color="Color.Primary" Href="/chat">Go to chat
+                    </MudButton>
+                </Authorized>
+                <Authorizing>
+                    Hold the fucking phone
+                </Authorizing>
+                <NotAuthorized>
+                    <MudButton Variant="Variant.Outlined" Class="mr-3" Icon="@Icons.Material.Filled.MoreVert"
+                               Color="Color.Primary" Href="/login">Log In
+                    </MudButton>
+                    <MudButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Primary"
+                               Href="/login">Sign Up
+                    </MudButton>
+                </NotAuthorized>
+            </AuthorizeView>
+        </CascadingAuthenticationState>
+    </MudAppBar>
+    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="pt-4 overflow-y-auto mt-16">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

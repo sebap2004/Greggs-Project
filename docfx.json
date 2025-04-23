@@ -4,13 +4,20 @@
     {
       "src": [
         {
-          "src": "../.",
+          "src": "../Greggs-Project",
           "files": [
-            "**/*.csproj"
+            "/SoftwareProject/SoftwareProject.csproj",
+            "/SoftwareProject.Client/SoftwareProject.Client.csproj",
+            "/FrontEndTests/FrontEndTests.csproj",
+            "UnitTests/UnitTests.csproj"
           ]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net9.0" 
+      }
+
     }
   ],
   "build": {
@@ -37,8 +44,8 @@
       "modern"
     ],
     "globalMetadata": {
-      "_appName": "SoftwareProject",
-      "_appTitle": "SoftwareProject",
+      "_appName": "Software Project Documentation",
+      "_appTitle": "Software Project Documentation",
       "_enableSearch": true,
       "pdf": false
     }

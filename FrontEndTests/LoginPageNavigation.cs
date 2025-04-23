@@ -9,7 +9,8 @@ public class LoginPageNavigation
 {
     [Fact]
     public async Task LoginPageShouldRedirect()
-    {//Initialise Playwright
+    {
+        //Initialise Playwright
         var playwright = await Playwright.CreateAsync();
         //'Chromium' Firefox' 'Webkit'
         var browser = await playwright
@@ -24,7 +25,7 @@ public class LoginPageNavigation
         var navManager = ctx.Services.GetRequiredService<FakeNavigationManager>();
 
         //go to page
-        await page.GotoAsync("localhost:5135/login");
+        await page.GotoAsync("https://localhost:3000/login");
         // await page.GetByRole(AriaRole.Link, new(){Name = "LOG IN"}).ClickAsync();
         await page.Locator("text=Sign In").ClickAsync();
         await page.Locator("#email").FillAsync("wilm@test.co.uk");
