@@ -1,6 +1,7 @@
 using System.Net;
 using RichardSzalay.MockHttp;
 using SoftwareProject.Backend;
+using SoftwareProject.Client.Backend;
 
 namespace UnitTests;
 
@@ -46,7 +47,7 @@ public class GeminiClientShould
         var fakePrompt = "Say hello";
         var fakeKey = "fake-key";
         var mockHttp = new MockHttpMessageHandler();
-        //h2 import lib http
+        //h2 import lib 
         mockHttp.When(HttpMethod.Post, $"brokenLink").Respond(HttpStatusCode.InternalServerError);
         
         var httpClient = new HttpClient(mockHttp);

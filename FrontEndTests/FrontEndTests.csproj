@@ -10,9 +10,11 @@
 
     <ItemGroup>
         <PackageReference Include="bunit.web" Version="1.39.5" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
         <PackageReference Include="Microsoft.Playwright" Version="1.51.0" />
         <PackageReference Include="Microsoft.Playwright.Xunit" Version="1.51.0" />
+        <PackageReference Include="MudBlazor.Markdown" Version="8.5.1" />
         <PackageReference Include="xunit" Version="2.4.2" />
         <PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -26,7 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SoftwareProject.csproj" />
+      <ProjectReference Include="..\SoftwareProject.Client\SoftwareProject.Client.csproj" />
+      <ProjectReference Include="..\SoftwareProject\SoftwareProject.csproj" />
     </ItemGroup>
 
 </Project>
