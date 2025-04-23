@@ -1,6 +1,6 @@
 using SoftwareProject.Backend;
-using SoftwareProject.Backend.Fakes;
 using FakeItEasy;
+using SoftwareProject.Client.Backend.Fakes;
 
 namespace SoftwareProject.Services;
 

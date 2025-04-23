@@ -8,7 +8,7 @@ public class RealApi : IApiClient
 {
     public async Task<string> GetResponse(string prompt, HttpClient httpClient, string apiKey)
     {
-
+        Console.WriteLine("Prompt getting added: " + prompt);
         var request = new HttpRequestMessage(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={apiKey}");
         request.Content = new StringContent(JsonSerializer.Serialize(new
         {
@@ -22,6 +22,9 @@ public class RealApi : IApiClient
         }), Encoding.UTF8, "application/json");
         request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
+        string result = await request.Content.ReadAsStringAsync();
+        Console.WriteLine(result);
+        
         var response = await httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
 

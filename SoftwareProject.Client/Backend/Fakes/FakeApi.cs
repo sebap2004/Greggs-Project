@@ -1,8 +1,8 @@
 using System.Net;
-using SoftwareProject.Interfaces;
 using System.Text;
+using SoftwareProject.Interfaces;
 
-namespace SoftwareProject.Backend.Fakes;
+namespace SoftwareProject.Client.Backend.Fakes;
 
 public class FakeApi : IApiCall
 {

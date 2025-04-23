@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using MudBlazor.Services;
 using SoftwareProject.Data;
 using Microsoft.EntityFrameworkCore;
+using MudBlazor;
 using SoftwareProject.Providers;
 using SoftwareProject.Services;
 using SoftwareProject.Components;
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
+builder.Services.AddMudMarkdownServices();
 
 builder.Services.AddScoped(sp => 
 {

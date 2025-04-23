@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.EntityFrameworkCore;
+using MudBlazor;
 using MudBlazor.Services;
 using SoftwareProject.Data;
 using SoftwareProject.Providers;
@@ -19,6 +20,7 @@ builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder 
 
 builder.Services.AddTransient<AccountService>();
 builder.Services.AddTransient<ApiService>();
+builder.Services.AddMudMarkdownServices();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
 

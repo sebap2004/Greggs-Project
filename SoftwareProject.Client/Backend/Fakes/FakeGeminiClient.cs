@@ -1,6 +1,6 @@
 using SoftwareProject.Interfaces;
 
-namespace SoftwareProject.Backend.Fakes;
+namespace SoftwareProject.Client.Backend.Fakes;
 
 internal class FakeGeminiClient(HttpClient httpClient, string apiKey) : IApiClient
 {
