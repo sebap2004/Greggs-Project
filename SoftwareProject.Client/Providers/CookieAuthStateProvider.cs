@@ -37,10 +37,7 @@ public class CookieAuthStateProvider : AuthenticationStateProvider
     {
         try
         {
-            Console.WriteLine("CookieAuthStateProvider: Getting authentication state");
             var response = await _httpClient.GetAsync("api/authentication/user");
-            Console.WriteLine($"Auth state response: {response.StatusCode}");
-            
             if (response.IsSuccessStatusCode)
             {
                 var claims = await response.Content.ReadFromJsonAsync<List<ClaimDto>>();
@@ -61,7 +58,6 @@ public class CookieAuthStateProvider : AuthenticationStateProvider
         {
             Console.WriteLine($"Error in GetAuthenticationStateAsync: {ex.Message}");
         }
-
         return _cachedAuthState;
     }
 

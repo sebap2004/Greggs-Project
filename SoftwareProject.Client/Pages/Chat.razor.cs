@@ -11,6 +11,11 @@ public partial class Chat : ComponentBase
 {
     private List<Message> apiResponses = new();
     private bool UseFake { get; set; }
+    
+    private bool SummariseText { get; set; }
+    private string SummariseTextLabel => SummariseText ? Icons.Material.Filled.Check : Icons.Material.Filled.Close;
+    
+    private Color SummariseButtonColor => SummariseText ? Color.Primary : Color.Default;
 
     private List<string> Fonts = new List<string>()
     {
@@ -22,15 +27,12 @@ public partial class Chat : ComponentBase
     
     private string DropdownIcon =>
         QuickSettingsUp ? Icons.Material.Filled.ArrowDropUp : Icons.Material.Filled.ArrowDropDown;
-
     private bool QuickSettingsUp { get; set; }
-
     private bool SendingDisabled { get; set; }
     private string Question { get; set; }
-
+    
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
-
     private MudTheme? _theme = null;
 
     protected override async Task OnInitializedAsync()
@@ -60,20 +62,21 @@ public partial class Chat : ComponentBase
 
     private async Task Submit()
     {
-        string tempQuestion = Question;
+        string tempQuestion = (SummariseText ? "SUMMARISE THIS TEXT: " : "") + Question;
         apiResponses.Add(new Message
         {
             content = tempQuestion,
             isUser = true
         });
-        Question = "";
         SendingDisabled = true;
+        Question = "";
         string response = await ai.GetMessage(tempQuestion, UseFake);
         apiResponses.Add(new Message
         {
             content = response,
             isUser = false
         });
+        Question = "";
         SendingDisabled = false;
     }
 

@@ -66,10 +66,13 @@
             Test topic 1 - my brother has sepsis and wants to kill himself?
          </MudListItem>
          <MudListItem>
-            Test topic 2
+            Test topic 2 - cheers mate nan's done a backflip
          </MudListItem>
          <MudListItem>
-            Test topic 3
+            Test topic 3 - thats mint that
+         </MudListItem>
+         <MudListItem>
+            Test topic 4 - 6 bomba rasclat pussi clart bomba rasclart egg
          </MudListItem>
       </MudList>
    </MudDrawer>
@@ -98,10 +101,13 @@
             }
 
          </MudPaper>
-         <MudPaper Elevation="0" Style="background-color: transparent" Height="10%">
+         <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
-               <MudPaper Style="background-color: transparent" Elevation="0" Width="89%">
-                  <MudTextField AutoGrow="true" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
+               <MudPaper Elevation="0" Width="11%" align="center" Class="d-flex justify-center is-align-items-center">
+                  <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText" StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise</MudButton>
+               </MudPaper>
+               <MudPaper Style="background-color: transparent" Elevation="0" Width="90%">
+                  <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
                                 Immediate="true" Variant="Variant.Outlined" Label="Message"/>
                </MudPaper>
                <MudPaper Style="background-color: transparent" Elevation="0" Width="10%" Class="d-flex justify-center">

@@ -5,8 +5,10 @@ using Microsoft.Playwright;
 
 namespace FrontEndTests;
 
+
 public class LoginPageNavigation
 {
+    
     [Fact]
     public async Task LoginPageShouldRedirect()
     {
@@ -26,6 +28,7 @@ public class LoginPageNavigation
 
         //go to page
         await page.GotoAsync("https://localhost:3000/login");
+        await page.ScreenshotAsync(new PageScreenshotOptions {Path = "login.png"});
         // await page.GetByRole(AriaRole.Link, new(){Name = "LOG IN"}).ClickAsync();
         await page.Locator("text=Sign In").ClickAsync();
         await page.Locator("#email").FillAsync("wilm@test.co.uk");
