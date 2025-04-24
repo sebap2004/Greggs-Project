@@ -1,4 +1,5 @@
 using IndexedDB.Blazor;
+using Magic.IndexedDb;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +22,12 @@ builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder 
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IIndexedDbFactory, IndexedDbFactory>();
+builder.Services.AddMagicBlazorDB(BlazorInteropMode.WASM, builder.HostEnvironment.IsDevelopment());
 builder.Services.AddTransient<ApiService>();
 builder.Services.AddMudMarkdownServices();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
-builder.Services.AddSingleton<IIndexedDbFactory, IndexedDbFactory>();
 
 builder.Services.AddMudServices();
 

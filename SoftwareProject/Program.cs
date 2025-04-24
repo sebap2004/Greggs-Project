@@ -1,3 +1,4 @@
+using IndexedDB.Blazor;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Data.SqlClient;
@@ -9,6 +10,7 @@ using SoftwareProject.Client.Providers;
 using SoftwareProject.Services;
 using SoftwareProject.Components;
 using SoftwareProject.Interfaces;
+using SoftwareProject.Placeholders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,10 +98,10 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
 
 // Add database configurations.
+builder.Services.AddScoped<IIndexedDbFactory, PlaceholderIndexedDbFactory>();
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<ApiService>();
-
 
 var app = builder.Build();
 
