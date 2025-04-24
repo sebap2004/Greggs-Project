@@ -1,8 +1,12 @@
-﻿using System.Security.Claims;
+﻿using System.Net.Http.Json;
+using System.Security.Claims;
+using Google.Api.Gax.ResourceNames;
+using Google.Cloud.Translate.V3;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.VisualBasic;
 using MudBlazor;
+using SoftwareProject.Client.Data;
 using SoftwareProject.Client.Themes;
 
 namespace SoftwareProject.Client.Pages;
@@ -11,6 +15,8 @@ public partial class Chat : ComponentBase
 {
     private List<Message> apiResponses = new();
     private bool UseFake { get; set; }
+
+    private Language Language { get; set; } = Languages.English;
     
     private bool SummariseText { get; set; }
     private string SummariseTextLabel => SummariseText ? Icons.Material.Filled.Check : Icons.Material.Filled.Close;
@@ -59,18 +65,27 @@ public partial class Chat : ComponentBase
             await Submit();
         }
     }
-
+    
     private async Task Submit()
     {
+        if (Question == "") return;
         string tempQuestion = (SummariseText ? "SUMMARISE THIS TEXT: " : "") + Question;
-        apiResponses.Add(new Message
+        var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
+            {
+                Text = tempQuestion,
+                Language = Language.Code
+            }
+        );
+        var result = await translation.Content.ReadAsStringAsync();
+        
+    apiResponses.Add(new Message
         {
             content = tempQuestion,
             isUser = true
         });
         SendingDisabled = true;
         Question = "";
-        string response = await ai.GetMessage(tempQuestion, UseFake);
+        string response = await ai.GetMessage(result, UseFake);
         apiResponses.Add(new Message
         {
             content = response,
@@ -119,3 +134,5 @@ class Message
     public string content { get; set; }
     public bool isUser { get; set; }
 }
+
+

@@ -1,6 +1,7 @@
 ﻿@page "/chat"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
+@using SoftwareProject.Client.Data
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @inject AuthenticationStateProvider AuthStateProvider
@@ -48,6 +49,14 @@
                            <MudSelectItem Value="Fonts[3]" T="string">Shit fucking font</MudSelectItem>
                         </MudSelect>
                         <MudNumericField Value="11" FullWidth="true" Class="mb-2" Label="Font Size" Variant="Variant.Outlined" Min="11" Max="50" />
+                        <MudSelect @bind-Value="Language" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="Language" Label="Language">
+                           <MudSelectItem Value="Languages.English" T="Language">@Languages.English.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.French" T="Language">@Languages.French.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Japanese" T="Language">@Languages.Japanese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Chinese" T="Language">@Languages.Chinese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Spanish" T="Language">@Languages.Spanish.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.German" T="Language">@Languages.German.Name</MudSelectItem>
+                        </MudSelect>
                         <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error" OnClick="Logout">Logout</MudButton>
                      </MudPaper>
                   </MudPopover>
