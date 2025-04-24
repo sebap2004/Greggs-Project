@@ -30,11 +30,9 @@ public class AccountService : IAccountService
     /// <param name="account">Stores the account table</param>
     public async Task CreateAccount(Account account)
     {
-        using (var context = dbContextFactory.CreateDbContext())
-        {
-            await context.Account.AddAsync(account);
-            await context.SaveChangesAsync();
-        }
+        await using var context = dbContextFactory.CreateDbContext();
+        await context.Account.AddAsync(account);
+        await context.SaveChangesAsync();
     }
     
     /// <summary>

@@ -97,6 +97,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<AccountService>();
+builder.Services.AddTransient<TopicService>();
 builder.Services.AddTransient<ApiService>();
 
 
