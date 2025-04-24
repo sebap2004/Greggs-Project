@@ -13,7 +13,6 @@ public class Account
     public string username { get; set; }
     public string email { get; set; }
     public string password { get; set; }
-    public string role { get; set; }
     
     public AccountModel AccountModel => new()
     {
@@ -21,7 +20,6 @@ public class Account
         Username = username,
         Email = email,
         Password = password,
-        Role = role
     };
 }
 
@@ -33,7 +31,6 @@ public class AccountModel
     public string Username { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
-    public string Role { get; set; }
     
     public Account ToAccount()
     {
@@ -43,7 +40,6 @@ public class AccountModel
             username = Username,
             email = Email,
             password = Password,
-            role = Role
         };
     }
 }

@@ -3,11 +3,16 @@ using System.Security.Claims;
 using Google.Api.Gax.ResourceNames;
 using Google.Cloud.Translate.V3;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using Microsoft.VisualBasic;
 using MudBlazor;
 using SoftwareProject.Client.Data;
 using SoftwareProject.Client.Themes;
+using SoftwareProject.Services;
+using Microsoft.Data.SqlClient;
 
 namespace SoftwareProject.Client.Pages;
 
@@ -40,6 +45,13 @@ public partial class Chat : ComponentBase
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
+    
+    
+    
+    private Topic topic = new Topic();
+    private Message message = new Message();
+    // TODO: REMOVE THIS WHEN WORKING CORRECTLY
+    bool TOPICTEST = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -70,22 +82,22 @@ public partial class Chat : ComponentBase
     {
         if (Question == "") return;
         string tempQuestion = (SummariseText ? "SUMMARISE THIS TEXT: " : "") + Question;
-        var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
-            {
-                Text = tempQuestion,
-                Language = Language.Code
-            }
-        );
-        var result = await translation.Content.ReadAsStringAsync();
+        // var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
+        //     {
+        //         Text = tempQuestion,
+        //         Language = Language.Code
+        //     }
+        // );
+        // var result = await translation.Content.ReadAsStringAsync();
         
-    apiResponses.Add(new Message
+        apiResponses.Add(new Message
         {
             content = tempQuestion,
             isUser = true
         });
         SendingDisabled = true;
         Question = "";
-        string response = await ai.GetMessage(result, UseFake);
+        string response = await ai.GetMessage(tempQuestion, UseFake);
         apiResponses.Add(new Message
         {
             content = response,
@@ -93,6 +105,48 @@ public partial class Chat : ComponentBase
         });
         Question = "";
         SendingDisabled = false;
+
+        if (TOPICTEST == false)
+        {
+            UploadTopic(tempQuestion);
+        }
+        
+    }
+
+    /// <summary>
+    /// Upload the topic to the database.
+    /// If the input provided is over 200 characters then it will limit the length of the string.
+    /// Also assigns the user ID to the topic so that it can only be called for specific users.
+    /// </summary>
+    /// <param name="tempQuestion">Gets the user input</param>
+    /// <param name="editContext">Tracks the changes made in the form</param>
+    private async Task UploadTopic(string tempQuestion)
+    {
+        string topicName;
+        int topicNameMaxLength = 200;
+        
+        if (tempQuestion.Length > topicNameMaxLength)
+        {
+            topicName = tempQuestion.Substring(0, topicNameMaxLength);
+        }
+        else
+        {
+            topicName = tempQuestion;
+        }
+        topic.topicname = topicName;
+        
+        var checkId = await AuthStateProvider.GetAuthenticationStateAsync();
+        string? userId = checkId.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        topic.account_id = Int32.Parse(userId);
+        
+        try
+        {
+            await topicService.CreateTopic(topic);
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+        }
     }
 
     private void DrawerToggle()
