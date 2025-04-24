@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Data.SqlClient;
 using MudBlazor;
+using SoftwareProject.Client.Models;
 using SoftwareProject.Client.Providers;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;

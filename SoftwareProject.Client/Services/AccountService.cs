@@ -28,11 +28,24 @@ public class AccountService : IAccountService
     /// Adds a user created accounts to the database.
     /// </summary>
     /// <param name="account">Stores the account table</param>
-    public async Task CreateAccount(Account account)
+    public async Task<RegisterStatus> CreateAccount(Account account)
     {
-        await using var context = dbContextFactory.CreateDbContext();
+        await using var context = await dbContextFactory.CreateDbContextAsync();
+        
+        // Checks if an account exists already
+        var existingAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
+        if (existingAccount != null)
+            return RegisterStatus.Failure;
+            
+        // Checks account has been created
+        var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
+        if (createdAccount == null)
+            return RegisterStatus.Failure;
+            
         await context.Account.AddAsync(account);
         await context.SaveChangesAsync();
+
+        return RegisterStatus.Success;
     }
     
     /// <summary>
@@ -43,9 +56,7 @@ public class AccountService : IAccountService
     /// <returns></returns>
     public async Task<Account?> LoginAccount(string email, string password)
     {
-        using (var context = dbContextFactory.CreateDbContext())
-        {
-            return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
-        }
+        await using var context = await dbContextFactory.CreateDbContextAsync();
+        return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
     }
 }

@@ -17,16 +17,16 @@ public class AuthenticationController : ControllerBase
     /// <summary>
     /// Factory to create DB context instances
     /// </summary>
-    private IDbContextFactory<ChatbotDbContext> dbContextFactory;
+    private IAccountService accountService;
 
     /// <summary>
     /// CONSTRUCTOR
     /// Assigns the Chatbot DbContext so that the database can be accessed.
     /// </summary>
     /// <param name="pDbContextFactory">Stores the DbContext class</param>
-    public AuthenticationController(IDbContextFactory<ChatbotDbContext> pdbContextFactory)
+    public AuthenticationController(IAccountService pAccountService)
     {
-        dbContextFactory = pdbContextFactory;
+        accountService = pAccountService;
     }
 
     /// <summary>
@@ -38,9 +38,8 @@ public class AuthenticationController : ControllerBase
     public async Task<IActionResult> Login([FromBody] AccountModel pAccount)
     {
         Console.WriteLine("Starting login process.");
-        await using var context = await dbContextFactory.CreateDbContextAsync();
-        var account = await context.Account.FirstOrDefaultAsync(a => 
-            a.email == pAccount.Email && a.password == pAccount.Password);
+
+        var account = await accountService.LoginAccount(pAccount.Email, pAccount.Password);
         
         if (account != null)
         {
@@ -61,26 +60,9 @@ public class AuthenticationController : ControllerBase
                 IsPersistent = true,
             };
 
-            // Standard auth cookie creation
             await HttpContext.SignInAsync("Cookies", principal, authProperties);
-            
-            // Also manually set a visible cookie to check if cookies work at all
-            Response.Cookies.Append("auth_visible", "true", new CookieOptions
-            {
-                HttpOnly = false, // This one should be visible to JavaScript
-                Secure = true,
-                SameSite = SameSiteMode.Lax,
-                Expires = DateTimeOffset.UtcNow.AddDays(1)
-            });
 
             Console.WriteLine($"User signed in. Server time: {DateTime.UtcNow}");
-            
-            // Print response cookies for debugging
-            Console.WriteLine("Cookies being set:");
-            foreach (var cookie in Response.Headers.Where(h => h.Key == "Set-Cookie"))
-            {
-                Console.WriteLine($"Set-Cookie: {cookie.Value}");
-            }
             
             return Ok(new
             {
@@ -90,7 +72,6 @@ public class AuthenticationController : ControllerBase
                 Id = account.account_id
             });
         }
-
         return BadRequest("Invalid credentials");
     }
 
@@ -111,43 +92,37 @@ public class AuthenticationController : ControllerBase
             return BadRequest("Required fields are missing");
 
         Console.WriteLine($"Received registration request for: {account.Email}");
-
-        await using var context = await dbContextFactory.CreateDbContextAsync();
+        
         try
         {
-            var existingAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.Email);
-            if (existingAccount != null)
-                return BadRequest("Email already registered");
+            var status = await accountService.CreateAccount(account.ToAccount());
 
-            await context.Account.AddAsync(account.ToAccount());
-            await context.SaveChangesAsync();
-
-            var loggedInAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.Email);
-            if (loggedInAccount == null)
-                return BadRequest("Failed to create account");
-
-            var claims = new List<Claim>
+            if (status == RegisterStatus.Success)
             {
-                new(ClaimTypes.Name, loggedInAccount.username),
-                new(ClaimTypes.NameIdentifier, loggedInAccount.account_id.ToString()),
-                new(ClaimTypes.Email, loggedInAccount.email),
-            };
+                var claims = new List<Claim>
+                {
+                    new(ClaimTypes.Name, account.Username),
+                    new(ClaimTypes.NameIdentifier, account.AccountID.ToString()),
+                    new(ClaimTypes.Email, account.Email),
+                };
 
-            var identity = new ClaimsIdentity(claims, "Cookies");
-            var principal = new ClaimsPrincipal(identity);
+                var identity = new ClaimsIdentity(claims, "Cookies");
+                var principal = new ClaimsPrincipal(identity);
             
-            var authProperties = new AuthenticationProperties
-            {
-                AllowRefresh = true,
-                ExpiresUtc = DateTimeOffset.Now.AddDays(1),
-                IsPersistent = true,
-            };
+                var authProperties = new AuthenticationProperties
+                {
+                    AllowRefresh = true,
+                    ExpiresUtc = DateTimeOffset.Now.AddDays(1),
+                    IsPersistent = true,
+                };
 
-            await HttpContext.SignInAsync("Cookies", principal, authProperties);
+                await HttpContext.SignInAsync("Cookies", principal, authProperties);
 
-            Console.WriteLine($"Registration successful for: {account.Email}");
-
-            return Ok();
+                Console.WriteLine($"Registration successful for: {account.Email}");
+                
+                return Ok();
+            }
+            return BadRequest("Registration Failed: Account Exists already");
         }
         catch (Exception e)
         {
