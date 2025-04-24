@@ -1,6 +1,7 @@
 ﻿@page "/chat"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
+@using SoftwareProject.Client.Data
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @inject AuthenticationStateProvider AuthStateProvider
@@ -48,6 +49,14 @@
                            <MudSelectItem Value="Fonts[3]" T="string">Shit fucking font</MudSelectItem>
                         </MudSelect>
                         <MudNumericField Value="11" FullWidth="true" Class="mb-2" Label="Font Size" Variant="Variant.Outlined" Min="11" Max="50" />
+                        <MudSelect @bind-Value="Language" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="Language" Label="Language">
+                           <MudSelectItem Value="Languages.English" T="Language">@Languages.English.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.French" T="Language">@Languages.French.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Japanese" T="Language">@Languages.Japanese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Chinese" T="Language">@Languages.Chinese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Spanish" T="Language">@Languages.Spanish.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.German" T="Language">@Languages.German.Name</MudSelectItem>
+                        </MudSelect>
                         <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error" OnClick="Logout">Logout</MudButton>
                      </MudPaper>
                   </MudPopover>
@@ -66,10 +75,13 @@
             Test topic 1 - my brother has sepsis and wants to kill himself?
          </MudListItem>
          <MudListItem>
-            Test topic 2
+            Test topic 2 - cheers mate nan's done a backflip
          </MudListItem>
          <MudListItem>
-            Test topic 3
+            Test topic 3 - thats mint that
+         </MudListItem>
+         <MudListItem>
+            Test topic 4 - 6 bomba rasclat pussi clart bomba rasclart egg
          </MudListItem>
       </MudList>
    </MudDrawer>
@@ -98,10 +110,13 @@
             }
 
          </MudPaper>
-         <MudPaper Elevation="0" Style="background-color: transparent" Height="10%">
+         <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
-               <MudPaper Style="background-color: transparent" Elevation="0" Width="89%">
-                  <MudTextField AutoGrow="true" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
+               <MudPaper Elevation="0" Width="11%" align="center" Class="d-flex justify-center is-align-items-center">
+                  <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText" StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise</MudButton>
+               </MudPaper>
+               <MudPaper Style="background-color: transparent" Elevation="0" Width="90%">
+                  <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
                                 Immediate="true" Variant="Variant.Outlined" Label="Message"/>
                </MudPaper>
                <MudPaper Style="background-color: transparent" Elevation="0" Width="10%" Class="d-flex justify-center">
