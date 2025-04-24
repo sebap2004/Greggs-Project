@@ -48,7 +48,6 @@ public class AuthenticationController : ControllerBase
                 new(ClaimTypes.Name, account.username),
                 new(ClaimTypes.NameIdentifier, account.account_id.ToString()),
                 new(ClaimTypes.Email, account.email),
-                new(ClaimTypes.Role, account.role ?? "User") // Add role claim
             };
 
             var identity = new ClaimsIdentity(claims, "Cookies");

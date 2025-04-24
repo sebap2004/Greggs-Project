@@ -6,13 +6,14 @@
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @using SoftwareProject.Client.Models
+@using Message = SoftwareProject.Client.Models.Message
 @inject AuthenticationStateProvider AuthStateProvider
 @inject HttpClient http
 @inject NavigationManager NavigationManager
 @inject ApiService ai
 @inject IMagicIndexedDb magicDb
 @inject ISnackbar Snackbar
-@inject IIndexedDbFactory DbFactory
+@inject TopicService topicService
 
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode"/>
@@ -125,6 +126,7 @@
                   </MudChat>
                }
             }
+
          </MudPaper>
          <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
