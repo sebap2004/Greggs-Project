@@ -8,6 +8,7 @@ using MudBlazor;
 using SoftwareProject.Client.Providers;
 using SoftwareProject.Services;
 using SoftwareProject.Components;
+using SoftwareProject.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +86,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
         : CookieSecurePolicy.Always;
 });
 builder.Services.AddAuthorization();
+builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
 builder.Services.AddAntiforgery(options => {
     options.HeaderName = "X-CSRF-TOKEN";
@@ -96,7 +98,6 @@ builder.Services.AddHttpContextAccessor();
 // Add database configurations.
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
-builder.Services.AddTransient<AccountService>();
 builder.Services.AddTransient<ApiService>();
 
 

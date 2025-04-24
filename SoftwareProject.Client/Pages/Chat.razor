@@ -33,7 +33,7 @@
                                Width="20rem" Elevation="0">
                         <MudText Typo="Typo.h6"><b>Quick Settings</b></MudText>
                         <MudStack Class="is-align-items-center" Style="width: 100%" Row="true">
-                           <MudText>Use Fake</MudText>
+                           <MudText>Use real AI API</MudText>
                            <MudSpacer></MudSpacer>
                            <MudToggleIconButton @bind-Toggled="UseFake"
                                                 Icon="@Icons.Material.Filled.CheckCircle"
@@ -70,6 +70,13 @@
 
    </MudAppBar>
    <MudDrawer id="nav-drawer" Width="20%" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+      <MudText Class="mt-2" Align="Align.Center"><b>Storage Type</b></MudText>
+      <MudStack Class="mt-2 mx-2">
+         <MudButtonGroup FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
+            <MudButton Color="Color.Primary" Variant="localVariant" OnClick="() => isLocal = true">Local</MudButton>
+            <MudButton Color="Color.Secondary" Variant="onlineVariant" OnClick="() => isLocal = false">Online</MudButton>
+         </MudButtonGroup>
+      </MudStack>
       <MudList Dense="true" T="string">
          <MudListItem>
             Test topic 1 - my brother has sepsis and wants to kill himself?
@@ -88,32 +95,32 @@
    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
       <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
          <MudPaper Elevation="0" Class="is-flex-grow-1 is-overflow-y-scroll">
-
             @foreach (Message response in apiResponses)
             {
                if (response.isUser)
                {
-                  <MudChat ChatPosition="ChatBubblePosition.End">
+                  <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
                      <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.Arta" Value="@response.content"></MudMarkdown>
+                        <MudMarkdown Value="@response.content"></MudMarkdown>
                      </MudChatBubble>
                   </MudChat>
                }
                else
                {
-                  <MudChat ChatPosition="ChatBubblePosition.Start">
+                  <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
                      <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.A11yDark" Value="@response.content"></MudMarkdown>
+                        <MudMarkdown Value="@response.content"></MudMarkdown>
                      </MudChatBubble>
                   </MudChat>
                }
             }
-
          </MudPaper>
          <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
                <MudPaper Elevation="0" Width="11%" align="center" Class="d-flex justify-center is-align-items-center">
-                  <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText" StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise</MudButton>
+                  <MudTooltip Color="Color.Primary" Delay="1000" Text="Summarises long blocks of text.">
+                     <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText" StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise</MudButton>
+                  </MudTooltip>
                </MudPaper>
                <MudPaper Style="background-color: transparent" Elevation="0" Width="90%">
                   <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
@@ -130,7 +137,7 @@
    </MudMainContent>
 </MudLayout>
 <div id="blazor-error-ui" data-nosnippet>
-   An unhandled error has occurresd.
+   An unhandled error has occurred Erm this is bad.
    <a href="." class="reload">Reload</a>
    <span class="dismiss">🗙</span>
 </div>

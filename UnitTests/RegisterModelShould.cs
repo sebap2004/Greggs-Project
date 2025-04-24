@@ -26,7 +26,7 @@ public class RegisterModelShould
             account_id = 122
         };
 
-        mockAccountService.Setup(m => m.CreateAccount(account)).Returns(Task.CompletedTask);
+        // mockAccountService.Setup(m => m.CreateAccount(account)).Returns(Task.CompletedTask);
         var navManager = ctx.Services.GetRequiredService<FakeNavigationManager>();
         // var registerModel = new RegisterModel(account, mockAccountService.Object, navManager);
 
