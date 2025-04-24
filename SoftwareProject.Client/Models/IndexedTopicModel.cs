@@ -10,5 +10,5 @@ public class IndexedTopicModel
     
     public string GUID { get; set; }
     public string Topic { get; set; }
-    public List<Message> messages { get; set; } = new();
+    public List<MessageModel> messages { get; set; } = new();
 }

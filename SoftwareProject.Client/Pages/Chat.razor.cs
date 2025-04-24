@@ -21,7 +21,7 @@ public partial class Chat : ComponentBase
 
     private bool inNewTopic { get; set; } = true;
 
-    private List<Message> messages = new();
+    private List<MessageModel> messages = new();
     private bool UseFake { get; set; }
     private bool isLocal { get; set; }
     private Variant localVariant => isLocal ? Variant.Filled : Variant.Outlined;
@@ -85,7 +85,7 @@ public partial class Chat : ComponentBase
         string translatedQuestion = "";
         SendingDisabled = true;
 
-        var message = new Message
+        var message = new MessageModel
         {
             content = tempQuestion,
             isUser = true
@@ -100,7 +100,7 @@ public partial class Chat : ComponentBase
                 ActiveLocalTopic = new IndexedTopicModel
                 {
                     Topic = message.content,
-                    messages = new List<Message>()
+                    messages = new List<MessageModel>()
                 };
                 ActiveLocalTopic.messages.Add(message);
             }
@@ -136,7 +136,7 @@ public partial class Chat : ComponentBase
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
         string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, UseFake);
-        var aiMessage = new Message
+        var aiMessage = new MessageModel
         {
             content = response,
             isUser = false
@@ -234,7 +234,7 @@ public partial class Chat : ComponentBase
             Console.WriteLine("Loaded " + LocalTopics.Count + " topics from DB");
             if (LocalTopics.Count > 0 && ActiveLocalTopic == null)
             {
-                messages = new List<Message>(ActiveLocalTopic.messages);
+                messages = new List<MessageModel>(ActiveLocalTopic.messages);
             }
 
             StateHasChanged();
@@ -290,7 +290,7 @@ public partial class Chat : ComponentBase
 
     private async Task AddLocalMessageTest()
     {
-        Message message = new Message
+        MessageModel message = new MessageModel
         {
             content = "Hello! " + DateTime.Now,
             isUser = true
@@ -302,7 +302,7 @@ public partial class Chat : ComponentBase
             Topic = ActiveLocalTopic ?? new IndexedTopicModel
             {
                 Topic = "Test " + DateTime.Now,
-                messages = new List<Message>
+                messages = new List<MessageModel>
                 {
                     message
                 }

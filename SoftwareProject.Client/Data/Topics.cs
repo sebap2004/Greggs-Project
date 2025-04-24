@@ -11,7 +11,7 @@ public class Topics : MagicTableTool<Topics>, IMagicTable<IndexedDBContext>
         Topic = new IndexedTopicModel
         {
             Topic = string.Empty,
-            messages = new List<Message>()
+            messages = new List<MessageModel>()
         };
     }
     

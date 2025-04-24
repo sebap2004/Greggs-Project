@@ -43,7 +43,6 @@ public class RegisterModel
             {
                 var newAccount = (Account)editContext.Model;
                 newAccount.account_id = 0;
-                newAccount.role = "Fuck you";
                 Console.WriteLine("Starting Register Process.");
                 var jsonContent = System.Text.Json.JsonSerializer.Serialize(newAccount.AccountModel);
                 Console.WriteLine($"Request body: {jsonContent}");

@@ -2,7 +2,7 @@
 
 
 [Serializable]
-public class Message
+public class MessageModel
 {
     public string content { get; set; }
     public bool isUser { get; set; }
