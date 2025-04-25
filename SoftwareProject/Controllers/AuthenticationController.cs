@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
 
+
+
 namespace SoftwareProject.Controllers;
 /// <summary>
 /// API Controller for authentication.
@@ -78,28 +80,29 @@ public class AuthenticationController : ControllerBase
     /// <param name="account">Account model that has been passed from the http request body</param>
     /// <returns>Result of action</returns>
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] AccountModel account)
+    public async Task<Account?> Register([FromBody] AccountModel account)
     {
         if (account == null)
-            return BadRequest("Account data is null");
+            return null;
+        
+        account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
 
         if (string.IsNullOrEmpty(account.Email) || string.IsNullOrEmpty(account.Username) ||
             string.IsNullOrEmpty(account.Password))
-            return BadRequest("Required fields are missing");
+            return null;
 
         Console.WriteLine($"Received registration request for: {account.Email}");
         
         try
         {
             var status = await accountService.CreateAccount(account.ToAccount());
-
-            if (status == RegisterStatus.Success)
+            if (status != null)
             {
                 var claims = new List<Claim>
                 {
-                    new(ClaimTypes.Name, account.Username),
-                    new(ClaimTypes.NameIdentifier, account.AccountID.ToString()),
-                    new(ClaimTypes.Email, account.Email),
+                    new(ClaimTypes.Name, status.username),
+                    new(ClaimTypes.NameIdentifier, status.account_id.ToString()),
+                    new(ClaimTypes.Email, status.email),
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");
@@ -116,14 +119,14 @@ public class AuthenticationController : ControllerBase
 
                 Console.WriteLine($"Registration successful for: {account.Email}");
                 
-                return Ok();
+                return status;
             }
-            return BadRequest("Registration Failed: " + status);
+            return null;
         }
         catch (Exception e)
         {
             Console.Error.WriteLine($"Registration error: {e.Message}");
-            return BadRequest($"Registration failed: {e.Message}");
+            return null;
         }
     }
 
