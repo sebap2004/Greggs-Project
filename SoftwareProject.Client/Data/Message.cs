@@ -15,3 +15,13 @@ public class Message
     public DateTime timesent { get; set; }
     public int topic_id { get; set; }
 }
+
+public class MessageModel
+{
+    public int MessageID { get; set; }
+    public int AiResponse { get; set; }
+    public string MessageText { get; set; }
+    public DateTime TimeSent { get; set; }
+    public int TopicID { get; set; }
+}
+

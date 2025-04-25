@@ -25,7 +25,6 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IIndexedDbFactory, IndexedDbFactory>();
 builder.Services.AddMagicBlazorDB(BlazorInteropMode.WASM, builder.HostEnvironment.IsDevelopment());
 builder.Services.AddTransient<AccountService>();
-builder.Services.AddTransient<TopicService>();
 builder.Services.AddTransient<ApiService>();
 builder.Services.AddMudMarkdownServices();
 builder.Services.AddAuthorizationCore();

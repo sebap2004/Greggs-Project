@@ -17,12 +17,16 @@ namespace SoftwareProject.Client.Pages;
 
 public partial class Chat : ComponentBase
 {
-    private List<IndexedTopicModel?> LocalTopics = new();
-    private IndexedTopicModel? ActiveLocalTopic { get; set; }
-
+    private List<LocalTopicModel?> CachedLocalTopicList = new();
+    private LocalTopicModel? ActiveLocalTopic { get; set; }
+    
+    private List<Topic> CachedOnlineTopicList = new();
+    
+    private Topic? ActiveOnlineTopic { get; set; }
+    
     private bool inNewTopic { get; set; } = true;
 
-    private List<MessageModel> messages = new();
+    private List<LocalMessageModel> messages = new();
     private bool UseFake { get; set; }
     private bool isLocal { get; set; }
     private Variant localVariant => isLocal ? Variant.Filled : Variant.Outlined;
@@ -68,9 +72,11 @@ public partial class Chat : ComponentBase
         if (!user.Identity!.IsAuthenticated)
         {
             // NavigationManager.NavigateTo($"/access-denied/{Uri.EscapeDataString("notauthorized")}");
+            // return;
         }
-
         await LoadLocalTopicsFromDB();
+        string userID = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
+        CachedOnlineTopicList = await topicService.GetTopics(int.Parse(userID));
     }
 
 
@@ -92,7 +98,7 @@ public partial class Chat : ComponentBase
         string translatedQuestion = "";
         SendingDisabled = true;
 
-        var message = new MessageModel
+        var message = new LocalMessageModel
         {
             content = tempQuestion,
             isUser = true
@@ -104,10 +110,10 @@ public partial class Chat : ComponentBase
         {
             if (ActiveLocalTopic == null)
             {
-                ActiveLocalTopic = new IndexedTopicModel
+                ActiveLocalTopic = new LocalTopicModel
                 {
                     Topic = message.content,
-                    messages = new List<MessageModel>()
+                    messages = new List<LocalMessageModel>()
                 };
                 ActiveLocalTopic.messages.Add(message);
             }
@@ -143,7 +149,7 @@ public partial class Chat : ComponentBase
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
         string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, UseFake);
-        var aiMessage = new MessageModel
+        var aiMessage = new LocalMessageModel
         {
             content = response,
             isUser = false
@@ -286,7 +292,7 @@ public partial class Chat : ComponentBase
         }
     }
 
-    private void UpdateActiveLocalTopic(IndexedTopicModel topic)
+    private void UpdateActiveLocalTopic(LocalTopicModel topic)
     {
         Console.WriteLine("Updating active topic: " + topic.Topic + "");
         ActiveLocalTopic = topic;
@@ -301,14 +307,14 @@ public partial class Chat : ComponentBase
             Console.WriteLine("Started loading topics from DB");
             var allRecords = await magicDb.Query<Topics>();
             var allTopics = await allRecords.ToListAsync();
-            LocalTopics = allTopics
+            CachedLocalTopicList = allTopics
                 .Where(t => t.Topic != null && !string.IsNullOrEmpty(t.Topic.Topic))
                 .Select(t => t.Topic)
                 .ToList();
-            Console.WriteLine("Loaded " + LocalTopics.Count + " topics from DB");
-            if (LocalTopics.Count > 0 && ActiveLocalTopic == null)
+            Console.WriteLine("Loaded " + CachedLocalTopicList.Count + " topics from DB");
+            if (CachedLocalTopicList.Count > 0 && ActiveLocalTopic == null)
             {
-                messages = new List<MessageModel>(ActiveLocalTopic.messages);
+                messages = new List<LocalMessageModel>(ActiveLocalTopic.messages);
             }
 
             StateHasChanged();
@@ -364,7 +370,7 @@ public partial class Chat : ComponentBase
 
     private async Task AddLocalMessageTest()
     {
-        MessageModel message = new MessageModel
+        LocalMessageModel localMessage = new LocalMessageModel
         {
             content = "Hello! " + DateTime.Now,
             isUser = true
@@ -373,12 +379,12 @@ public partial class Chat : ComponentBase
 
         await topicQuery.AddAsync(new Topics
         {
-            Topic = ActiveLocalTopic ?? new IndexedTopicModel
+            Topic = ActiveLocalTopic ?? new LocalTopicModel
             {
                 Topic = "Test " + DateTime.Now,
-                messages = new List<MessageModel>
+                messages = new List<LocalMessageModel>
                 {
-                    message
+                    localMessage
                 }
             }
         });

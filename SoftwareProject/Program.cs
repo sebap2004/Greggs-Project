@@ -96,9 +96,8 @@ builder.Services.AddAntiforgery(options => {
 });
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
-
-// Add database configurations.
-builder.Services.AddScoped<IIndexedDbFactory, PlaceholderIndexedDbFactory>();
+builder.Services.AddTransient<MessageService>();
+builder.Services.AddTransient<TopicService>();
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<ApiService>();

@@ -8,10 +8,10 @@ public class Topics : MagicTableTool<Topics>, IMagicTable<IndexedDBContext>
 {
     public Topics()
     {
-        Topic = new IndexedTopicModel
+        Topic = new LocalTopicModel
         {
             Topic = string.Empty,
-            messages = new List<MessageModel>()
+            messages = new List<LocalMessageModel>()
         };
     }
     
@@ -34,5 +34,5 @@ public class Topics : MagicTableTool<Topics>, IMagicTable<IndexedDBContext>
     public long Id { get; set; }
     
     public string GUID { get; set; }
-    public IndexedTopicModel Topic { get; set; }
+    public LocalTopicModel Topic { get; set; }
 }

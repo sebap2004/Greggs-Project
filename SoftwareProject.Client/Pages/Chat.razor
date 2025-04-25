@@ -6,7 +6,7 @@
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @using SoftwareProject.Client.Models
-@using Message = SoftwareProject.Client.Models.MessageModel
+@using Message = SoftwareProject.Client.Models.LocalMessageModel
 @inject AuthenticationStateProvider AuthStateProvider
 @inject HttpClient http
 @inject NavigationManager NavigationManager
@@ -89,7 +89,7 @@
       <MudList Dense="true" T="string">
          @if (isLocal)
          {
-            foreach (var topic in LocalTopics)
+            foreach (var topic in CachedLocalTopicList)
             {
                <MudListItem OnClick="() => UpdateActiveLocalTopic(topic)">
                   @topic.Topic
@@ -108,7 +108,7 @@
    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
       <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
          <MudPaper Elevation="0" Class="is-flex-grow-1 is-overflow-y-scroll">
-            @foreach (MessageModel response in messages)
+            @foreach (LocalMessageModel response in messages)
             {
                if (response.isUser)
                {

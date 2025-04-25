@@ -11,6 +11,6 @@ public class TopicIndexDb : IndexedDb
     {
     }
     
-    public IndexedSet<IndexedTopicModel> Topics { get; set; }
+    public IndexedSet<LocalTopicModel> Topics { get; set; }
     
 }

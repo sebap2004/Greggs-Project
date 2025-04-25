@@ -26,8 +26,14 @@ public class MessageService
     /// <param name="topic">Stores the topic table</param>
     public async Task CreateMessage(Message message)
     {
-        await using var context = dbContextFactory.CreateDbContext();
+        await using var context = await dbContextFactory.CreateDbContextAsync();
         await context.Message.AddAsync(message);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<List<Message>> GetMessages(int topicId)
+    {
+        await using var context = await dbContextFactory.CreateDbContextAsync();
+        return await context.Message.Where(m => m.topic_id == topicId).ToListAsync();
     }
 }

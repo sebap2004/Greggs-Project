@@ -13,3 +13,10 @@ public class Topic
     public string topicname { get; set; }
     public int account_id { get; set; }
 }
+
+public class TopicModel
+{
+    public int TopicID { get; set; }
+    public string TopicName { get; set; }
+    public int AccountID { get; set; }
+}
