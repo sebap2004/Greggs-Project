@@ -32,6 +32,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SoftwareProject.Client\SoftwareProject.Client.csproj" />
+      <ProjectReference Include="..\SoftwareProject\SoftwareProject.csproj" />
     </ItemGroup>
 
 </Project>

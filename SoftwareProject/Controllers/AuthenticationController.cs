@@ -14,16 +14,12 @@ namespace SoftwareProject.Controllers;
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
-    /// <summary>
-    /// Factory to create DB context instances
-    /// </summary>
-    private IAccountService accountService;
+    private readonly IAccountService accountService;
 
     /// <summary>
     /// CONSTRUCTOR
     /// Assigns the Chatbot DbContext so that the database can be accessed.
     /// </summary>
-    /// <param name="pDbContextFactory">Stores the DbContext class</param>
     public AuthenticationController(IAccountService pAccountService)
     {
         accountService = pAccountService;
