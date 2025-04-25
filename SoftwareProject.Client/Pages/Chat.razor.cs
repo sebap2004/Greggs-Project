@@ -21,12 +21,12 @@ public partial class Chat : ComponentBase
     private LocalTopicModel? ActiveLocalTopic { get; set; }
     
     private List<Topic> CachedOnlineTopicList = new();
-    
     private Topic? ActiveOnlineTopic { get; set; }
-    
     private bool inNewTopic { get; set; } = true;
-
-    private List<LocalMessageModel> messages = new();
+    private List<LocalMessageModel> LocalMessages = new();
+    private List<MessageDto> OnlineMessages = new();
+    private int userID;
+    
     private bool UseFake { get; set; }
     private bool isLocal { get; set; }
     private Variant localVariant => isLocal ? Variant.Filled : Variant.Outlined;
@@ -55,12 +55,6 @@ public partial class Chat : ComponentBase
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
     
-    // Database Variables
-    private Topic topic = new Topic();
-    private Message message = new Message();
-    // TODO: REMOVE THIS WHEN WORKING CORRECTLY
-    bool TOPICTEST = false;
-
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -75,8 +69,9 @@ public partial class Chat : ComponentBase
             // return;
         }
         await LoadLocalTopicsFromDB();
-        string userID = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
-        CachedOnlineTopicList = await topicService.GetTopics(int.Parse(userID));
+        string userIDString = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
+        userID = Int32.Parse(userIDString);
+        CachedOnlineTopicList = await TopicClient.GetTopics(userID);
     }
 
 
@@ -97,29 +92,36 @@ public partial class Chat : ComponentBase
         string tempQuestion = Question;
         string translatedQuestion = "";
         SendingDisabled = true;
-
-        var message = new LocalMessageModel
+        
+        var offlineMessage = new LocalMessageModel
         {
             content = tempQuestion,
             isUser = true
         };
-        Console.WriteLine("Created new message");
-        messages.Add(message);
 
+        var onlineMessage = new MessageDto
+        {
+            AiResponse = false,
+            MessageText = tempQuestion,
+        };
+        
         if (isLocal)
         {
+            
+            Console.WriteLine("Created new message");
+            LocalMessages.Add(offlineMessage);
             if (ActiveLocalTopic == null)
             {
                 ActiveLocalTopic = new LocalTopicModel
                 {
-                    Topic = message.content,
+                    Topic = offlineMessage.content,
                     messages = new List<LocalMessageModel>()
                 };
-                ActiveLocalTopic.messages.Add(message);
+                ActiveLocalTopic.messages.Add(offlineMessage);
             }
             else
             {
-                ActiveLocalTopic.messages.Add(message);
+                ActiveLocalTopic.messages.Add(offlineMessage);
                 await AddLocalMessage();
             }
 
@@ -127,7 +129,28 @@ public partial class Chat : ComponentBase
         }
         else
         {
-            // Do database
+            if (ActiveOnlineTopic == null)
+            {
+                var newTopic = new Topic()
+                {
+                    account_id = userID,
+                    topicname = onlineMessage.MessageText
+                };
+                var createdTopic = await TopicClient.CreateTopic(newTopic);
+                ActiveOnlineTopic = createdTopic;
+                CachedOnlineTopicList.Add(ActiveOnlineTopic);
+                onlineMessage.TopicId = ActiveOnlineTopic.topic_id;
+                OnlineMessages.Add(onlineMessage);
+                await MessageClient.CreateMessage(onlineMessage);
+                StateHasChanged();
+            }
+            else
+            {
+                onlineMessage.TopicId = ActiveOnlineTopic.topic_id;
+                OnlineMessages.Add(onlineMessage);
+                var creationAttempt = await MessageClient.CreateMessage(onlineMessage);
+                Console.WriteLine("Message created status: " + creationAttempt);
+            }
         }
 
         if (Language != Languages.English)
@@ -149,97 +172,40 @@ public partial class Chat : ComponentBase
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
         string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, UseFake);
-        var aiMessage = new LocalMessageModel
+        var aiLocalMessage = new LocalMessageModel
         {
             content = response,
             isUser = false
         };
+        var aiOnlineMessage = new MessageDto
+        {
+            AiResponse = true,
+            MessageText = response,
+            TopicId = ActiveOnlineTopic?.topic_id ?? 0
+        };
         Console.WriteLine("AI response: " + response + "");
-        messages.Add(aiMessage);
+        LocalMessages.Add(aiLocalMessage);
 
         if (isLocal)
         {
-            Console.WriteLine("Adding message to local topic: " + aiMessage.content + "");
-            ActiveLocalTopic?.messages.Add(aiMessage);
+            Console.WriteLine("Adding message to local topic: " + aiLocalMessage.content + "");
+            ActiveLocalTopic?.messages.Add(aiLocalMessage);
             await AddLocalMessage();
         }
         else
         {
-            // Do database
+            Console.WriteLine("Adding message to online topic: " + aiOnlineMessage.MessageText + "");
+            OnlineMessages.Add(aiOnlineMessage);
+            var createAttempt = await MessageClient.CreateMessage(aiOnlineMessage);
+            Console.WriteLine("Message send attempt: " + createAttempt);
         }
 
         Question = "";
         SendingDisabled = false;
         Console.WriteLine("Complete!");
         StateHasChanged();
-
-        if (TOPICTEST == false)
-        {
-            await UploadTopic(tempQuestion);
-        }
-
-        await UploadMessage(0, tempQuestion);
-        await UploadMessage(1, response);
     }
     
-    /// <summary>
-    /// Upload the topic to the database.
-    /// If the input provided is over 200 characters then it will limit the length of the string.
-    /// Also assigns the user ID to the topic so that it can only be called for specific users.
-    /// </summary>
-    /// <param name="tempQuestion">Gets the user input</param>
-    /// <param name="editContext">Tracks the changes made in the form</param>
-    private async Task UploadTopic(string tempQuestion)
-    {
-        string topicName;
-        int topicNameMaxLength = 200;
-        
-        if (tempQuestion.Length > topicNameMaxLength)
-        {
-            topicName = tempQuestion.Substring(0, topicNameMaxLength);
-        }
-        else
-        {
-            topicName = tempQuestion;
-        }
-        topic.topicname = topicName;
-        
-        var checkId = await AuthStateProvider.GetAuthenticationStateAsync();
-        string? userId = checkId.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        topic.account_id = Int32.Parse(userId);
-        
-        try
-        {
-            await topicService.CreateTopic(topic);
-        }
-        catch (SqlException e)
-        {
-            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
-        }
-    }
-
-    /// <summary>
-    /// Upload the messages to the database. Will take both AI and Human responses.
-    /// </summary>
-    /// <param name="responseType">AI or Human identifier. 0 for Human. 1 for AI.</param>
-    /// <param name="text">Stores the message to be uploaded.</param>
-    private async Task UploadMessage(int responseType, string text)
-    {
-        DateTime currentTime = DateTime.Now;
-        
-        message.airesponse = responseType;
-        message.messagetext = text;
-        message.timesent = currentTime;
-        
-        try
-        {
-            await messageService.CreateMessage(message);
-        }
-        catch (SqlException e)
-        {
-            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
-        }
-    }
 
     private void DrawerToggle()
     {
@@ -265,10 +231,13 @@ public partial class Chat : ComponentBase
         {
             Question = "";
             ActiveLocalTopic = null;
-            messages.Clear();
+            LocalMessages.Clear();
         }
         else
         {
+            Question = "";
+            ActiveOnlineTopic = null;
+            OnlineMessages.Clear();
         }
     }
 
@@ -285,9 +254,9 @@ public partial class Chat : ComponentBase
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
-                customProvider.NotifyAuthenticationStateChanged();
                 Snackbar.Add("You have been logged out.", Severity.Success);
                 NavigationManager.NavigateTo("/");
+                customProvider.NotifyAuthenticationStateChanged();
             }
         }
     }
@@ -296,8 +265,17 @@ public partial class Chat : ComponentBase
     {
         Console.WriteLine("Updating active topic: " + topic.Topic + "");
         ActiveLocalTopic = topic;
-        messages.Clear();
-        messages.AddRange(topic.messages);
+        LocalMessages.Clear();
+        LocalMessages.AddRange(topic.messages);
+    }
+
+    private async Task UpdateActiveOnlineTopic(Topic topic)
+    {
+        Console.WriteLine("Updating active online topic: " + topic.topic_id);
+        ActiveOnlineTopic = topic;
+        OnlineMessages.Clear();
+        var messagesFromDB = await MessageClient.GetMessages(topic.topic_id);
+        OnlineMessages.AddRange(messagesFromDB);
     }
 
     private async Task LoadLocalTopicsFromDB()
@@ -314,15 +292,14 @@ public partial class Chat : ComponentBase
             Console.WriteLine("Loaded " + CachedLocalTopicList.Count + " topics from DB");
             if (CachedLocalTopicList.Count > 0 && ActiveLocalTopic == null)
             {
-                messages = new List<LocalMessageModel>(ActiveLocalTopic.messages);
+                LocalMessages = new List<LocalMessageModel>(ActiveLocalTopic.messages);
             }
-
             StateHasChanged();
             Console.WriteLine("Finished loading topics from DB");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading topics: {ex.Message}");
+            Console.WriteLine($"Error loading topics: {ex}");
         }
     }
 
@@ -330,7 +307,6 @@ public partial class Chat : ComponentBase
     {
         Console.WriteLine("Started adding local message to DB: " + ActiveLocalTopic?.GUID);
         IMagicQuery<Topics> topicQuery = await magicDb.Query<Topics>();
-
         // Check if this is a new topic (no ID yet) or an existing one
         if (string.IsNullOrWhiteSpace(ActiveLocalTopic.GUID))
         {
@@ -366,27 +342,5 @@ public partial class Chat : ComponentBase
 
         await LoadLocalTopicsFromDB();
         Console.WriteLine("Finished adding local message");
-    }
-
-    private async Task AddLocalMessageTest()
-    {
-        LocalMessageModel localMessage = new LocalMessageModel
-        {
-            content = "Hello! " + DateTime.Now,
-            isUser = true
-        };
-        IMagicQuery<Topics> topicQuery = await magicDb.Query<Topics>();
-
-        await topicQuery.AddAsync(new Topics
-        {
-            Topic = ActiveLocalTopic ?? new LocalTopicModel
-            {
-                Topic = "Test " + DateTime.Now,
-                messages = new List<LocalMessageModel>
-                {
-                    localMessage
-                }
-            }
-        });
     }
 }

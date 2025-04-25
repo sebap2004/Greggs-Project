@@ -3,6 +3,7 @@
 @using IndexedDB.Blazor
 @using Microsoft.AspNetCore.Components.Authorization
 @using SoftwareProject.Client.Data
+@using SoftwareProject.Client.Interfaces
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @using SoftwareProject.Client.Models
@@ -13,8 +14,8 @@
 @inject ApiService ai
 @inject IMagicIndexedDb magicDb
 @inject ISnackbar Snackbar
-@inject TopicService topicService
-@inject MessageService messageService
+@inject IMessageService MessageClient
+@inject ITopicService TopicClient
 
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode"/>
@@ -26,7 +27,6 @@
       <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
                      OnClick="@((e) => DrawerToggle())"/>
       <MudLink Typo="Typo.h5" Underline="Underline.None" Href="/" Class="ml-3">Novachat</MudLink>
-      <MudButton Variant="Variant.Outlined" OnClick="AddLocalMessageTest">Add message to test</MudButton>
       <MudSpacer/>
       <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle"/>
 
@@ -98,7 +98,12 @@
          }
          else
          {
-         
+            foreach (var onlineTopic in CachedOnlineTopicList)
+            {
+               <MudListItem OnClick="() => UpdateActiveOnlineTopic(onlineTopic)">
+                  @onlineTopic.topicname
+               </MudListItem>
+            }
          }
       </MudList>
       
@@ -108,26 +113,50 @@
    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
       <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
          <MudPaper Elevation="0" Class="is-flex-grow-1 is-overflow-y-scroll">
-            @foreach (LocalMessageModel response in messages)
+            @if (isLocal)
             {
-               if (response.isUser)
+               @foreach (LocalMessageModel response in LocalMessages)
                {
-                  <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
-                     <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
-                     </MudChatBubble>
-                  </MudChat>
-               }
-               else
-               {
-                  <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
-                     <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
-                     </MudChatBubble>
-                  </MudChat>
+                  if (response.isUser)
+                  {
+                     <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
+                        <MudChatBubble>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
+                        </MudChatBubble>
+                     </MudChat>
+                  }
+                  else
+                  {
+                     <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
+                        <MudChatBubble>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
+                        </MudChatBubble>
+                     </MudChat>
+                  }
                }
             }
-
+            else
+            {
+               @foreach (var response in OnlineMessages)
+               {
+                  if (!response.AiResponse)
+                  {
+                     <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
+                        <MudChatBubble>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.MessageText"></MudMarkdown>
+                        </MudChatBubble>
+                     </MudChat>
+                  }
+                  else
+                  {
+                     <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
+                        <MudChatBubble>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.MessageText"></MudMarkdown>
+                        </MudChatBubble>
+                     </MudChat>
+                  }
+               }
+            }
          </MudPaper>
          <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
