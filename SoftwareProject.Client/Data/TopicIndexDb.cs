@@ -4,6 +4,10 @@ using SoftwareProject.Client.Models;
 
 namespace SoftwareProject.Client.Data;
 
+
+/// <summary>
+/// Indexed Database for Local Topics
+/// </summary>
 public class TopicIndexDb : IndexedDb
     
 {
@@ -11,6 +15,9 @@ public class TopicIndexDb : IndexedDb
     {
     }
     
+    /// <summary>
+    /// Set of topics
+    /// </summary>
     public IndexedSet<LocalTopicModel> Topics { get; set; }
     
 }

@@ -2,8 +2,15 @@
 
 namespace SoftwareProject.Client.Data;
 
+/// <summary>
+/// Static class to generate random IDs for Local Topics.
+/// </summary>
 public static class RandomIDGenerator
 {
+    /// <summary>
+    /// Generates a random ID
+    /// </summary>
+    /// <returns>Generated string.</returns>
     public static string GenerateRandomID()
     {
         StringBuilder builder = new StringBuilder();
