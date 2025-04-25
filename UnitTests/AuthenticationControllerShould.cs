@@ -152,6 +152,39 @@ public class AuthenticationControllerShould
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("Required fields are missing", badRequest.Value);
     }
+
+    [Fact]
+    public async Task GetCurrentUser_OnSuccess_ShouldReturnClaims()
+    {
+        //arrange
+        var claims = new List<Claim>() 
+        { 
+            new(ClaimTypes.Name, "username"),
+            new(ClaimTypes.NameIdentifier, "userId"),
+            new("name", "Daniel"),
+        };
+        var identity = new ClaimsIdentity(claims, "TestAuthType");
+        
+        var controller = new AuthenticationController(accountServiceMock.Object)
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext {
+                    RequestServices = serviceProviderMock.Object,
+                    User = new ClaimsPrincipal(identity)
+                },
+            }
+        };
+        
+        //act
+        var result = await controller.GetCurrentUser();
+      
+        //assert
+        var okResult = result as OkObjectResult;
+        Assert.NotNull(okResult);
+        Assert.Equal(200, okResult.StatusCode);
+        Assert.NotNull(okResult.Value);
+    }
     
     [Fact]
     public async Task Logout_OnSuccess_ShouldReturnOk()
