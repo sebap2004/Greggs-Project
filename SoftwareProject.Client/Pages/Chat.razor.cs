@@ -5,6 +5,7 @@ using Google.Cloud.Translate.V3;
 using Magic.IndexedDb;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic;
 using MudBlazor;
 using SoftwareProject.Client.Data;
@@ -49,6 +50,12 @@ public partial class Chat : ComponentBase
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
+    
+    // Database Variables
+    private Topic topic = new Topic();
+    private Message message = new Message();
+    // TODO: REMOVE THIS WHEN WORKING CORRECTLY
+    bool TOPICTEST = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -159,6 +166,73 @@ public partial class Chat : ComponentBase
         SendingDisabled = false;
         Console.WriteLine("Complete!");
         StateHasChanged();
+
+        if (TOPICTEST == false)
+        {
+            await UploadTopic(tempQuestion);
+        }
+
+        await UploadMessage(0, tempQuestion);
+        await UploadMessage(1, response);
+    }
+    
+    /// <summary>
+    /// Upload the topic to the database.
+    /// If the input provided is over 200 characters then it will limit the length of the string.
+    /// Also assigns the user ID to the topic so that it can only be called for specific users.
+    /// </summary>
+    /// <param name="tempQuestion">Gets the user input</param>
+    /// <param name="editContext">Tracks the changes made in the form</param>
+    private async Task UploadTopic(string tempQuestion)
+    {
+        string topicName;
+        int topicNameMaxLength = 200;
+        
+        if (tempQuestion.Length > topicNameMaxLength)
+        {
+            topicName = tempQuestion.Substring(0, topicNameMaxLength);
+        }
+        else
+        {
+            topicName = tempQuestion;
+        }
+        topic.topicname = topicName;
+        
+        var checkId = await AuthStateProvider.GetAuthenticationStateAsync();
+        string? userId = checkId.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        topic.account_id = Int32.Parse(userId);
+        
+        try
+        {
+            await topicService.CreateTopic(topic);
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Upload the messages to the database. Will take both AI and Human responses.
+    /// </summary>
+    /// <param name="responseType">AI or Human identifier. 0 for Human. 1 for AI.</param>
+    /// <param name="text">Stores the message to be uploaded.</param>
+    private async Task UploadMessage(int responseType, string text)
+    {
+        DateTime currentTime = DateTime.Now;
+        
+        message.airesponse = responseType;
+        message.messagetext = text;
+        message.timesent = currentTime;
+        
+        try
+        {
+            await messageService.CreateMessage(message);
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine($"Error Connecting to Database: \n{e.Message}");
+        }
     }
 
     private void DrawerToggle()
