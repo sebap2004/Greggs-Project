@@ -8,8 +8,7 @@ namespace SoftwareProject.Client.Data;
 /// </summary>
 public class Topic
 {
-    [Key]
-    public int topic_id { get; set; }
+    [Key] public int topic_id { get; set; }
     public string topicname { get; set; }
     public int account_id { get; set; }
 }
