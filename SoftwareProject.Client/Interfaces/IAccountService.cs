@@ -17,5 +17,8 @@ public enum LoginStatus
 public enum RegisterStatus
 {
     Success,
-    Failure
+    FailureAccountExists,
+    FailureToCreateAccount,
+    FailureDatabaseError,
+    FailurePasswordsDontMatch
 }

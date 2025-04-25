@@ -27,4 +27,10 @@ public class TopicController : ControllerBase
     {
         return await _topicService.CreateTopic(topic);
     }
+    
+    [HttpDelete("{topicId}")]
+    public async Task<ActionResult<TopicDeleteStatus>> DeleteTopic(int topicId)
+    {
+        return await _topicService.DeleteTopic(topicId);
+    }
 }

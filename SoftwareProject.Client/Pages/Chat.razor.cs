@@ -56,7 +56,7 @@ public partial class Chat : ComponentBase
     /// <summary>
     /// If true, Ai service will skip using a real gemini API and return a fake response.
     /// </summary>
-    private bool UseFake { get; set; }
+    private bool UseAI { get; set; }
     
     /// <summary>
     /// If the user is in local mode or not.
@@ -161,10 +161,13 @@ public partial class Chat : ComponentBase
         await LoadLocalTopicsFromDB();
         string userIDString = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
         userID = Int32.Parse(userIDString);
-        CachedOnlineTopicList = await TopicClient.GetTopics(userID);
+        Console.WriteLine("User ID: " + userID);
+        await LoadOnlineTopicsFromDB();
     }
 
     
+
+
     /// <summary>
     /// Event listener.
     /// Checks if the enter key is pressed from a keyboard event.
@@ -226,13 +229,15 @@ public partial class Chat : ComponentBase
                 ActiveLocalTopic = new LocalTopicModel
                 {
                     Topic = offlineMessage.content,
-                    messages = new List<LocalMessageModel>()
+                    userID = userID,
+                    messages =
+                    [
+                        offlineMessage
+                    ]
                 };
-                ActiveLocalTopic.messages.Add(offlineMessage);
             }
             else
             {
-                
                 ActiveLocalTopic.messages.Add(offlineMessage);
                 await AddLocalMessage(); // Add local message to the local indexed database.
             }
@@ -290,7 +295,7 @@ public partial class Chat : ComponentBase
         
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
-        string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, UseFake);
+        string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
         
         // Store AI response in local and online message models.
         var aiLocalMessage = new LocalMessageModel
@@ -429,7 +434,7 @@ public partial class Chat : ComponentBase
             var allRecords = await magicDb.Query<Topics>();
             var allTopics = await allRecords.ToListAsync();
             CachedLocalTopicList = allTopics
-                .Where(t => t.Topic != null && !string.IsNullOrEmpty(t.Topic.Topic))
+                .Where(t => t.Topic != null && !string.IsNullOrEmpty(t.Topic.Topic) && t.userID == userID)
                 .Select(t => t.Topic)
                 .ToList();
             Console.WriteLine("Loaded " + CachedLocalTopicList.Count + " topics from DB");
@@ -444,6 +449,11 @@ public partial class Chat : ComponentBase
         {
             Console.WriteLine($"Error loading topics: {ex}");
         }
+    }
+    
+    private async Task LoadOnlineTopicsFromDB()
+    {
+        CachedOnlineTopicList = await TopicClient.GetTopics(userID);
     }
 
     /// <summary>
@@ -460,6 +470,7 @@ public partial class Chat : ComponentBase
             Console.WriteLine("No ID. Creating a new Topic and Adding to databse");
             var newTopicEntry = new Topics
             {
+                userID = userID,
                 Topic = ActiveLocalTopic,
                 GUID = RandomIDGenerator.GenerateRandomID()
             };
@@ -489,5 +500,25 @@ public partial class Chat : ComponentBase
 
         await LoadLocalTopicsFromDB();
         Console.WriteLine("Finished adding local message");
+    }
+
+    private async Task DeleteLocalTopic(LocalTopicModel topic)
+    {
+        var allRecords = await magicDb.Query<Topics>();
+        var allTopics = await allRecords.ToListAsync();
+        var topicToDelete = allTopics.FirstOrDefault(t => t.GUID == topic.GUID);
+        if (topicToDelete != null)
+        {
+            await allRecords.DeleteAsync(topicToDelete);
+            CachedLocalTopicList.Remove(topic);
+            await LoadLocalTopicsFromDB();
+        }
+    }
+
+    private async Task DeleteOnlineTopic(Topic topic)
+    {
+        await TopicClient.DeleteTopic(topic.topic_id);
+        CachedOnlineTopicList.Remove(topic);
+        await LoadOnlineTopicsFromDB();
     }
 }

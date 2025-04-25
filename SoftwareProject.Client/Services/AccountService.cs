@@ -35,16 +35,15 @@ public class AccountService : IAccountService
         // Checks if an account exists already
         var existingAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
         if (existingAccount != null)
-            return RegisterStatus.Failure;
-            
-        // Checks account has been created
-        var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
-        if (createdAccount == null)
-            return RegisterStatus.Failure;
+            return RegisterStatus.FailureAccountExists;
             
         await context.Account.AddAsync(account);
         await context.SaveChangesAsync();
 
+        var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
+        if (createdAccount == null)
+            return RegisterStatus.FailureToCreateAccount;
+        
         return RegisterStatus.Success;
     }
     
