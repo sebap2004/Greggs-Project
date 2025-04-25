@@ -11,6 +11,8 @@ public class LocalTopicModel
 {
     [MagicIndex]
     public long Id { get; set; }
+
+    public int userID;
     public string GUID { get; set; }
     public string Topic { get; set; }
     public List<LocalMessageModel> messages { get; set; } = new();

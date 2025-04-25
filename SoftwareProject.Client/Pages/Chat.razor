@@ -1,6 +1,5 @@
 ﻿@page "/chat"
 @using System.Security.Claims
-@using IndexedDB.Blazor
 @using Microsoft.AspNetCore.Components.Authorization
 @using SoftwareProject.Client.Data
 @using SoftwareProject.Client.Interfaces
@@ -40,12 +39,7 @@
                         <MudStack Class="is-align-items-center" Style="width: 100%" Row="true">
                            <MudText>Use real AI API</MudText>
                            <MudSpacer></MudSpacer>
-                           <MudToggleIconButton @bind-Toggled="UseFake"
-                                                Icon="@Icons.Material.Filled.CheckCircle"
-                                                Color="@Color.Success"
-                                                ToggledIcon="@Icons.Material.Filled.Cancel"
-                                                ToggledColor="@Color.Error"
-                                                title="@(UseFake ? "On" : "Off")"/>
+                           <MudSwitch Color="Color.Primary" @bind-Value="UseAI"></MudSwitch>
                         </MudStack>
                         <MudSelect Value="Fonts[0]" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="string" Label="Font">
                            <MudSelectItem Value="Fonts[0]" T="string">Default</MudSelectItem>
@@ -62,6 +56,11 @@
                            <MudSelectItem Value="Languages.Spanish" T="Language">@Languages.Spanish.Name</MudSelectItem>
                            <MudSelectItem Value="Languages.German" T="Language">@Languages.German.Name</MudSelectItem>
                         </MudSelect>
+                        <MudText GutterBottom="true" Class="mt-2" Align="Align.Center"><b>Storage Mode</b></MudText>
+                        <MudButtonGroup Class="mb-2" FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
+                           <MudButton FullWidth="true" Color="Color.Primary" Variant="localVariant" OnClick="() => isLocal = true">Local</MudButton>
+                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="onlineVariant" OnClick="() => isLocal = false">Online</MudButton>
+                        </MudButtonGroup>
                         <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error" OnClick="Logout">Logout</MudButton>
                      </MudPaper>
                   </MudPopover>
@@ -75,12 +74,7 @@
 
    </MudAppBar>
    <MudDrawer id="nav-drawer" Width="20%" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-      <MudText Class="mt-2" Align="Align.Center"><b>Storage Type</b></MudText>
       <MudStack Class="mt-2 mx-2">
-         <MudButtonGroup FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
-            <MudButton Color="Color.Primary" Variant="localVariant" OnClick="() => isLocal = true">Local</MudButton>
-            <MudButton Color="Color.Secondary" Variant="onlineVariant" OnClick="() => isLocal = false">Online</MudButton>
-         </MudButtonGroup>
          <MudButton OnClick="NewTopic" Color="Color.Primary" Variant="Variant.Filled" FullWidth="true">New Chat</MudButton>
       </MudStack>
       
@@ -89,8 +83,12 @@
          {
             foreach (var topic in CachedLocalTopicList)
             {
-               <MudListItem OnClick="() => UpdateActiveLocalTopic(topic)">
-                  @topic.Topic
+               <MudListItem Class="d-flex" OnClick="() => UpdateActiveLocalTopic(topic)">
+                  <div class="d-flex is-align-items-center">
+                     <MudText Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@topic.Topic</MudText>
+                     <MudSpacer></MudSpacer>
+                     <MudIconButton OnClick="async () => { await DeleteLocalTopic(topic); NewTopic(); }" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                  </div>
                </MudListItem>
             }
          }
@@ -98,8 +96,12 @@
          {
             foreach (var onlineTopic in CachedOnlineTopicList)
             {
-               <MudListItem OnClick="() => UpdateActiveOnlineTopic(onlineTopic)">
-                  @onlineTopic.topicname
+               <MudListItem Class="d-flex" OnClick="() => UpdateActiveOnlineTopic(onlineTopic)">
+                  <div class="d-flex is-align-items-center">
+                     <MudText Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@onlineTopic.topicname</MudText>
+                     <MudSpacer></MudSpacer>
+                     <MudIconButton OnClick="async () => { await DeleteOnlineTopic(onlineTopic); NewTopic();  }" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                  </div>
                </MudListItem>
             }
          }

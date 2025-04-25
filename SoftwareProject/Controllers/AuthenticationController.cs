@@ -122,7 +122,7 @@ public class AuthenticationController : ControllerBase
                 
                 return Ok();
             }
-            return BadRequest("Registration Failed: Account Exists already");
+            return BadRequest("Registration Failed: " + status);
         }
         catch (Exception e)
         {

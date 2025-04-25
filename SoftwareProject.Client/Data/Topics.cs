@@ -70,6 +70,12 @@ public class Topics : MagicTableTool<Topics>, IMagicTable<IndexedDBContext>
     [MagicIndex]
     public long Id { get; set; }
     
+    
+    /// <summary>
+    /// userId in case multiple people log in to the same browser.
+    /// </summary>
+    public int userID { get; set; }
+    
     /// <summary>
     /// GUID used for interaction with web frontend.
     /// </summary>

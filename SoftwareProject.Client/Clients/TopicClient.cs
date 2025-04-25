@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json;
 using SoftwareProject.Client.Data;
 using SoftwareProject.Client.Interfaces;
 
@@ -24,9 +25,21 @@ public class TopicClient : ITopicService
         Console.WriteLine("No topics found for account");
         return new List<Topic>();
     }
-    
+
+    public async Task<TopicDeleteStatus> DeleteTopic(int topicId)
+    {
+        var response = await _httpClient.DeleteAsync($"api/topic/{topicId}");
+        if (response.IsSuccessStatusCode)
+        {
+            return TopicDeleteStatus.Success;
+        }
+
+        return TopicDeleteStatus.Failure;
+    }
+
     public async Task<Topic> CreateTopic(Topic topic)
     {
+        Console.WriteLine(JsonSerializer.Serialize(topic));
         var response = await _httpClient.PostAsJsonAsync("api/topic", topic);
         var async = await response.Content.ReadFromJsonAsync<Topic>();
         if (async != null)

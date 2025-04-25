@@ -52,24 +52,21 @@ public class RegisterModel
                 {
                     return RegisterStatus.Success;
                 }
-                else
-                {
-                    Console.WriteLine(registerAttempt.StatusCode);
-                    Console.WriteLine(registerAttempt.ReasonPhrase);
-                    Console.WriteLine(registerAttempt.RequestMessage);
-                    var content = await registerAttempt.Content.ReadAsStringAsync();
-                    Console.WriteLine(content);
-                    return RegisterStatus.Failure;
-                }
+                Console.WriteLine(registerAttempt.StatusCode);
+                Console.WriteLine(registerAttempt.ReasonPhrase);
+                Console.WriteLine(registerAttempt.RequestMessage);
+                var content = await registerAttempt.Content.ReadAsStringAsync();
+                Console.WriteLine(content);
+                return RegisterStatus.FailureToCreateAccount;
             }
             catch (SqlException e)
             {
                 await Console.Error.WriteLineAsync($"Error Connecting to Database: \n{e.Message}"); 
-                return RegisterStatus.Failure;
+                return RegisterStatus.FailureDatabaseError;
             }
         }
 
         await Console.Error.WriteLineAsync("Passwords do not match");
-        return RegisterStatus.Failure;
+        return RegisterStatus.FailurePasswordsDontMatch;
     }
 }
