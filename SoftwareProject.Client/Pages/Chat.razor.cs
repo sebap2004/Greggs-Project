@@ -62,7 +62,18 @@ public partial class Chat : ComponentBase
     /// If the user is in local mode or not.
     /// </summary>
     private bool isLocal { get; set; }
-    
+
+    private TextSizeEnum CurrentTextSize
+    {
+        get => currentTextSize;
+        set
+        {
+            currentTextSize = value;
+            UpdateTextSize(value);
+        }
+    }
+
+    private TextSizeEnum currentTextSize = TextSizeEnum.Normal;
     /// <summary>
     /// Button styling variant for if the user is in local mode.
     /// </summary>
@@ -143,7 +154,7 @@ public partial class Chat : ComponentBase
     /// <summary>
     /// Binding property to the theme state.
     /// </summary>
-    private MudTheme? _theme = null;
+    private DefaultTheme? _theme = null;
     
     protected override async Task OnInitializedAsync()
     {
@@ -295,6 +306,7 @@ public partial class Chat : ComponentBase
         
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
+        
         string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
         
         // Store AI response in local and online message models.
@@ -393,7 +405,6 @@ public partial class Chat : ComponentBase
             }
         }
     }
-
     
     /// <summary>
     /// Update the active topic in local mode.
@@ -520,5 +531,27 @@ public partial class Chat : ComponentBase
         await TopicClient.DeleteTopic(topic.topic_id);
         CachedOnlineTopicList.Remove(topic);
         await LoadOnlineTopicsFromDB();
+    }
+
+    private void UpdateTextSize(TextSizeEnum size)
+    {
+        switch (size)
+        {
+            case TextSizeEnum.Small:
+                _theme = new SmallTheme();
+                break;
+            case TextSizeEnum.Normal:
+                _theme = new DefaultTheme();
+                break;
+            case TextSizeEnum.Large:
+                _theme = new LargeTheme();
+                break;
+            case TextSizeEnum.VerySmall:
+                _theme = new VerySmallTheme();
+                break;
+            case TextSizeEnum.VeryLarge:
+                _theme = new VeryLargeTheme();
+                break;
+        }
     }
 }

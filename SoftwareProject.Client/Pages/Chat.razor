@@ -32,7 +32,8 @@
             <Authorized>
                <MudButton Size="Size.Large" OnClick="() => QuickSettingsUp = !QuickSettingsUp" EndIcon="@DropdownIcon">
                   @context.User.FindFirst(ClaimTypes.Name)?.Value
-                  <MudPopover AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight" Open="QuickSettingsUp">
+                  <MudPopover AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight"
+                              Open="QuickSettingsUp">
                      <MudPaper Class="is-display-flex p-3 is-flex-direction-column is-align-items-flex-start"
                                Width="20rem" Elevation="0">
                         <MudText Typo="Typo.h6"><b>Quick Settings</b></MudText>
@@ -41,27 +42,42 @@
                            <MudSpacer></MudSpacer>
                            <MudSwitch Color="Color.Primary" @bind-Value="UseAI"></MudSwitch>
                         </MudStack>
-                        <MudSelect Value="Fonts[0]" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="string" Label="Font">
+                        <MudSelect Value="Fonts[0]" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="string"
+                                   Label="Font">
                            <MudSelectItem Value="Fonts[0]" T="string">Default</MudSelectItem>
                            <MudSelectItem Value="Fonts[1]" T="string">Calibri</MudSelectItem>
                            <MudSelectItem Value="Fonts[2]" T="string">Cool font</MudSelectItem>
                            <MudSelectItem Value="Fonts[3]" T="string">Shit fucking font</MudSelectItem>
                         </MudSelect>
-                        <MudNumericField Value="11" FullWidth="true" Class="mb-2" Label="Font Size" Variant="Variant.Outlined" Min="11" Max="50" />
-                        <MudSelect @bind-Value="Language" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="Language" Label="Language">
+                        <MudSelect @bind-Value="CurrentTextSize" Variant="Variant.Outlined" FullWidth="true" Class="mb-2" T="TextSizeEnum">
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VerySmall">Very Small</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Small">Small</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Normal">Normal</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Large">Large</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VeryLarge">Very Large</MudSelectItem>
+                        </MudSelect>
+                        <MudSelect @bind-Value="Language" Variant="Variant.Outlined" Class="mb-2" FullWidth="true"
+                                   T="Language" Label="Language">
                            <MudSelectItem Value="Languages.English" T="Language">@Languages.English.Name</MudSelectItem>
                            <MudSelectItem Value="Languages.French" T="Language">@Languages.French.Name</MudSelectItem>
-                           <MudSelectItem Value="Languages.Japanese" T="Language">@Languages.Japanese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Japanese"
+                                          T="Language">@Languages.Japanese.Name</MudSelectItem>
                            <MudSelectItem Value="Languages.Chinese" T="Language">@Languages.Chinese.Name</MudSelectItem>
                            <MudSelectItem Value="Languages.Spanish" T="Language">@Languages.Spanish.Name</MudSelectItem>
                            <MudSelectItem Value="Languages.German" T="Language">@Languages.German.Name</MudSelectItem>
                         </MudSelect>
                         <MudText GutterBottom="true" Class="mt-2" Align="Align.Center"><b>Storage Mode</b></MudText>
                         <MudButtonGroup Class="mb-2" FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
-                           <MudButton FullWidth="true" Color="Color.Primary" Variant="localVariant" OnClick="() => isLocal = true">Local</MudButton>
-                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="onlineVariant" OnClick="() => isLocal = false">Online</MudButton>
+                           <MudButton FullWidth="true" Color="Color.Primary" Variant="localVariant"
+                                      OnClick="() => isLocal = true">Local
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="onlineVariant"
+                                      OnClick="() => isLocal = false">Online
+                           </MudButton>
                         </MudButtonGroup>
-                        <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error" OnClick="Logout">Logout</MudButton>
+                        <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error"
+                                   OnClick="Logout">Logout
+                        </MudButton>
                      </MudPaper>
                   </MudPopover>
                </MudButton>
@@ -75,9 +91,10 @@
    </MudAppBar>
    <MudDrawer id="nav-drawer" Width="20%" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
       <MudStack Class="mt-2 mx-2">
-         <MudButton OnClick="NewTopic" Color="Color.Primary" Variant="Variant.Filled" FullWidth="true">New Chat</MudButton>
+         <MudButton OnClick="NewTopic" Color="Color.Primary" Variant="Variant.Filled" FullWidth="true">New Chat
+         </MudButton>
       </MudStack>
-      
+
       <MudList Dense="true" T="string">
          @if (isLocal)
          {
@@ -85,9 +102,11 @@
             {
                <MudListItem Class="d-flex" OnClick="() => UpdateActiveLocalTopic(topic)">
                   <div class="d-flex is-align-items-center">
-                     <MudText Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@topic.Topic</MudText>
+                     <MudText
+                        Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@topic.Topic</MudText>
                      <MudSpacer></MudSpacer>
-                     <MudIconButton OnClick="async () => { await DeleteLocalTopic(topic); NewTopic(); }" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                     <MudIconButton OnClick="async () => { await DeleteLocalTopic(topic); NewTopic(); }"
+                                    Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
                   </div>
                </MudListItem>
             }
@@ -98,17 +117,16 @@
             {
                <MudListItem Class="d-flex" OnClick="() => UpdateActiveOnlineTopic(onlineTopic)">
                   <div class="d-flex is-align-items-center">
-                     <MudText Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@onlineTopic.topicname</MudText>
+                     <MudText
+                        Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@onlineTopic.topicname</MudText>
                      <MudSpacer></MudSpacer>
-                     <MudIconButton OnClick="async () => { await DeleteOnlineTopic(onlineTopic); NewTopic();  }" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                     <MudIconButton OnClick="async () => { await DeleteOnlineTopic(onlineTopic); NewTopic();  }"
+                                    Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
                   </div>
                </MudListItem>
             }
          }
       </MudList>
-      
-      
-      
    </MudDrawer>
    <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
       <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
@@ -121,7 +139,8 @@
                   {
                      <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
                         <MudChatBubble>
-                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
+                           <MudMarkdown Styling="new MudMarkdownStyling()" CodeBlockTheme="CodeBlockTheme.Dark"
+                                        Value="@response.content"></MudMarkdown>
                         </MudChatBubble>
                      </MudChat>
                   }
@@ -143,7 +162,8 @@
                   {
                      <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
                         <MudChatBubble>
-                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.MessageText"></MudMarkdown>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark"
+                                        Value="@response.MessageText"></MudMarkdown>
                         </MudChatBubble>
                      </MudChat>
                   }
@@ -151,7 +171,8 @@
                   {
                      <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
                         <MudChatBubble>
-                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.MessageText"></MudMarkdown>
+                           <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark"
+                                        Value="@response.MessageText"></MudMarkdown>
                         </MudChatBubble>
                      </MudChat>
                   }
@@ -162,11 +183,14 @@
             <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
                <MudPaper Elevation="0" Width="11%" align="center" Class="d-flex justify-center is-align-items-center">
                   <MudTooltip Color="Color.Primary" Delay="1000" Text="Summarises long blocks of text.">
-                     <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText" StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise</MudButton>
+                     <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText"
+                                StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise
+                     </MudButton>
                   </MudTooltip>
                </MudPaper>
                <MudPaper Style="background-color: transparent" Elevation="0" Width="90%">
-                  <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
+                  <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2" OnKeyDown="PromptEnterHandler"
+                                @bind-Value="Question" T="string"
                                 Immediate="true" Variant="Variant.Outlined" Label="Message"/>
                </MudPaper>
                <MudPaper Style="background-color: transparent" Elevation="0" Width="10%" Class="d-flex justify-center">

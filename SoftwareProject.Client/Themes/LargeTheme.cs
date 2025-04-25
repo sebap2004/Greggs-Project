@@ -6,7 +6,7 @@ namespace SoftwareProject.Client.Themes;
 /// <summary>
 /// Default theme of the website
 /// </summary>
-public class DefaultTheme : MudTheme
+public class LargeTheme : DefaultTheme
 {
 /*
 !
@@ -17,12 +17,12 @@ public class DefaultTheme : MudTheme
 * Based on Bootstrap
 */
 
-    public virtual TextSize TextSize => TextSizeConstants.Normal;
+    public override TextSize TextSize => TextSizeConstants.Large;
 
     /// <summary>
     /// Constructor containing all the color values.
     /// </summary>
-    public DefaultTheme()
+    public LargeTheme()
     {
         PaletteLight = new PaletteLight()
         {
