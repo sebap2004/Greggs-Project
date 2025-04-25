@@ -5,6 +5,7 @@ using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Models;
 
+
 public class LoginModel
 {
     // CLASS VARIABLES
@@ -33,7 +34,7 @@ public class LoginModel
             Console.WriteLine("Starting Login Process.");
 
             // These lines are required, otherwise the httpclient won't send the request.
-            // TODO: Consider making login and register models for specific purposes
+            // TODO: Consider making login and register data transfer for specific purposes
             account.username = "login";
 
             var jsonContent = System.Text.Json.JsonSerializer.Serialize(account.AccountModel);

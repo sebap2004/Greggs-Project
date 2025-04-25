@@ -17,42 +17,132 @@ namespace SoftwareProject.Client.Pages;
 
 public partial class Chat : ComponentBase
 {
+    /// <summary>
+    /// Local Topic List cached in browser
+    /// </summary>
     private List<LocalTopicModel?> CachedLocalTopicList = new();
+    
+    /// <summary>
+    /// Current Local Topic
+    /// </summary>
     private LocalTopicModel? ActiveLocalTopic { get; set; }
     
+    /// <summary>
+    /// Online topic list cached in browser
+    /// </summary>
     private List<Topic> CachedOnlineTopicList = new();
+    
+    /// <summary>
+    /// Current Active Online Topic
+    /// </summary>
     private Topic? ActiveOnlineTopic { get; set; }
-    private bool inNewTopic { get; set; } = true;
+    
+    
+    /// <summary>
+    /// List storing local messages of the current active local topic.
+    /// </summary>
     private List<LocalMessageModel> LocalMessages = new();
+    
+    /// <summary>
+    /// List storing cached messages of an online topic on the database.
+    /// </summary>
     private List<MessageDto> OnlineMessages = new();
+    
+    /// <summary>
+    /// Cached user ID stored for creating new topics.
+    /// </summary>
     private int userID;
     
+    /// <summary>
+    /// If true, Ai service will skip using a real gemini API and return a fake response.
+    /// </summary>
     private bool UseFake { get; set; }
+    
+    /// <summary>
+    /// If the user is in local mode or not.
+    /// </summary>
     private bool isLocal { get; set; }
+    
+    /// <summary>
+    /// Button styling variant for if the user is in local mode.
+    /// </summary>
     private Variant localVariant => isLocal ? Variant.Filled : Variant.Outlined;
+    
+    /// <summary>
+    /// Button styling variant for if the user is in online mode.
+    /// </summary>
     private Variant onlineVariant => isLocal ? Variant.Outlined : Variant.Filled;
+    
+    /// <summary>
+    /// Language to translate the question to.
+    /// </summary>
     private Language Language { get; set; } = Languages.English;
+    
+    /// <summary>
+    /// If the prompt has a prefix applied asking to summarise a big text block
+    /// <code>
+    /// // Bool will add this
+    /// "SUMMARISE THIS TEXT: "
+    /// </code>
+    /// </summary>
     private bool SummariseText { get; set; }
+    
+    /// <summary>
+    /// Icon for if the summarise feature is enabled.
+    /// </summary>
     private string SummariseTextLabel => SummariseText ? Icons.Material.Filled.Check : Icons.Material.Filled.Close;
+    
+    /// <summary>
+    /// Color for is the summarise feature is enabled.
+    /// </summary>
     private Color SummariseButtonColor => SummariseText ? Color.Primary : Color.Default;
 
-    private List<string> Fonts = new List<string>()
-    {
+    
+    /// <summary>
+    /// List of fonts available in the font changer.
+    /// </summary>
+    private readonly List<string> Fonts =
+    [
         "Poppins",
         "Helvetica",
         "Arial",
         "sans-serif"
-    };
+    ];
 
+    /// <summary>
+    /// Icon for if the dropdown is visible or not.
+    /// </summary>
     private string DropdownIcon =>
         QuickSettingsUp ? Icons.Material.Filled.ArrowDropUp : Icons.Material.Filled.ArrowDropDown;
 
+    /// <summary>
+    /// Boolean controlling quick settings dropdown.
+    /// </summary>
     private bool QuickSettingsUp { get; set; }
+    
+    /// <summary>
+    /// Boolean that is set to true if a request is being submitted.
+    /// </summary>
     private bool SendingDisabled { get; set; }
+    
+    /// <summary>
+    /// Binding property to the question text box.
+    /// </summary>
     private string Question { get; set; }
 
+    /// <summary>
+    /// Binding property to the sidebar open state.
+    /// </summary>
     private bool _drawerOpen = true;
+    
+    /// <summary>
+    /// Binding property to the dark mode state.
+    /// </summary>
     private bool _isDarkMode = true;
+    
+    /// <summary>
+    /// Binding property to the theme state.
+    /// </summary>
     private MudTheme? _theme = null;
     
     protected override async Task OnInitializedAsync()
@@ -74,7 +164,13 @@ public partial class Chat : ComponentBase
         CachedOnlineTopicList = await TopicClient.GetTopics(userID);
     }
 
-
+    
+    /// <summary>
+    /// Event listener.
+    /// Checks if the enter key is pressed from a keyboard event.
+    /// <remarks>Shift key check added to allow multilines without breaking.</remarks>
+    /// </summary>
+    /// <param name="e">Keyboard event receieved</param>
     private async Task PromptEnterHandler(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
@@ -85,31 +181,46 @@ public partial class Chat : ComponentBase
         }
     }
 
+    /// <summary>
+    /// This method submits a message to the AI
+    /// Stores the responses locally or on an online database depending on which mode the user has chosen.
+    /// </summary>
     private async Task Submit()
     {
         Console.WriteLine("Starting submission");
+        
+        // Immediately ends if the question box is empty
         if (Question == "") return;
+        
+        // Initialises temporary question string so the Question box can be safely emptied.
         string tempQuestion = Question;
-        string translatedQuestion = "";
+        Question = "";
+        
+        // Disables sending controls while processing.
         SendingDisabled = true;
         
+        // Creates offline message model for if user is in offline mode.
         var offlineMessage = new LocalMessageModel
         {
             content = tempQuestion,
             isUser = true
         };
 
+        // Creates online message model for if user is in offline mode.
         var onlineMessage = new MessageDto
         {
             AiResponse = false,
             MessageText = tempQuestion,
         };
         
+        // If user is in offline mode
         if (isLocal)
         {
-            
-            Console.WriteLine("Created new message");
+            // Add offline messages to cached offline message list
             LocalMessages.Add(offlineMessage);
+            
+            // If active local topic is null, either due to lack of topics or starting a new one,
+            // create a new topic and add the offline message to it.
             if (ActiveLocalTopic == null)
             {
                 ActiveLocalTopic = new LocalTopicModel
@@ -121,31 +232,39 @@ public partial class Chat : ComponentBase
             }
             else
             {
+                
                 ActiveLocalTopic.messages.Add(offlineMessage);
-                await AddLocalMessage();
+                await AddLocalMessage(); // Add local message to the local indexed database.
             }
 
+            // Call for rerender.
             StateHasChanged();
         }
+        // If user is in online mode
         else
         {
+            // If active online topic is null, either due to lack of topics or starting a new one,
+            // create a new topic and add the online message to it.
             if (ActiveOnlineTopic == null)
             {
+                // Create new topic object
                 var newTopic = new Topic()
                 {
                     account_id = userID,
                     topicname = onlineMessage.MessageText
                 };
+                // Create topic in database
                 var createdTopic = await TopicClient.CreateTopic(newTopic);
-                ActiveOnlineTopic = createdTopic;
-                CachedOnlineTopicList.Add(ActiveOnlineTopic);
-                onlineMessage.TopicId = ActiveOnlineTopic.topic_id;
-                OnlineMessages.Add(onlineMessage);
-                await MessageClient.CreateMessage(onlineMessage);
+                ActiveOnlineTopic = createdTopic; // Set the active topic to the one created in the database
+                CachedOnlineTopicList.Add(ActiveOnlineTopic); // Add to topic list
+                onlineMessage.TopicId = ActiveOnlineTopic.topic_id; // Set pending online message to the topic ID
+                OnlineMessages.Add(onlineMessage); // Add to local message list
+                await MessageClient.CreateMessage(onlineMessage); // Add message to database
                 StateHasChanged();
             }
             else
             {
+                // If active topic is not null, just add the message to the list and upload to database.
                 onlineMessage.TopicId = ActiveOnlineTopic.topic_id;
                 OnlineMessages.Add(onlineMessage);
                 var creationAttempt = await MessageClient.CreateMessage(onlineMessage);
@@ -153,6 +272,8 @@ public partial class Chat : ComponentBase
             }
         }
 
+        // If the language is NOT english, call translation API to translate prompt.
+        // Translation of prompt facilitates response to prompt in the same language.
         if (Language != Languages.English)
         {
             Console.WriteLine("Translating question: " + (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion +
@@ -162,16 +283,16 @@ public partial class Chat : ComponentBase
                     Text = tempQuestion,
                     Language = Language.Code
                 }
-            );
-            translatedQuestion = await translation.Content.ReadAsStringAsync();
-            tempQuestion = translatedQuestion;
+            ); // Call google API
+            var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
+            tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
         }
-
-        Question = "";
-
+        
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
         string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, UseFake);
+        
+        // Store AI response in local and online message models.
         var aiLocalMessage = new LocalMessageModel
         {
             content = response,
@@ -184,12 +305,13 @@ public partial class Chat : ComponentBase
             TopicId = ActiveOnlineTopic?.topic_id ?? 0
         };
         Console.WriteLine("AI response: " + response + "");
-        LocalMessages.Add(aiLocalMessage);
 
+        // Add responses to respective databases
         if (isLocal)
         {
             Console.WriteLine("Adding message to local topic: " + aiLocalMessage.content + "");
             ActiveLocalTopic?.messages.Add(aiLocalMessage);
+            LocalMessages.Add(aiLocalMessage);
             await AddLocalMessage();
         }
         else
@@ -199,32 +321,30 @@ public partial class Chat : ComponentBase
             var createAttempt = await MessageClient.CreateMessage(aiOnlineMessage);
             Console.WriteLine("Message send attempt: " + createAttempt);
         }
-
-        Question = "";
-        SendingDisabled = false;
+        SendingDisabled = false; // Re-enable sending  controls
         Console.WriteLine("Complete!");
         StateHasChanged();
     }
     
-
+    /// <summary>
+    /// Method for opening side drawer.
+    /// </summary>
     private void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
 
+    /// <summary>
+    /// Method for toggling dark mode.
+    /// </summary>
     private void DarkModeToggle()
     {
         _isDarkMode = !_isDarkMode;
     }
-
-    private async Task CheckAuthenticationState()
-    {
-        Console.WriteLine("Starting check");
-        var check = await AuthStateProvider.GetAuthenticationStateAsync();
-        string? id = check.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        Console.WriteLine(check.User);
-    }
-
+    
+    /// <summary>
+    /// Flushes out active topic caches to facilitate creating a new topic.
+    /// </summary>
     private void NewTopic()
     {
         if (isLocal)
@@ -241,12 +361,19 @@ public partial class Chat : ComponentBase
         }
     }
 
+    /// <summary>
+    /// Expression bodied field to display light and dark mode icons
+    /// </summary>
     public string DarkLightModeButtonIcon => _isDarkMode switch
     {
         true => Icons.Material.Rounded.LightMode,
         false => Icons.Material.Outlined.DarkMode,
     };
 
+    
+    /// <summary>
+    /// Call the logout api to sign the user out of their account.
+    /// </summary>
     private async Task Logout()
     {
         var logoutattempt = await http.PostAsync("api/authentication/logout", null);
@@ -257,10 +384,17 @@ public partial class Chat : ComponentBase
                 Snackbar.Add("You have been logged out.", Severity.Success);
                 NavigationManager.NavigateTo("/");
                 customProvider.NotifyAuthenticationStateChanged();
+                StateHasChanged();
             }
         }
     }
 
+    
+    /// <summary>
+    /// Update the active topic in local mode.
+    /// Triggers rerendering of chatbox window to populate with new topic items
+    /// </summary>
+    /// <param name="topic">Topic to change to</param>
     private void UpdateActiveLocalTopic(LocalTopicModel topic)
     {
         Console.WriteLine("Updating active topic: " + topic.Topic + "");
@@ -269,6 +403,11 @@ public partial class Chat : ComponentBase
         LocalMessages.AddRange(topic.messages);
     }
 
+    /// <summary>
+    /// Update the active topic in online mode.
+    /// Triggers rerendering of chatbox window to populate with new topic items
+    /// </summary>
+    /// <param name="topic">Topic to change to</param>
     private async Task UpdateActiveOnlineTopic(Topic topic)
     {
         Console.WriteLine("Updating active online topic: " + topic.topic_id);
@@ -278,6 +417,10 @@ public partial class Chat : ComponentBase
         OnlineMessages.AddRange(messagesFromDB);
     }
 
+
+    /// <summary>
+    /// Loads all local topics from the browser's database into the cached local topic list.
+    /// </summary>
     private async Task LoadLocalTopicsFromDB()
     {
         try
@@ -303,6 +446,10 @@ public partial class Chat : ComponentBase
         }
     }
 
+    /// <summary>
+    /// Add a local message into the local database system.
+    /// <remarks>If there is no active topic, this method will create a new one and assign the message to that topic.</remarks>
+    /// </summary>
     private async Task AddLocalMessage()
     {
         Console.WriteLine("Started adding local message to DB: " + ActiveLocalTopic?.GUID);

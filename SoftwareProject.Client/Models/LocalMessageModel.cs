@@ -1,6 +1,10 @@
 ﻿namespace SoftwareProject.Client.Models;
 
 
+
+/// <summary>
+/// Model representing a local message.
+/// </summary>
 [Serializable]
 public class LocalMessageModel
 {
