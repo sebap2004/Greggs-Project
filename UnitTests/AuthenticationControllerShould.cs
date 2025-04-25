@@ -95,7 +95,7 @@ public class AuthenticationControllerShould
             password = "test",
             username = "testName",
         };
-        accountServiceMock.Setup(m => m.CreateAccount(It.IsAny<Account>())).ReturnsAsync(RegisterStatus.Success);
+        accountServiceMock.Setup(m => m.CreateAccount(It.IsAny<Account>())).ReturnsAsync(account);
         var controller = new AuthenticationController(accountServiceMock.Object)
         {
             ControllerContext = new ControllerContext
@@ -115,9 +115,9 @@ public class AuthenticationControllerShould
         });
         
         //assert
-        var okResult = result as OkResult;
+        var okResult = result;
         Assert.NotNull(okResult);
-        Assert.Equal(200, okResult.StatusCode);
+        Assert.Equal(account.username, okResult.username);
         accountServiceMock.Verify(m => m.CreateAccount(It.Is<Account>(a => a.username == account.username && a.email == account.email)), Times.Once);
         authServiceMock.Verify(a => a.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()));
     }
@@ -132,8 +132,7 @@ public class AuthenticationControllerShould
         var result = await controller.Register(null);
         
         //assert
-        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-        Assert.Equal("Account data is null", badRequest.Value);
+        Assert.Null(result);
     }
     
     [Theory]
@@ -147,10 +146,8 @@ public class AuthenticationControllerShould
         
         //act
         var result = await controller.Register(new AccountModel(){ Username = username, Email = email, Password = password });
-        
         //assert
-        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-        Assert.Equal("Required fields are missing", badRequest.Value);
+        Assert.Null(result);
     }
 
     [Fact]

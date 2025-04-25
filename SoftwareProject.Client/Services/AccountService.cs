@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
+using BCrypt.Net;
 
 namespace SoftwareProject.Services;
 
@@ -28,24 +29,23 @@ public class AccountService : IAccountService
     /// Adds a user created accounts to the database.
     /// </summary>
     /// <param name="account">Stores the account table</param>
-    public async Task<RegisterStatus> CreateAccount(Account account)
+    public async Task<Account?> CreateAccount(Account account)
     {
         await using var context = await dbContextFactory.CreateDbContextAsync();
         
         // Checks if an account exists already
         var existingAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
         if (existingAccount != null)
-            return RegisterStatus.Failure;
-            
-        // Checks account has been created
-        var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
-        if (createdAccount == null)
-            return RegisterStatus.Failure;
+            return null;
             
         await context.Account.AddAsync(account);
         await context.SaveChangesAsync();
 
-        return RegisterStatus.Success;
+        var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
+        if (createdAccount == null)
+            return null;
+        
+        return createdAccount;
     }
     
     /// <summary>
@@ -53,10 +53,18 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="email">Stores user input Email</param>
     /// <param name="password">Stores user input password</param>
-    /// <returns></returns>
+    /// <returns>Logged in Account</returns>
     public async Task<Account?> LoginAccount(string email, string password)
     {
+        Console.WriteLine("Attempting to login with email: " + email + " and password: " + password);
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+        Console.WriteLine("Hased password: " + hashedPassword);
         await using var context = await dbContextFactory.CreateDbContextAsync();
-        return await context.Account.FirstOrDefaultAsync(a => a.email == email && a.password == password);
+        var account = await context.Account.FirstOrDefaultAsync(a => a.email == email);
+        if (BCrypt.Net.BCrypt.Verify(password, account?.password))
+        {
+            return account;
+        }
+        return null;
     }
 }

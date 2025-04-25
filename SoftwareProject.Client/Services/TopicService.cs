@@ -43,9 +43,30 @@ public class TopicService : ITopicService
         }
     }
     
+    /// <summary>
+    /// Gets the topics of an account
+    /// </summary>
+    /// <param name="accountId">accountID to search topics by</param>
+    /// <returns>List of the user's topics.</returns>
     public async Task<List<Topic>> GetTopics(int accountId)
     {
         await using var context = await dbContextFactory.CreateDbContextAsync();
         return await context.Topic.Where(t => t.account_id == accountId).ToListAsync();
+    }
+
+    /// <summary>
+    /// Deletes a topic and all of its messages.
+    /// </summary>
+    /// <param name="topicId">ID of the topic to delete</param>
+    /// <returns>Status of deletion.</returns>
+    public async Task<TopicDeleteStatus> DeleteTopic(int topicId)
+    {
+        await using var context = await dbContextFactory.CreateDbContextAsync();
+        var messages = context.Message.Where(m => m.topic_id == topicId);
+        context.Message.RemoveRange(messages);
+        var topic = context.Topic.FirstOrDefault(t => t.topic_id == topicId);
+        if (topic != null) context.Topic.Remove(topic);
+        await context.SaveChangesAsync();
+        return TopicDeleteStatus.Success;
     }
 }
