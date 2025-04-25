@@ -6,7 +6,9 @@ using MudBlazor.Services;
 using SoftwareProject.Data;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor;
+using SoftwareProject.Client.Interfaces;
 using SoftwareProject.Client.Providers;
+using SoftwareProject.Client.Services;
 using SoftwareProject.Services;
 using SoftwareProject.Components;
 using SoftwareProject.Interfaces;
@@ -96,9 +98,8 @@ builder.Services.AddAntiforgery(options => {
 });
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
-
-// Add database configurations.
-builder.Services.AddScoped<IIndexedDbFactory, PlaceholderIndexedDbFactory>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<ITopicService, TopicService>();
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<ApiService>();
