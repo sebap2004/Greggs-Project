@@ -23,7 +23,6 @@ public class Account
     };
 }
 
-
 [Serializable]
 public class AccountModel
 {

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic;
 using MudBlazor;
+using Newtonsoft.Json;
 using SoftwareProject.Client.Data;
 using SoftwareProject.Client.Models;
 using SoftwareProject.Client.Providers;
@@ -17,13 +18,15 @@ namespace SoftwareProject.Client.Pages;
 
 public partial class Chat : ComponentBase
 {
-    
-    
     /// <summary>
     /// Local Topic List cached in browser
     /// </summary>
     private List<LocalTopicModel?> CachedLocalTopicList = new();
 
+    
+    /// <summary>
+    /// Current active text styling
+    /// </summary>
     private TextStyling activeTextStyling;
     
     /// <summary>
@@ -40,7 +43,6 @@ public partial class Chat : ComponentBase
     /// Current Active Online Topic
     /// </summary>
     private Topic? ActiveOnlineTopic { get; set; }
-    
     
     /// <summary>
     /// List storing local messages of the current active local topic.
@@ -67,6 +69,9 @@ public partial class Chat : ComponentBase
     /// </summary>
     private bool isLocal { get; set; }
 
+    /// <summary>
+    /// Current active text size
+    /// </summary>
     private TextSizeEnum CurrentTextSize
     {
         get => currentTextSize;
@@ -76,6 +81,13 @@ public partial class Chat : ComponentBase
             UpdateTextSize(value);
         }
     }
+
+    /// <summary>
+    /// Specifies the number of recent messages to consider for generating the AI conversation context.
+    /// </summary>
+    private int ContextLength { get; set; } = 5;
+
+    private ResponseTypes CurrentResponseType;
     
     private TextSizeEnum currentTextSize = TextSizeEnum.Normal;
 
@@ -100,6 +112,12 @@ public partial class Chat : ComponentBase
     /// Button styling variant for if the user is in online mode.
     /// </summary>
     private Variant onlineVariant => isLocal ? Variant.Outlined : Variant.Filled;
+    
+    private Variant detailedResponseTypeVariant => CurrentResponseType == ResponseTypes.Long ? Variant.Filled : Variant.Outlined;
+    
+    private Variant conciseResponseTypeVariant => CurrentResponseType == ResponseTypes.Short ? Variant.Filled : Variant.Outlined;
+    
+    private Variant formalResponseTypeVariant => CurrentResponseType == ResponseTypes.Formal ? Variant.Filled : Variant.Outlined;
     
     /// <summary>
     /// Language to translate the question to.
@@ -186,10 +204,9 @@ public partial class Chat : ComponentBase
             // NavigationManager.NavigateTo($"/access-denied/{Uri.EscapeDataString("notauthorized")}");
             // return;
         }
-        await LoadLocalTopicsFromDB();
         string userIDString = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
         userID = Int32.Parse(userIDString);
-        Console.WriteLine("User ID: " + userID);
+        await LoadLocalTopicsFromDB();
         await LoadOnlineTopicsFromDB();
     }
 
@@ -234,7 +251,7 @@ public partial class Chat : ComponentBase
         var offlineMessage = new LocalMessageModel
         {
             content = tempQuestion,
-            isUser = true
+            isHuman = true
         };
 
         // Creates online message model for if user is in offline mode.
@@ -323,14 +340,75 @@ public partial class Chat : ComponentBase
         
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
+
+        string response = "";
+
         
-        string response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
+        // If summarise text enabled, Just use the last message.
+        if (SummariseText)
+        {
+            response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
+        }
+        // If summarise text enabled, use the latest N amount of messages, where N is the set ContextLength
+        else
+        {
+            string responseType = "";
+            // Depending on the response types, the AI is prompted to answer differently.
+            switch (CurrentResponseType)
+            {
+                case ResponseTypes.Long:
+                    responseType = "DETAILED AND LONG";
+                    break;
+                case ResponseTypes.Short:
+                    responseType = "SHORT AND CONCISE";
+                    break;
+                case ResponseTypes.Formal:
+                    responseType = "FORMAL AND POLITE";
+                    break;
+            }
+            if (isLocal)
+            {
+                string context = "You are a helpful AI assistant. YOU ANSWER QUESTIONS IN A " + responseType + " MANNER. Here is the conversation history so far: ";
+                foreach (var message in LocalMessages.TakeLast(ContextLength))
+                {
+                    if (message.isHuman)
+                    {
+                        context += "Human: " + message.content + " \n";
+                    }
+                    else
+                    {
+                        context += "AI: " + message.content + " \n";
+                    }
+                }
+                context += "DO NOT REFERENCE THIS CONTEXT IN YOUR RESPONSE. Based on this previous context, answer this question: " + offlineMessage.content + " \n";
+                Console.WriteLine(context);
+                response = await ai.GetMessage(context, !UseAI);
+            }
+            else
+            {
+                string context = "You are a helpful AI assistant. YOU ANSWER QUESTIONS IN A " + responseType + " MANNER. Here is the conversation history so far: ";
+                foreach (var message in OnlineMessages.TakeLast(ContextLength))
+                {
+                    if (message.AiResponse)
+                    {
+                        context += "AI: " + message.MessageText + " \n";
+                    }
+                    else
+                    {
+                        context += "Human: " + message.MessageText + " \n";
+                    }
+                }
+                context += "DO NOT REFERENCE THIS CONTEXT IN YOUR RESPONSE. Based on this previous context, answer this question: " + offlineMessage.content + " \n";
+                Console.WriteLine(context);
+                response = await ai.GetMessage(context, !UseAI);
+            }
+        }
         
         // Store AI response in local and online message models.
         var aiLocalMessage = new LocalMessageModel
         {
             content = response,
-            isUser = false
+            isHuman = false
         };
         var aiOnlineMessage = new MessageDto
         {
@@ -462,7 +540,7 @@ public partial class Chat : ComponentBase
             var allRecords = await magicDb.Query<Topics>();
             var allTopics = await allRecords.ToListAsync();
             CachedLocalTopicList = allTopics
-                .Where(t => t.Topic != null && !string.IsNullOrEmpty(t.Topic.Topic) && t.userID == userID)
+                .Where(t => t != null && !string.IsNullOrEmpty(t.Topic.Topic) && t.userID == userID)
                 .Select(t => t.Topic)
                 .ToList();
             Console.WriteLine("Loaded " + CachedLocalTopicList.Count + " topics from DB");

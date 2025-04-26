@@ -42,12 +42,12 @@
                            <MudSpacer></MudSpacer>
                            <MudSwitch Color="Color.Primary" @bind-Value="UseAI"></MudSwitch>
                         </MudStack>
+                        <MudSlider Step="1" T="int" @bind-Value="ContextLength" TickMarks="true" Max="10">AI Context Length: @ContextLength</MudSlider>
                         <MudSelect @bind-Value="CurrentTextFontGroup" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="TextFontGroup"
                                    Label="Font">
                            <MudSelectItem Value="TextFonts.Default" T="TextFontGroup">Default</MudSelectItem>
                            <MudSelectItem Value="TextFonts.Dyslexia" T="TextFontGroup">Dyslexic</MudSelectItem>
                            <MudSelectItem Value="TextFonts.Arial" T="TextFontGroup">Arial</MudSelectItem>
-                           
                         </MudSelect>
                         <MudSelect @bind-Value="CurrentTextSize" Variant="Variant.Outlined" FullWidth="true" Class="mb-2" T="TextSizeEnum">
                            <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VerySmall">Very Small</MudSelectItem>
@@ -73,6 +73,18 @@
                            </MudButton>
                            <MudButton FullWidth="true" Color="Color.Secondary" Variant="onlineVariant"
                                       OnClick="() => isLocal = false">Online
+                           </MudButton>
+                        </MudButtonGroup>
+                        <MudText GutterBottom="true" Class="mt-2" Align="Align.Center"><b>AI Response Type</b></MudText>
+                        <MudButtonGroup Class="mb-2" FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
+                           <MudButton FullWidth="true" Color="Color.Primary" Variant="detailedResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Long">Detailed
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="conciseResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Short">Concise
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Tertiary" Variant="formalResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Formal">Formal
                            </MudButton>
                         </MudButtonGroup>
                         <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error"
@@ -135,7 +147,7 @@
             {
                @foreach (LocalMessageModel response in LocalMessages)
                {
-                  if (response.isUser)
+                  if (response.isHuman)
                   {
                      <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
                         <MudChatBubble>

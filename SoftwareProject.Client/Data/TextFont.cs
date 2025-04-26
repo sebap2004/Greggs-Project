@@ -1,5 +1,8 @@
 ﻿namespace SoftwareProject.Client.Data;
 
+/// <summary>
+/// Group of fonts for the website theme to use.
+/// </summary>
 public class TextFontGroup
 {
     public string[] DefaultFonts;
@@ -19,8 +22,16 @@ public class TextFontGroup
 }
 
 
+/// <summary>
+/// Text font helper consisting of font constants to use in the theme selector.
+/// </summary>
 public static class TextFonts
 {
+
+
+    /// <summary>
+    /// Default font group. Mixture of Work Sans and Poppins
+    /// </summary>
     public static TextFontGroup Default = new()
     {
         DefaultFonts = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
@@ -39,6 +50,10 @@ public static class TextFonts
         OverlineFonts = ["Work Sans", "Helvetica", "Arial", "sans-serif"]
     };
     
+    /// <summary>
+    /// Dyslexia font. Uses open source dyslexic font.
+    /// <remarks>Font can be found here: https://opendyslexic.org/</remarks>
+    /// </summary>
     public static TextFontGroup Dyslexia = new()
     {
         DefaultFonts = ["Dyslexic", "Helvetica", "Arial", "sans-serif"],
@@ -57,6 +72,10 @@ public static class TextFonts
         OverlineFonts = ["Dyslexic", "Helvetica", "Arial", "sans-serif"]
     };
     
+    
+    /// <summary>
+    /// Arial Font.
+    /// </summary>
     public static TextFontGroup Arial = new()
     {
         DefaultFonts = ["Arial", "Helvetica", "Arial", "sans-serif"],

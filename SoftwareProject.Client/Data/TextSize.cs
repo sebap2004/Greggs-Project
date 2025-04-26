@@ -1,5 +1,8 @@
 ﻿namespace SoftwareProject.Client.Data;
 
+/// <summary>
+/// Represents the size specifications for various text elements in the system theme.
+/// </summary>
 public class TextSize
 {
     public double DefaultSize;
@@ -18,6 +21,9 @@ public class TextSize
     public double OverlineSize;
 }
 
+/// <summary>
+/// Provides predefined configurations for text sizing for different text elements
+/// </summary>
 public static class TextSizeConstants
 {
     public static TextSize Normal = new()
@@ -108,6 +114,9 @@ public static class TextSizeConstants
     };
 }
 
+/// <summary>
+/// Enum for text size specifications.
+/// </summary>
 public enum TextSizeEnum
 {
     VerySmall,

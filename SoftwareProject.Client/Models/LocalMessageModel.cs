@@ -9,5 +9,5 @@
 public class LocalMessageModel
 {
     public string content { get; set; }
-    public bool isUser { get; set; }
+    public bool isHuman { get; set; }
 }
