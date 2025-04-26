@@ -27,6 +27,17 @@ public class Account
 [Serializable]
 public class AccountModel
 {
+    public AccountModel()
+    {
+        
+    }
+    public AccountModel(int accountID, string username, string email, string password)
+    {
+        AccountID = accountID;
+        Username = username;
+        Email = email;
+        Password = password;
+    }
     public int AccountID { get; set; }
     public string Username { get; set; }
     public string Email { get; set; }

@@ -80,29 +80,30 @@ public class AuthenticationController : ControllerBase
     /// <param name="account">Account model that has been passed from the http request body</param>
     /// <returns>Result of action</returns>
     [HttpPost("register")]
-    public async Task<Account?> Register([FromBody] AccountModel account)
+    public async Task<IActionResult> Register([FromBody] AccountModel? account)
     {
         if (account == null)
-            return null;
-        
-        account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
+            return BadRequest("Account data is null");
 
         if (string.IsNullOrEmpty(account.Email) || string.IsNullOrEmpty(account.Username) ||
             string.IsNullOrEmpty(account.Password))
-            return null;
+            return BadRequest("Required fields are missing");
+        
+        account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
 
         Console.WriteLine($"Received registration request for: {account.Email}");
         
         try
         {
             var status = await accountService.CreateAccount(account.ToAccount());
-            if (status != null)
+            Console.WriteLine("Status is " + status.status);
+            if (status.status == RegisterStatus.Success)
             {
                 var claims = new List<Claim>
                 {
-                    new(ClaimTypes.Name, status.username),
-                    new(ClaimTypes.NameIdentifier, status.account_id.ToString()),
-                    new(ClaimTypes.Email, status.email),
+                    new(ClaimTypes.Name, account.Username),
+                    new(ClaimTypes.NameIdentifier, status.accountId.ToString()),
+                    new(ClaimTypes.Email, account.Email),
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");
@@ -114,19 +115,24 @@ public class AuthenticationController : ControllerBase
                     ExpiresUtc = DateTimeOffset.Now.AddDays(1),
                     IsPersistent = true,
                 };
-
                 await HttpContext.SignInAsync("Cookies", principal, authProperties);
-
                 Console.WriteLine($"Registration successful for: {account.Email}");
-                
-                return status;
+                return Ok(status);
             }
-            return null;
+            if (status.status ==RegisterStatus.FailureAccountExists)
+            {
+                return BadRequest("Account already exists");
+            }
+            if (status.status == RegisterStatus.FailureToCreateAccount)
+            {
+                return BadRequest("Account was not created");
+            }
+            return BadRequest("Registration Failed: " + status.status);
         }
         catch (Exception e)
         {
             Console.Error.WriteLine($"Registration error: {e.Message}");
-            return null;
+            return BadRequest($"Registration failed due to exception: {e}");
         }
     }
 

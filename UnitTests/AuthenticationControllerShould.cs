@@ -3,6 +3,7 @@ using Bunit;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
@@ -22,11 +23,9 @@ public class AuthenticationControllerShould
         authServiceMock
             .Setup(_ => _.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()))
             .Returns(Task.CompletedTask);
-        
         authServiceMock
             .Setup(_ => _.SignOutAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<AuthenticationProperties>()))
             .Returns(Task.CompletedTask);
-
         serviceProviderMock = new Mock<IServiceProvider>();
         serviceProviderMock
             .Setup(_ => _.GetService(typeof(IAuthenticationService)))
@@ -95,7 +94,7 @@ public class AuthenticationControllerShould
             password = "test",
             username = "testName",
         };
-        accountServiceMock.Setup(m => m.CreateAccount(It.IsAny<Account>())).ReturnsAsync(account);
+        accountServiceMock.Setup(m => m.CreateAccount(It.IsAny<Account>())).ReturnsAsync(new CreateAccountResultDto {status = RegisterStatus.Success});
         var controller = new AuthenticationController(accountServiceMock.Object)
         {
             ControllerContext = new ControllerContext
@@ -115,9 +114,9 @@ public class AuthenticationControllerShould
         });
         
         //assert
-        var okResult = result;
+        var okResult = result as OkObjectResult;
         Assert.NotNull(okResult);
-        Assert.Equal(account.username, okResult.username);
+        Assert.Equal(200, okResult.StatusCode);
         accountServiceMock.Verify(m => m.CreateAccount(It.Is<Account>(a => a.username == account.username && a.email == account.email)), Times.Once);
         authServiceMock.Verify(a => a.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()));
     }
@@ -132,7 +131,8 @@ public class AuthenticationControllerShould
         var result = await controller.Register(null);
         
         //assert
-        Assert.Null(result);
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.Equal("Account data is null", badRequest.Value);
     }
     
     [Theory]
@@ -141,13 +141,21 @@ public class AuthenticationControllerShould
     [InlineData("username", "", "password")]
     public async Task  Register_WhenRequiredFieldsAreMissing_ShouldReturnBadRequest(string username, string email, string password)
     {
-        //arange
-        var controller = new AuthenticationController(accountServiceMock.Object);
-        
+        //arrange
+        var controller = new AuthenticationController(accountServiceMock.Object)
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext {
+                    RequestServices = serviceProviderMock.Object
+                }
+            }
+        };
         //act
         var result = await controller.Register(new AccountModel(){ Username = username, Email = email, Password = password });
         //assert
-        Assert.Null(result);
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.Equal("Required fields are missing", badRequest.Value);
     }
 
     [Fact]

@@ -29,23 +29,32 @@ public class AccountService : IAccountService
     /// Adds a user created accounts to the database.
     /// </summary>
     /// <param name="account">Stores the account table</param>
-    public async Task<Account?> CreateAccount(Account account)
+    public async Task<CreateAccountResultDto> CreateAccount(Account account)
     {
+        Console.WriteLine("Starting Account Creation Process.");
         await using var context = await dbContextFactory.CreateDbContextAsync();
         
         // Checks if an account exists already
+        Console.WriteLine("Checking if account exists already.");
         var existingAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
         if (existingAccount != null)
-            return null;
-            
+        {
+            Console.WriteLine("Account already exists.");
+            return new CreateAccountResultDto(RegisterStatus.FailureAccountExists, 0);
+        }
+        
         await context.Account.AddAsync(account);
         await context.SaveChangesAsync();
 
+        Console.WriteLine("Checking if account was created.");
         var createdAccount = await context.Account.FirstOrDefaultAsync(a => a.email == account.email);
         if (createdAccount == null)
-            return null;
+        {
+            Console.WriteLine("Account was not created.");
+            return new CreateAccountResultDto(RegisterStatus.FailureToCreateAccount, 0);
+        }
         
-        return createdAccount;
+        return new CreateAccountResultDto(RegisterStatus.Success, createdAccount.account_id);;
     }
     
     /// <summary>

@@ -5,7 +5,19 @@ namespace SoftwareProject.Interfaces;
 public interface IAccountService
 {
     Task<Account?> LoginAccount(string email, string password);
-    Task<Account?> CreateAccount(Account account);
+    Task<CreateAccountResultDto> CreateAccount(Account account);
+}
+
+public struct CreateAccountResultDto
+{
+    public CreateAccountResultDto(RegisterStatus pStatus, int pAccountId)
+    {
+        status = pStatus;
+        accountId = pAccountId;
+    }
+    
+    public RegisterStatus status;
+    public int accountId;
 }
 
 public enum LoginStatus
