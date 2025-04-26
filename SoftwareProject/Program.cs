@@ -106,3 +106,4 @@ app.MapRazorComponents<App>()
 
 
 app.Run();
+public partial class Program { }
