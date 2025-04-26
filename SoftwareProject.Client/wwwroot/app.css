@@ -2,3 +2,8 @@
     font-family: 'Work Sans';
     src: url('./Fonts/worksans.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'Dyslexic';
+    src: url('./Fonts/dyslexic.woff') format('woff');
+}

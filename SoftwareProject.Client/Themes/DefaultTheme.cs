@@ -17,7 +17,11 @@ public class DefaultTheme : MudTheme
 * Based on Bootstrap
 */
 
-    public virtual TextSize TextSize => TextSizeConstants.Normal;
+    public TextStyling TextStyling = new()
+    {
+        Size = TextSizeConstants.Normal,
+        FontGroup = TextFonts.Default
+    };
 
     /// <summary>
     /// Constructor containing all the color values.
@@ -162,126 +166,126 @@ public class DefaultTheme : MudTheme
         {
             Default = new DefaultTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.DefaultFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.DefaultSize}rem",
+                FontSize = $"{TextStyling.Size.DefaultSize}rem",
                 LineHeight = "1.43",
                 LetterSpacing = ".01071em",
                 TextTransform = "none",
             },
             H1 = new H1Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H1Fonts,
                 FontWeight = "300",
-                FontSize = $"{TextSize.H1Size}rem",
+                FontSize = $"{TextStyling.Size.H1Size}rem",
                 LineHeight = "1.167",
                 LetterSpacing = "-.01562em",
                 TextTransform = "none",
             },
             H2 = new H2Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H2Fonts,
                 FontWeight = "300",
-                FontSize = $"{TextSize.H2Size}rem",
+                FontSize = $"{TextStyling.Size.H2Size}rem",
                 LineHeight = "1.2",
                 LetterSpacing = "-.00833em",
                 TextTransform = "none",
             },
             H3 = new H3Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H3Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H3Size}rem",
+                FontSize = $"{TextStyling.Size.H3Size}rem",
                 LineHeight = "1.167",
                 LetterSpacing = "0",
                 TextTransform = "none",
             },
             H4 = new H4Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H4Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H4Size}rem",
+                FontSize = $"{TextStyling.Size.H4Size}rem",
                 LineHeight = "1.235",
                 LetterSpacing = ".00735em",
                 TextTransform = "none",
             },
             H5 = new H5Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H5Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H5Size}rem",
+                FontSize = $"{TextStyling.Size.H5Size}rem",
                 LineHeight = "1.334",
                 LetterSpacing = "0",
                 TextTransform = "none",
             },
             H6 = new H6Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H6Fonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.H6Size}rem",
+                FontSize = $"{TextStyling.Size.H6Size}rem",
                 LineHeight = "1.6",
                 LetterSpacing = ".0075em",
                 TextTransform = "none",
             },
             Subtitle1 = new Subtitle1Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Subtitle1Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Subtitle1Size}rem",
+                FontSize = $"{TextStyling.Size.Subtitle1Size}rem",
                 LineHeight = "1.75",
                 LetterSpacing = ".00938em",
                 TextTransform = "none",
             },
             Subtitle2 = new Subtitle2Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Subtitle2Fonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.Subtitle2Size}rem",
+                FontSize = $"{TextStyling.Size.Subtitle2Size}rem",
                 LineHeight = "1.57",
                 LetterSpacing = ".00714em",
                 TextTransform = "none",
             },
             Body1 = new Body1Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Body1Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Body1Size}rem",
+                FontSize = $"{TextStyling.Size.Body1Size}rem",
                 LineHeight = "1.5",
                 LetterSpacing = ".00938em",
                 TextTransform = "none",
             },
             Body2 = new Body2Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Body2Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Body2Size}rem",
+                FontSize = $"{TextStyling.Size.Body2Size}rem",
                 LineHeight = "1.43",
                 LetterSpacing = ".01071em",
                 TextTransform = "none",
             },
             Button = new ButtonTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.ButtonFonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.ButtonSize}rem",
+                FontSize = $"{TextStyling.Size.ButtonSize}rem",
                 LineHeight = "1.75",
                 LetterSpacing = ".02857em",
                 TextTransform = "uppercase",
             },
             Caption = new CaptionTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.CaptionFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.CaptionSize}rem",
+                FontSize = $"{TextStyling.Size.CaptionSize}rem",
                 LineHeight = "1.66",
                 LetterSpacing = ".03333em",
                 TextTransform = "none",
             },
             Overline = new OverlineTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.OverlineFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.OverlineSize}rem",
+                FontSize = $"{TextStyling.Size.OverlineSize}rem",
                 LineHeight = "2.66",
                 LetterSpacing = ".08333em",
                 TextTransform = "none",
@@ -305,126 +309,126 @@ public class DefaultTheme : MudTheme
         {
             Default = new DefaultTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.DefaultFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.DefaultSize}rem",
+                FontSize = $"{TextStyling.Size.DefaultSize}rem",
                 LineHeight = "1.43",
                 LetterSpacing = ".01071em",
                 TextTransform = "none",
             },
             H1 = new H1Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H1Fonts,
                 FontWeight = "300",
-                FontSize = $"{TextSize.H1Size}rem",
+                FontSize = $"{TextStyling.Size.H1Size}rem",
                 LineHeight = "1.167",
                 LetterSpacing = "-.01562em",
                 TextTransform = "none",
             },
             H2 = new H2Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H2Fonts,
                 FontWeight = "300",
-                FontSize = $"{TextSize.H2Size}rem",
+                FontSize = $"{TextStyling.Size.H2Size}rem",
                 LineHeight = "1.2",
                 LetterSpacing = "-.00833em",
                 TextTransform = "none",
             },
             H3 = new H3Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H3Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H3Size}rem",
+                FontSize = $"{TextStyling.Size.H3Size}rem",
                 LineHeight = "1.167",
                 LetterSpacing = "0",
                 TextTransform = "none",
             },
             H4 = new H4Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H4Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H4Size}rem",
+                FontSize = $"{TextStyling.Size.H4Size}rem",
                 LineHeight = "1.235",
                 LetterSpacing = ".00735em",
                 TextTransform = "none",
             },
             H5 = new H5Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H5Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.H5Size}rem",
+                FontSize = $"{TextStyling.Size.H5Size}rem",
                 LineHeight = "1.334",
                 LetterSpacing = "0",
                 TextTransform = "none",
             },
             H6 = new H6Typography
             {
-                FontFamily = ["Poppins", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.H6Fonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.H6Size}rem",
+                FontSize = $"{TextStyling.Size.H6Size}rem",
                 LineHeight = "1.6",
                 LetterSpacing = ".0075em",
                 TextTransform = "none",
             },
             Subtitle1 = new Subtitle1Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Subtitle1Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Subtitle1Size}rem",
+                FontSize = $"{TextStyling.Size.Subtitle1Size}rem",
                 LineHeight = "1.75",
                 LetterSpacing = ".00938em",
                 TextTransform = "none",
             },
             Subtitle2 = new Subtitle2Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Subtitle2Fonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.Subtitle2Size}rem",
+                FontSize = $"{TextStyling.Size.Subtitle2Size}rem",
                 LineHeight = "1.57",
                 LetterSpacing = ".00714em",
                 TextTransform = "none",
             },
             Body1 = new Body1Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Body1Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Body1Size}rem",
+                FontSize = $"{TextStyling.Size.Body1Size}rem",
                 LineHeight = "1.5",
                 LetterSpacing = ".00938em",
                 TextTransform = "none",
             },
             Body2 = new Body2Typography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.Body2Fonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.Body2Size}rem",
+                FontSize = $"{TextStyling.Size.Body2Size}rem",
                 LineHeight = "1.43",
                 LetterSpacing = ".01071em",
                 TextTransform = "none",
             },
             Button = new ButtonTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.ButtonFonts,
                 FontWeight = "500",
-                FontSize = $"{TextSize.ButtonSize}rem",
+                FontSize = $"{TextStyling.Size.ButtonSize}rem",
                 LineHeight = "1.75",
                 LetterSpacing = ".02857em",
                 TextTransform = "uppercase",
             },
             Caption = new CaptionTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.CaptionFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.CaptionSize}rem",
+                FontSize = $"{TextStyling.Size.CaptionSize}rem",
                 LineHeight = "1.66",
                 LetterSpacing = ".03333em",
                 TextTransform = "none",
             },
             Overline = new OverlineTypography
             {
-                FontFamily = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = TextStyling.FontGroup.OverlineFonts,
                 FontWeight = "400",
-                FontSize = $"{TextSize.OverlineSize}rem",
+                FontSize = $"{TextStyling.Size.OverlineSize}rem",
                 LineHeight = "2.66",
                 LetterSpacing = ".08333em",
                 TextTransform = "none",

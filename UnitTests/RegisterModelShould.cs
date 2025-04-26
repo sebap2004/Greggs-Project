@@ -68,6 +68,6 @@ public class RegisterModelShould
         await controller.Register(account.AccountModel);
         //assert
         accountServiceMock.Verify(m => m.CreateAccount(It.IsAny<Account>()), Times.Once);
-        Assert.Equal(navManager.BaseUri, navManager.Uri);
+            Assert.Equal(navManager.BaseUri, navManager.Uri);
     }
 }

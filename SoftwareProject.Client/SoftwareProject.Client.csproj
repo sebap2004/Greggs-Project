@@ -151,6 +151,7 @@
     <ItemGroup>
         <None Include="wwwroot\Fonts\worksans.woff" />
         <None Include="wwwroot\Fonts\worksansitalic.woff" />
+        <None Include="wwwroot\Fonts\dyslexic.woff" />
     </ItemGroup>
 
 

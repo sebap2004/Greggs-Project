@@ -15,7 +15,7 @@
 @inject ITopicService TopicClient
 
 
-<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode"/>
+<MudThemeProvider @key="activeTextStyling" Theme="@_theme" IsDarkMode="_isDarkMode"/>
 <MudPopoverProvider/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
@@ -42,12 +42,12 @@
                            <MudSpacer></MudSpacer>
                            <MudSwitch Color="Color.Primary" @bind-Value="UseAI"></MudSwitch>
                         </MudStack>
-                        <MudSelect Value="Fonts[0]" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="string"
+                        <MudSelect @bind-Value="CurrentTextFontGroup" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="TextFontGroup"
                                    Label="Font">
-                           <MudSelectItem Value="Fonts[0]" T="string">Default</MudSelectItem>
-                           <MudSelectItem Value="Fonts[1]" T="string">Calibri</MudSelectItem>
-                           <MudSelectItem Value="Fonts[2]" T="string">Cool font</MudSelectItem>
-                           <MudSelectItem Value="Fonts[3]" T="string">Shit fucking font</MudSelectItem>
+                           <MudSelectItem Value="TextFonts.Default" T="TextFontGroup">Default</MudSelectItem>
+                           <MudSelectItem Value="TextFonts.Dyslexia" T="TextFontGroup">Dyslexic</MudSelectItem>
+                           <MudSelectItem Value="TextFonts.Arial" T="TextFontGroup">Arial</MudSelectItem>
+                           
                         </MudSelect>
                         <MudSelect @bind-Value="CurrentTextSize" Variant="Variant.Outlined" FullWidth="true" Class="mb-2" T="TextSizeEnum">
                            <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VerySmall">Very Small</MudSelectItem>

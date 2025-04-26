@@ -17,10 +17,14 @@ namespace SoftwareProject.Client.Pages;
 
 public partial class Chat : ComponentBase
 {
+    
+    
     /// <summary>
     /// Local Topic List cached in browser
     /// </summary>
     private List<LocalTopicModel?> CachedLocalTopicList = new();
+
+    private TextStyling activeTextStyling;
     
     /// <summary>
     /// Current Local Topic
@@ -72,8 +76,21 @@ public partial class Chat : ComponentBase
             UpdateTextSize(value);
         }
     }
-
+    
     private TextSizeEnum currentTextSize = TextSizeEnum.Normal;
+
+    private TextFontGroup CurrentTextFontGroup
+    {
+        get => currentTextFontGroup;
+        set
+        {
+            UpdateTextFont(value);
+            currentTextFontGroup = value;
+        }
+    }
+
+    private TextFontGroup currentTextFontGroup = TextFonts.Default;
+    
     /// <summary>
     /// Button styling variant for if the user is in local mode.
     /// </summary>
@@ -533,24 +550,65 @@ public partial class Chat : ComponentBase
         await LoadOnlineTopicsFromDB();
     }
 
+    private void UpdateTextFont(TextFontGroup group)
+    {
+        _theme.TextStyling.FontGroup = group;
+        _theme.UpdateTheme();
+        activeTextStyling = new TextStyling
+        {
+            FontGroup = group,
+            Size = TextSizeConstants.Normal
+        };
+    }
+    
     private void UpdateTextSize(TextSizeEnum size)
     {
         switch (size)
         {
             case TextSizeEnum.Small:
-                _theme = new SmallTheme();
+                _theme.TextStyling.Size = TextSizeConstants.Small;
+                _theme.UpdateTheme();
+                activeTextStyling = new TextStyling
+                {
+                    FontGroup = _theme.TextStyling.FontGroup,
+                    Size = TextSizeConstants.Small
+                };
                 break;
             case TextSizeEnum.Normal:
-                _theme = new DefaultTheme();
+                _theme.TextStyling.Size = TextSizeConstants.Normal;
+                _theme.UpdateTheme();
+                activeTextStyling = new TextStyling
+                {
+                    FontGroup = _theme.TextStyling.FontGroup,
+                    Size = TextSizeConstants.Normal
+                };
                 break;
             case TextSizeEnum.Large:
-                _theme = new LargeTheme();
+                _theme.TextStyling.Size = TextSizeConstants.Large;
+                _theme.UpdateTheme();
+                activeTextStyling = new TextStyling
+                {
+                    FontGroup = _theme.TextStyling.FontGroup,
+                    Size = TextSizeConstants.Large
+                };
                 break;
             case TextSizeEnum.VerySmall:
-                _theme = new VerySmallTheme();
+                _theme.TextStyling.Size = TextSizeConstants.VerySmall;
+                _theme.UpdateTheme();
+                activeTextStyling = new TextStyling
+                {
+                    FontGroup = _theme.TextStyling.FontGroup,
+                    Size = TextSizeConstants.VerySmall
+                };
                 break;
             case TextSizeEnum.VeryLarge:
-                _theme = new VeryLargeTheme();
+                _theme.TextStyling.Size = TextSizeConstants.VeryLarge;
+                _theme.UpdateTheme();
+                activeTextStyling = new TextStyling
+                {
+                    FontGroup = _theme.TextStyling.FontGroup,
+                    Size = TextSizeConstants.VeryLarge
+                };
                 break;
         }
     }
