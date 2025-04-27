@@ -30,6 +30,9 @@ public class Settings
     }
 }
 
+/// <summary>
+/// Settings data transfer object to be used over HTTP requests.
+/// </summary>
 public class SettingsDto
 {
     public int SettingsId { get; set; }

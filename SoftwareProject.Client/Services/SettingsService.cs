@@ -6,6 +6,11 @@ using SoftwareProject.Data;
 
 namespace SoftwareProject.Client.Services;
 
+
+/// <summary>
+/// SettingsService contains the operations for the settings table.
+/// Use this for CRUD operations on the settings table.
+/// </summary>
 public class SettingsService : ISettingsService
 {
     private IDbContextFactory<ChatbotDbContext> dbContextFactory;

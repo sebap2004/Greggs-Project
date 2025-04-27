@@ -5,6 +5,9 @@ using SoftwareProject.Data;
 
 namespace SoftwareProject.Client.Services;
 
+/// <summary>
+/// Message service used on the backend.
+/// </summary>
 public class MessageService : IMessageService
 {
     // CLASS VARIABLES

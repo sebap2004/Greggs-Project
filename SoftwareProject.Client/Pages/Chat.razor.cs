@@ -17,6 +17,9 @@ using SoftwareProject.Client.Themes;
 
 namespace SoftwareProject.Client.Pages;
 
+/// <summary>
+/// Chat page code-behind.
+/// </summary>
 public partial class Chat : ComponentBase
 {
     /// <summary>

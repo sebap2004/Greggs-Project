@@ -5,6 +5,10 @@ using SoftwareProject.Data;
 
 namespace SoftwareProject.Services;
 
+/// <summary>
+/// TopicService contains the operations for the topic table.
+/// Use this for CRUD operations on the topic table.
+/// </summary>
 public class TopicService : ITopicService
 {
     // CLASS VARIABLES

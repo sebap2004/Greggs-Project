@@ -6,7 +6,9 @@ using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Models;
 
-
+/// <summary>
+/// Login Model used in the Login page.
+/// </summary>
 public class LoginModel
 {
     // CLASS VARIABLES

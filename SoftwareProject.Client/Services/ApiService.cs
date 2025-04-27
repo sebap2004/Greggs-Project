@@ -34,7 +34,7 @@ public class ApiService
     /// </summary>
     /// <param name="prompt">Stores the user input to be sent to the API</param>
     /// <param name="useFake">Toggle decides to use the real or stub API</param>
-    /// <returns></returns>
+    /// <returns>Response from AI</returns>
     public async Task<string> GetMessage(string prompt, bool useFake) 
     {
         Console.WriteLine("Enter prompt");

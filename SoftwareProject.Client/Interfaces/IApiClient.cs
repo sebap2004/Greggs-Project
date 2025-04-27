@@ -5,8 +5,10 @@ namespace SoftwareProject.Client.Interfaces;
 /// </summary>
 public interface IApiClient
 {
-    internal interface IApiClient
-    {
-        Task<string> GeminiCall(string prompt);
-    }
+    /// <summary>
+    /// Makes a call to the gemini AI API
+    /// </summary>
+    /// <param name="prompt">Prompt to send to the API</param>
+    /// <returns>API's Response</returns>
+    Task<string> GeminiCall(string prompt);
 }

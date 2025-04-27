@@ -10,6 +10,9 @@ using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Pages;
 
+/// <summary>
+/// Login page code-behind.
+/// </summary>
 public partial class Login : ComponentBase
 {
     private Account account = new Account();

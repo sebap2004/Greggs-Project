@@ -44,4 +44,14 @@ public class RealApi : IApiClient
 
         return text;
     }
+
+    /// <summary>
+    /// Not used.
+    /// </summary>
+    /// <param name="prompt"></param>
+    /// <returns></returns>
+    public Task<string> GeminiCall(string prompt)
+    {
+        return Task.FromResult("");;
+    }
 }

@@ -7,6 +7,9 @@ using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Models;
 
+/// <summary>
+/// Register model used in the login page.
+/// </summary>
 public class RegisterModel
 {
     // CLASS VARIABLES
