@@ -1,35 +1,52 @@
-using SoftwareProject.Interfaces;
 using System.Text;
 using System.Text.Json;
+using SoftwareProject.Client.Interfaces;
+using SoftwareProject.Interfaces;
 
-namespace SoftwareProject.Backend;
+namespace SoftwareProject.Client.Backend;
 
+/// <summary>
+/// Connects to the Gemini API.
+/// Used to communicate requests and receive responses
+/// </summary>
 public class GeminiClient(HttpClient httpClient, string apiKey) : IApiClient
 {
+    // LOCAL VARIABLES
+    // Creates RealApi class used to call to Gemini
     private readonly RealApi _realApi = new();
 
-    public async Task<string?> GeminiCall(string prompt)
+    /// <summary>
+    /// Sends prompt to Gemini API and gets it response
+    /// Catches exceptions
+    /// </summary>
+    /// <param name="prompt">Stores the user input to be sent to the API</param>
+    /// <returns></returns>
+    public async Task<string> GeminiCall(string prompt)
     {
         try
         {
             return await _realApi.GetResponse(prompt, httpClient, apiKey);
         } catch (HttpRequestException ex)
         {
-            Console.WriteLine($"API Request Error: {ex.Message}");
+            Console.WriteLine($"Request error: {ex.Message}");
             return null;
         }
         catch (JsonException ex)
         {
-            Console.WriteLine($"JSON Parsing Error: {ex.Message}");
+            Console.WriteLine($"JSON parse error: {ex.Message}");
             return null;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Unexpected Error: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
             return null;
         }
     }
 
+    /// <summary>
+    /// Tests connection status with the Gemini API using the key
+    /// </summary>
+    /// <returns></returns>
     public async Task<bool> TestGeminiConnection()
     {
         try
