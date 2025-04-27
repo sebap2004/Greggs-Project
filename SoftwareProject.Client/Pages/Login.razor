@@ -15,6 +15,7 @@
             <MudTabPanel Text="Log In">
                 <EditForm Model=@loginModel FormName="loginForm" OnValidSubmit="AttemptLogin">
                     <DataAnnotationsValidator/>
+                    <ValidationSummary/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
@@ -31,8 +32,9 @@
                 </EditForm>
             </MudTabPanel>
             <MudTabPanel Text="Sign Up">
-                <EditForm Model=@account FormName="RegisterForm" OnValidSubmit="AttemptRegister">
+                <EditForm Model=@registerModel FormName="RegisterForm" OnValidSubmit="AttemptRegister">
                     <DataAnnotationsValidator/>
+                    <ValidationSummary/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Sign Up</b></MudText>

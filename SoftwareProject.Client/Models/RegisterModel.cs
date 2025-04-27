@@ -44,7 +44,7 @@ public class RegisterModel
     /// </summary>
     /// <param name="editContext">Tracks the changes made in the form</param>
     /// <param name="httpClient">HTTP client used for making requests to the authentication api</param>
-    public async Task<RegisterStatus> RegisterAccount(EditContext editContext)
+    public async Task<RegisterStatus> RegisterAccount()
     {
         // Validates password.
         if (firstPassword == secondPassword)
@@ -54,13 +54,14 @@ public class RegisterModel
             // Insert into table.
             try
             {
-                var newAccount = (Account)editContext.Model;
-                newAccount.account_id = 0;
+                var newAccount = new Account
+                {
+                    email = email,
+                    password = firstPassword,
+                    username = username,
+                };
                 Console.WriteLine("Starting Register Process.");
-                var jsonContent = System.Text.Json.JsonSerializer.Serialize(newAccount.AccountModel);
-                Console.WriteLine($"Request body: {jsonContent}");
-
-                var registerAttempt = await httpClient.PostAsJsonAsync("api/authentication/register", newAccount.AccountModel);
+                var registerAttempt = await httpClient.PostAsJsonAsync("api/authentication/register", newAccount.AccountModel());
                 if (registerAttempt.IsSuccessStatusCode)
                 {
                     return RegisterStatus.Success;

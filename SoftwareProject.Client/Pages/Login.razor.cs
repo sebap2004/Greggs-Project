@@ -39,7 +39,7 @@ public partial class Login : ComponentBase
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
-                customProvider.NotifyAuthenticationStateChanged();
+                await customProvider.NotifyAuthenticationStateChanged();
                 snackbar.Add("Login Successful!", Severity.Success);
                 navigationManager.NavigateTo("/chat");
                 StateHasChanged();
@@ -54,15 +54,14 @@ public partial class Login : ComponentBase
     /// <summary>
     /// Attempt to create an account for the website.
     /// </summary>
-    /// <param name="editContext">Edit context passed in through the frontend web form.</param>
-    private async Task AttemptRegister(EditContext editContext)
+    private async Task AttemptRegister()
     {
-        var registerAttempt = await registerModel.RegisterAccount(editContext);
+        var registerAttempt = await registerModel.RegisterAccount();
         if (registerAttempt == RegisterStatus.Success)
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
-                customProvider.NotifyAuthenticationStateChanged();
+                await customProvider.NotifyAuthenticationStateChanged();
                 snackbar.Add("Register Successful!", Severity.Success);
                 navigationManager.NavigateTo("/chat");
             }
