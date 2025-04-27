@@ -15,7 +15,6 @@
             <MudTabPanel Text="Log In">
                 <EditForm Model=@loginModel FormName="loginForm" OnValidSubmit="AttemptLogin">
                     <DataAnnotationsValidator/>
-                    <ValidationSummary/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
@@ -24,17 +23,30 @@
                                           InputType="InputType.Password"/>
                         </MudCardContent>
                         <MudCardActions>
-                            <MudButton ButtonType="ButtonType.Submit" id="login-button" Variant="Variant.Filled" Color="Color.Primary"
-                                       Class="ml-auto">Log In
+                            <MudButton Disabled="AttemptingLogin" ButtonType="ButtonType.Submit" id="login-button" Variant="Variant.Filled" Color="Color.Primary"
+                                       Class="ml-auto">
+                                @if (AttemptingLogin)
+                                {
+                                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                                    <MudText Class="ms-2">
+                                        Logging in...
+                                    </MudText>
+                                }
+                                else
+                                {
+                                    <MudText>Log In</MudText>
+                                }
                             </MudButton>
                         </MudCardActions>
+                        <MudText Color="@Color.Error">
+                            <ValidationSummary />
+                        </MudText>
                     </MudCard>
                 </EditForm>
             </MudTabPanel>
             <MudTabPanel Text="Sign Up">
                 <EditForm Model=@registerModel FormName="RegisterForm" OnValidSubmit="AttemptRegister">
                     <DataAnnotationsValidator/>
-                    <ValidationSummary/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
                             <MudText GutterBottom="true" Typo="Typo.h4"><b>Sign Up</b></MudText>
@@ -46,10 +58,22 @@
                                           InputType="InputType.Password"/>
                         </MudCardContent>
                         <MudCardActions>
-                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary"
-                                       Class="ml-auto">Register
+                            <MudButton Disabled="AttemptingLogin" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary"
+                                       Class="ml-auto">
+                                @if (AttemptingLogin)
+                                {
+                                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                                    <MudText Class="ms-2">Registering...</MudText>
+                                }
+                                else
+                                {
+                                    <MudText>Register</MudText>
+                                }
                             </MudButton>
                         </MudCardActions>
+                        <MudText Color="@Color.Error">
+                            <ValidationSummary />
+                        </MudText>
                     </MudCard>
                 </EditForm>
             </MudTabPanel>

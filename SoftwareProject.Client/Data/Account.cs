@@ -16,6 +16,9 @@ public class Account
     public string password { get; set; }
 }
 
+/// <summary>
+/// Model to use in data transfer with HTTP requests.
+/// </summary>
 [Serializable]
 public class AccountModel
 {
@@ -36,8 +39,16 @@ public class AccountModel
     public string Password { get; set; }
 }
 
+/// <summary>
+/// Extension class to allow conversion between account data transfer objects and account database objects.
+/// </summary>
 public static class AccountExtensions
 {
+    /// <summary>
+    /// Converts an account model to an account database object
+    /// </summary>
+    /// <param name="accountModel">Account model to convert</param>
+    /// <returns></returns>
     public static Account ToAccount(this AccountModel accountModel)
     {
         return new Account
@@ -49,6 +60,11 @@ public static class AccountExtensions
         };
     }
 
+    /// <summary>
+    /// Converts an account database object to an account model object.
+    /// </summary>
+    /// <param name="account">Database object</param>
+    /// <returns></returns>
     public static AccountModel AccountModel(this Account account)
     {
         return new AccountModel

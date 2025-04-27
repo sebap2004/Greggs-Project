@@ -10,14 +10,30 @@ namespace SoftwareProject.Client.Models;
 public class LoginModel
 {
     // CLASS VARIABLES
+    /// <summary>
+    /// Account to be created
+    /// </summary>
     private Account account;
+    
+    /// <summary>
+    /// HTTP client to be used in the request
+    /// </summary>
     private HttpClient httpClient;
 
-    [Required]
+    /// <summary>
+    /// Email property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required(ErrorMessage = "Email address is required.")]
     [EmailAddress]
     public string email { get; set; }
     
-    [Required]
+    
+    /// <summary>
+    /// Password property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required(ErrorMessage = "Password is required.")]
     [DataType(DataType.Password)]
     public string password { get; set; }  
 

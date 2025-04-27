@@ -10,22 +10,48 @@ namespace SoftwareProject.Client.Models;
 public class RegisterModel
 {
     // CLASS VARIABLES
+    /// <summary>
+    /// Account to be created
+    /// </summary>
     private Account account;
+    
+    /// <summary>
+    /// HTTP client to be used in the request
+    /// </summary>
     private HttpClient httpClient;
 
+
+    /// <summary>
+    /// Username property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
     [Required]
     public string username { get; set; }    
     
+    /// <summary>
+    /// Email property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
     [Required]
     [EmailAddress]
     public string email { get; set; }
     
-    [Required]
+    
+    /// <summary>
+    /// First password bound to the EditForm
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required (ErrorMessage = "Password is required")]
     [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
     public string firstPassword { get; set; }
     
-    [Required]
-    [Compare(nameof(firstPassword))]
+    
+    /// <summary>
+    /// Second password bound to the EditForm
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required (ErrorMessage = "Repeat password is required")]
+    [Compare(nameof(firstPassword), ErrorMessage = "Passwords do not match")]
     public string secondPassword { get; set; }
 
     /// <summary>

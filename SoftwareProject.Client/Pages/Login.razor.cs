@@ -15,6 +15,7 @@ public partial class Login : ComponentBase
     private Account account = new Account();
     private RegisterModel registerModel;
     private LoginModel loginModel;
+    private bool AttemptingLogin = false;
 
     /// <summary>
     /// Instantiate a new RegisterModel and LoginModel class for account creation and login.
@@ -33,6 +34,7 @@ public partial class Login : ComponentBase
     /// </summary>
     private async Task AttemptLogin()
     {
+        AttemptingLogin = true;
         var loginAttempt = await loginModel.LoginSubmit();
         
         if (loginAttempt == LoginStatus.Success)
@@ -49,6 +51,7 @@ public partial class Login : ComponentBase
         {
             snackbar.Add("Login Failed", Severity.Error);
         }
+        AttemptingLogin = false;
     }
     
     /// <summary>
@@ -56,6 +59,7 @@ public partial class Login : ComponentBase
     /// </summary>
     private async Task AttemptRegister()
     {
+        AttemptingLogin = true;
         var registerAttempt = await registerModel.RegisterAccount();
         if (registerAttempt == RegisterStatus.Success)
         {
@@ -70,5 +74,6 @@ public partial class Login : ComponentBase
         {
             snackbar.Add("Login Failed", Severity.Error);
         }
+        AttemptingLogin = false;
     }
 }

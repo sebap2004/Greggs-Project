@@ -20,6 +20,7 @@ builder.Services.AddMudServices();
 builder.Services.AddMudMarkdownServices();
 builder.Services.AddMagicBlazorDB(BlazorInteropMode.WASM, true);
 
+// Added HTTP client handler
 builder.Services.AddScoped(sp => 
 {
     var httpClientHandler = new HttpClientHandler
@@ -36,12 +37,15 @@ builder.Services.AddScoped(sp =>
     
     return httpClient;
 });
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
+// Adds API controllers to services.
 builder.Services.AddControllers();
 
+// Adds cookie authentication.
 builder.Services.AddAuthentication("Cookies")
     .AddCookie("Cookies", options =>
     {
@@ -63,6 +67,7 @@ builder.Services.AddAuthentication("Cookies")
         };
     });
 
+// Adds authentication and relevant services.
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();

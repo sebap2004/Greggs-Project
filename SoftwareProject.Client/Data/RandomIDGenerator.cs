@@ -4,6 +4,7 @@ namespace SoftwareProject.Client.Data;
 
 /// <summary>
 /// Static class to generate random IDs for Local Topics.
+/// Taken from stack overflow: https://stackoverflow.com/a/44960751
 /// </summary>
 public static class RandomIDGenerator
 {

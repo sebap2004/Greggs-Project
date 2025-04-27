@@ -154,10 +154,5 @@
         <None Include="wwwroot\Fonts\worksansitalic.woff" />
         <None Include="wwwroot\Fonts\dyslexic.woff" />
     </ItemGroup>
-
-
-    <ItemGroup>
-      <Folder Include="Components\" />
-    </ItemGroup>
     
 </Project>
