@@ -4,31 +4,140 @@
 
 <PageTitle>Welcome</PageTitle>
 
-<div style="height: 100%" class="is-align-content-center is-align-items-center is-flex is-flex-wrap-wrap is-flex-direction-column">
+<div style="height: 100%" class="is-align-content-center is-align-items-center is-flex is-flex-direction-column">
     <MudContainer MaxWidth="MaxWidth.Large" Class="py-8 px-4 text-center d-flex flex-column justify-center align-center">
-        <!-- Main Heading -->
         <MudText Typo="Typo.h1" Align="Align.Center" Class="mb-4">
             Welcome to NovaChat
         </MudText>
 
-        <!-- Description -->
-        <MudText Typo="Typo.h5" HtmlTag="p" Align="Align.Center" Class="mb-8">
-            A bespoke AI chatbot experience. We make speaking to chat freaking epic. I love AI oooooh boy!
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-8">
+            A bespoke AI chatbot experience. We make your AI experience effortless.
         </MudText>
+        <MudText Typo="Typo.h4" Class="mb-6" Align="Align.Center">Discover NovaChat AI Features</MudText>
+        <MudGrid Class="mb-8">
+            <MudItem xs="12" sm="4">
+                <MudPaper Elevation="0" Class="pa-4 d-flex flex-column align-center">
+                    <MudIcon Icon="@Icons.Material.Filled.Psychology" Size="Size.Large" Color="Color.Primary" Class="mb-3" />
+                    <MudText Typo="Typo.h6" Align="Align.Center">Advanced Context Understanding</MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Center">NovaChat remembers your conversation history for more relevant, personalized responses.</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="4">
+                <MudPaper Elevation="0" Class="pa-4 d-flex flex-column align-center">
+                    <MudIcon Icon="@Icons.Material.Filled.Translate" Size="Size.Large" Color="Color.Secondary" Class="mb-3" />
+                    <MudText Typo="Typo.h6" Align="Align.Center">Multilingual Support</MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Center">Communicate in multiple languages with seamless translation capabilities.</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="4">
+                <MudPaper Elevation="0" Class="pa-4 d-flex flex-column align-center">
+                    <MudIcon Icon="@Icons.Material.Filled.Settings" Size="Size.Large" Color="Color.Tertiary" Class="mb-3" />
+                    <MudText Typo="Typo.h6" Align="Align.Center">Customizable Experience</MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Center">Adjust response style, font size, and accessibility options to suit your needs.</MudText>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
         
-        @* Matt Testing Shit *@
-        <MudText>
-            Hi =]
-        </MudText>
+        <MudText Typo="Typo.h4" Class="mt-8 mb-6" Align="Align.Center">Why Choose NovaChat?</MudText>
+        <MudPaper Elevation="2" Class="pa-6 mb-8">
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudCard Elevation="0" Class="mb-4">
+                        <MudCardContent>
+                            <div class="d-flex gap-4">
+                                <MudIcon Icon="@Icons.Material.Filled.AccessibilityNew" Color="Color.Primary" />
+                                <div>
+                                    <MudText Typo="Typo.h6">Accessibility First</MudText>
+                                    <MudText>Supporting various font sizes and dyslexia-friendly options for everyone.</MudText>
+                                </div>
+                            </div>
+                        </MudCardContent>
+                    </MudCard>
+                    <MudCard Elevation="0">
+                        <MudCardContent>
+                            <div class="d-flex gap-4">
+                                <MudIcon Icon="@Icons.Material.Filled.SyncAlt" Color="Color.Primary" />
+                                <div>
+                                    <MudText Typo="Typo.h6">Online & Offline Support</MudText>
+                                    <MudText>Work in local or cloud mode for flexibility wherever you are.</MudText>
+                                </div>
+                            </div>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudCard Elevation="0" Class="mb-4">
+                        <MudCardContent>
+                            <div class="d-flex gap-4">
+                                <MudIcon Icon="@Icons.Material.Filled.Security" Color="Color.Primary" />
+                                <div>
+                                    <MudText Typo="Typo.h6">Privacy Focused</MudText>
+                                    <MudText>Your data stays secure with our privacy-first approach to AI.</MudText>
+                                </div>
+                            </div>
+                        </MudCardContent>
+                    </MudCard>
+                    <MudCard Elevation="0">
+                        <MudCardContent>
+                            <div class="d-flex gap-4">
+                                <MudIcon Icon="@Icons.Material.Filled.HdrAuto" Color="Color.Primary" />
+                                <div>
+                                    <MudText Typo="Typo.h6">Response Flexibility</MudText>
+                                    <MudText>Choose between concise, detailed, or formal response styles.</MudText>
+                                </div>
+                            </div>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
         
-        <!-- Buttons -->
+        <MudText Typo="Typo.h4" Class="mt-8 mb-6" Align="Align.Center">What Our Users Say</MudText>
+        <MudCarousel Class="mud-width-full mb-8" Style="height:200px" ShowArrows="true" ShowDelimiters="true" AutoCycle="true" TData="object">
+            <MudCarouselItem>
+                <div class="d-flex flex-column justify-center align-center h-100">
+                    <MudIcon Icon="@Icons.Material.Filled.FormatQuote" Size="Size.Large" Color="Color.Primary" />
+                    <MudText Typo="Typo.body1" Class="mx-auto px-8" Style="max-width: 600px;" Align="Align.Center">
+                        "NovaChat's ability to understand context has transformed how I interact with AI. The responses are remarkably relevant!"
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mt-4" Align="Align.Center"><b>Oscar W.</b> - Backend Developer</MudText>
+                </div>
+            </MudCarouselItem>
+            <MudCarouselItem>
+                <div class="d-flex flex-column justify-center align-center h-100">
+                    <MudIcon Icon="@Icons.Material.Filled.FormatQuote" Size="Size.Large" Color="Color.Secondary" />
+                    <MudText Typo="Typo.body1" Class="mx-auto px-8" Style="max-width: 600px;" Align="Align.Center">
+                        "The accessibility features make this AI assistant stand out. I can adjust the font size and style to my preferences!"
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mt-4" Align="Align.Center"><b>Matt W.</b> - Database Engineer</MudText>
+                </div>
+            </MudCarouselItem>
+            <MudCarouselItem>
+                <div class="d-flex flex-column justify-center align-center h-100">
+                    <MudIcon Icon="@Icons.Material.Filled.FormatQuote" Size="Size.Large" Color="Color.Tertiary" />
+                    <MudText Typo="Typo.body1" Class="mx-auto px-8" Style="max-width: 600px;" Align="Align.Center">
+                        "I use the summarize feature daily to condense long articles. It saves me hours of reading time!"
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mt-4" Align="Align.Center"><b>Dan S.</b> - Absolute Unit Tester</MudText>
+                </div>
+            </MudCarouselItem>
+            <MudCarouselItem>
+                <div class="d-flex flex-column justify-center align-center h-100">
+                    <MudIcon Icon="@Icons.Material.Filled.FormatQuote" Size="Size.Large" Color="Color.Tertiary" />
+                    <MudText Typo="Typo.body1" Class="mx-auto px-8" Style="max-width: 600px;" Align="Align.Center">
+                        "This AI fucking sucks"
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mt-4" Align="Align.Center"><b>Seb P.</b> - Front End Developer</MudText>
+                </div>
+            </MudCarouselItem>
+        </MudCarousel>
+        
         <MudStack Spacing="2" Class="mb-8" Row="true" Justify="Justify.Center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="px-5 py-3">
-                Learn more
-                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="ml-2" />
+            <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Class="px-5 py-3" Href="/chat">
+                Try NovaChat Now
+                <MudIcon Icon="@Icons.Material.Filled.Chat" Class="ml-2" />
             </MudButton>
         </MudStack>
-        
     </MudContainer>
     
     <MudSpacer></MudSpacer>

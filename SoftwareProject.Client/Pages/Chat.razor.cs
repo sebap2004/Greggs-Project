@@ -59,11 +59,11 @@ public partial class Chat : ComponentBase
     /// Cached user ID stored for creating new topics.
     /// </summary>
     private int userID;
-    
+
     /// <summary>
     /// If true, Ai service will skip using a real gemini API and return a fake response.
     /// </summary>
-    private bool UseAI { get; set; }
+    private bool UseAI { get; set; } = true;
     
     /// <summary>
     /// If the user is in local mode or not.
@@ -608,15 +608,15 @@ public partial class Chat : ComponentBase
     /// </summary>
     private async Task Logout()
     {
-        var logoutattempt = await http.PostAsync("api/authentication/logout", null);
-        if (logoutattempt.IsSuccessStatusCode)
+        var logoutAttempt = await http.PostAsync("api/authentication/logout", null);
+        if (logoutAttempt.IsSuccessStatusCode)
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
                 Snackbar.Add("You have been logged out.", Severity.Success);
-                NavigationManager.NavigateTo("/");
-                customProvider.NotifyAuthenticationStateChanged();
                 StateHasChanged();
+                await customProvider.NotifyAuthenticationStateChanged();
+                NavigationManager.NavigateTo("/",true);
             }
         }
     }

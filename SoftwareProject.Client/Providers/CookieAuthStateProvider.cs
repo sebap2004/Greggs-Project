@@ -64,11 +64,13 @@ public class CookieAuthStateProvider : AuthenticationStateProvider
     /// <summary>
     /// Notifies the system that the authentication state has changed.
     /// </summary>
-    public void NotifyAuthenticationStateChanged()
+    public async Task NotifyAuthenticationStateChanged()
     {
-        Console.WriteLine("Authentication state change notified");
-        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+        Console.WriteLine("Authentication state changed");
+        _cachedAuthState = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+        NotifyAuthenticationStateChanged(Task.FromResult(_cachedAuthState));
     }
+
 }
 
 /// <summary>
