@@ -1,4 +1,4 @@
-﻿namespace SoftwareProject.Client.Data;
+﻿namespace SoftwareProject.Client.SiteSettings;
 
 /// <summary>
 /// Represents the size specifications for various text elements in the system theme.

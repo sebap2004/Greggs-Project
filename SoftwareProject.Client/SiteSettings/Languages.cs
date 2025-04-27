@@ -1,4 +1,4 @@
-﻿namespace SoftwareProject.Client.Data;
+﻿namespace SoftwareProject.Client.SiteSettings;
 
 /// <summary>
 /// Static language class that stores languages to be used in translation requests.

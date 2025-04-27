@@ -17,4 +17,5 @@ public class ChatbotDbContext : DbContext
     public DbSet<Account> Account { get; set; }
     public DbSet<Topic> Topic { get; set; }
     public DbSet<Message> Message { get; set; }
+    public DbSet<Settings> Settings { get; set; }
 }

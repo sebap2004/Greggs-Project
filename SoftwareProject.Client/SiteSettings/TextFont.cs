@@ -1,10 +1,11 @@
-﻿namespace SoftwareProject.Client.Data;
+﻿namespace SoftwareProject.Client.SiteSettings;
 
 /// <summary>
 /// Group of fonts for the website theme to use.
 /// </summary>
 public class TextFontGroup
 {
+    public int Id;
     public string[] DefaultFonts;
     public string[] H1Fonts;
     public string[] H2Fonts;
@@ -34,6 +35,7 @@ public static class TextFonts
     /// </summary>
     public static TextFontGroup Default = new()
     {
+        Id = 0,
         DefaultFonts = ["Work Sans", "Helvetica", "Arial", "sans-serif"],
         H1Fonts = ["Poppins", "Helvetica", "Arial", "sans-serif"],
         H2Fonts = ["Poppins", "Helvetica", "Arial", "sans-serif"],
@@ -56,6 +58,7 @@ public static class TextFonts
     /// </summary>
     public static TextFontGroup Dyslexia = new()
     {
+        Id = 1,
         DefaultFonts = ["Dyslexic", "Helvetica", "Arial", "sans-serif"],
         H1Fonts = ["Dyslexic", "Helvetica", "Arial", "sans-serif"],
         H2Fonts = ["Dyslexic", "Helvetica", "Arial", "sans-serif"],
@@ -78,6 +81,7 @@ public static class TextFonts
     /// </summary>
     public static TextFontGroup Arial = new()
     {
+        Id = 2,
         DefaultFonts = ["Arial", "Helvetica", "Arial", "sans-serif"],
         H1Fonts = ["Arial", "Helvetica", "Arial", "sans-serif"],
         H2Fonts = ["Arial", "Helvetica", "Arial", "sans-serif"],

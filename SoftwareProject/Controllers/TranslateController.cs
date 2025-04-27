@@ -2,6 +2,7 @@
 using Google.Cloud.Translate.V3;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareProject.Client.Data;
+using SoftwareProject.Client.SiteSettings;
 
 
 /// <summary>

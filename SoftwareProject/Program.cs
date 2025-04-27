@@ -74,6 +74,7 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<ITopicService, TopicService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 builder.Services.AddTransient<ApiService>();

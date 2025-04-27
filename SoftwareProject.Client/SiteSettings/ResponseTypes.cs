@@ -1,4 +1,4 @@
-﻿namespace SoftwareProject.Client.Data;
+﻿namespace SoftwareProject.Client.SiteSettings;
 
 /// <summary>
 /// Enum to determine how the AI will respond.

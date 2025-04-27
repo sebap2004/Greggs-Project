@@ -1,5 +1,6 @@
 ﻿using MudBlazor;
 using SoftwareProject.Client.Data;
+using SoftwareProject.Client.SiteSettings;
 
 namespace SoftwareProject.Client.Themes;
 

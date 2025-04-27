@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using SoftwareProject.Client.Data;
 using SoftwareProject.Client.Models;
 using SoftwareProject.Client.Providers;
+using SoftwareProject.Client.SiteSettings;
 using SoftwareProject.Client.Themes;
 
 namespace SoftwareProject.Client.Pages;
@@ -70,7 +71,7 @@ public partial class Chat : ComponentBase
     private bool isLocal { get; set; }
 
     /// <summary>
-    /// Current active text size
+    /// Current active text size. Setting this value triggers an update of the site's text size.
     /// </summary>
     private TextSizeEnum CurrentTextSize
     {
@@ -79,25 +80,38 @@ public partial class Chat : ComponentBase
         {
             currentTextSize = value;
             UpdateTextSize(value);
+            UpdateOnlineSettings(CachedSettings);
         }
     }
+    
+    private TextSizeEnum currentTextSize = TextSizeEnum.Normal;
 
     /// <summary>
     /// Specifies the number of recent messages to consider for generating the AI conversation context.
     /// </summary>
     private int ContextLength { get; set; } = 5;
 
+    /// <summary>
+    /// Controls how the AI will respond to a message.
+    /// </summary>
     private ResponseTypes CurrentResponseType;
-    
-    private TextSizeEnum currentTextSize = TextSizeEnum.Normal;
 
+    /// <summary>
+    /// Hides site content if content is loading.
+    /// </summary>
+    private bool isLoading;
+    
+    /// <summary>
+    /// Current font to be used in the website. Setting this value will trigger an update to the site's fonts.
+    /// </summary>
     private TextFontGroup CurrentTextFontGroup
     {
         get => currentTextFontGroup;
         set
         {
-            UpdateTextFont(value);
             currentTextFontGroup = value;
+            UpdateTextFont(currentTextFontGroup);
+            UpdateOnlineSettings(CachedSettings);
         }
     }
 
@@ -113,16 +127,36 @@ public partial class Chat : ComponentBase
     /// </summary>
     private Variant onlineVariant => isLocal ? Variant.Outlined : Variant.Filled;
     
+    /// <summary>
+    /// Button styling for if the user is in Detailed Response mode.
+    /// </summary>
     private Variant detailedResponseTypeVariant => CurrentResponseType == ResponseTypes.Long ? Variant.Filled : Variant.Outlined;
     
+    /// <summary>
+    /// Button styling for if the user is in Concise Response mode.
+    /// </summary>
     private Variant conciseResponseTypeVariant => CurrentResponseType == ResponseTypes.Short ? Variant.Filled : Variant.Outlined;
     
+    /// <summary>
+    /// Button styling for if the user is in formal response mode.
+    /// </summary>
     private Variant formalResponseTypeVariant => CurrentResponseType == ResponseTypes.Formal ? Variant.Filled : Variant.Outlined;
     
     /// <summary>
     /// Language to translate the question to.
     /// </summary>
-    private Language Language { get; set; } = Languages.English;
+    private Language Language
+    {
+        get => language;
+        set
+        {
+            language = value;
+            CachedSettings.language = Language.Code;
+            UpdateOnlineSettings(CachedSettings);
+        }
+    } 
+    
+    private Language language = Languages.English;
     
     /// <summary>
     /// If the prompt has a prefix applied asking to summarise a big text block
@@ -155,6 +189,8 @@ public partial class Chat : ComponentBase
         "sans-serif"
     ];
 
+    private Settings CachedSettings { get; set; } = new Settings();
+
     /// <summary>
     /// Icon for if the dropdown is visible or not.
     /// </summary>
@@ -180,10 +216,22 @@ public partial class Chat : ComponentBase
     /// Binding property to the sidebar open state.
     /// </summary>
     private bool _drawerOpen = true;
-    
+
     /// <summary>
     /// Binding property to the dark mode state.
     /// </summary>
+    public bool IsDarkMode
+    {
+        get => _isDarkMode;
+        set
+        {
+            _isDarkMode = value;
+            CachedSettings.darkmode = _isDarkMode;
+            UpdateOnlineSettings(CachedSettings);
+        }
+    }
+    
+    
     private bool _isDarkMode = true;
     
     /// <summary>
@@ -193,8 +241,8 @@ public partial class Chat : ComponentBase
     
     protected override async Task OnInitializedAsync()
     {
+        isLoading = true;
         await base.OnInitializedAsync();
-
         _theme = new DefaultTheme();
         isLocal = true;
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
@@ -206,11 +254,83 @@ public partial class Chat : ComponentBase
         }
         string userIDString = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
         userID = Int32.Parse(userIDString);
+        await InitializeUserSettings();
         await LoadLocalTopicsFromDB();
         await LoadOnlineTopicsFromDB();
+        isLoading = false;
     }
 
-    
+
+    /// <summary>
+    /// Loads user settings and updates the application state to reflect the user's saved preferences.'
+    /// If no settings are found for the user, creates default settings for the user
+    /// in the settings service.
+    /// </summary>
+    private async Task InitializeUserSettings()
+    {
+        CachedSettings = await SettingsClient.GetSettings(userID);
+        if (CachedSettings.account_id == 0)
+        {
+            await SettingsClient.CreateSettings(userID);
+            CachedSettings = await SettingsClient.GetSettings(userID);
+        }
+
+        IsDarkMode = CachedSettings.darkmode;
+
+        switch (CachedSettings.language)
+        {
+            case ("en-US"):
+                Language = Languages.English;
+                break; 
+            case ("fr-FR"):
+                Language = Languages.French;
+                break;
+            case ("de-DE"):
+                Language = Languages.German;
+                break;
+            case ("es-ES"):
+                Language = Languages.Spanish;
+                break;
+            case ("ja-JP"):
+                Language = Languages.Japanese;
+                break;
+            case ("zh-CN"):
+                Language = Languages.Chinese;
+                break;
+        }
+
+        switch (CachedSettings.fontsize)
+        {
+            case 0:
+                CurrentTextSize = TextSizeEnum.VerySmall;
+                break;
+            case 1:
+                CurrentTextSize = TextSizeEnum.Small;
+                break;
+            case 2:
+                CurrentTextSize = TextSizeEnum.Normal;
+                break;
+            case 3:
+                CurrentTextSize = TextSizeEnum.Large;
+                break;
+            case 4:
+                CurrentTextSize = TextSizeEnum.VeryLarge;
+                break;
+        }
+
+        switch (CachedSettings.font)
+        {
+            case 0:
+                CurrentTextFontGroup = TextFonts.Default;
+                break;
+            case 1:
+                CurrentTextFontGroup = TextFonts.Dyslexia;
+                break;
+            case 2:
+                CurrentTextFontGroup = TextFonts.Arial;
+                break;
+        }
+    }
 
 
     /// <summary>
@@ -451,7 +571,7 @@ public partial class Chat : ComponentBase
     /// </summary>
     private void DarkModeToggle()
     {
-        _isDarkMode = !_isDarkMode;
+        IsDarkMode = !IsDarkMode;
     }
     
     /// <summary>
@@ -546,7 +666,8 @@ public partial class Chat : ComponentBase
             Console.WriteLine("Loaded " + CachedLocalTopicList.Count + " topics from DB");
             if (CachedLocalTopicList.Count > 0 && ActiveLocalTopic == null)
             {
-                LocalMessages = new List<LocalMessageModel>(ActiveLocalTopic.messages);
+                if (ActiveLocalTopic?.messages != null)
+                    LocalMessages = new List<LocalMessageModel>(ActiveLocalTopic.messages);
             }
             StateHasChanged();
             Console.WriteLine("Finished loading topics from DB");
@@ -621,6 +742,11 @@ public partial class Chat : ComponentBase
         }
     }
 
+    
+    /// <summary>
+    /// Deletes an online topic from the database.
+    /// </summary>
+    /// <param name="topic">Topic to be deleted.</param>
     private async Task DeleteOnlineTopic(Topic topic)
     {
         await TopicClient.DeleteTopic(topic.topic_id);
@@ -628,8 +754,14 @@ public partial class Chat : ComponentBase
         await LoadOnlineTopicsFromDB();
     }
 
+    
+    /// <summary>
+    /// Update the active font used in the website.
+    /// </summary>
+    /// <param name="group">Font group to change to.</param>
     private void UpdateTextFont(TextFontGroup group)
     {
+        Console.WriteLine("Updated text group to " + group.Id + "");
         _theme.TextStyling.FontGroup = group;
         _theme.UpdateTheme();
         activeTextStyling = new TextStyling
@@ -637,8 +769,18 @@ public partial class Chat : ComponentBase
             FontGroup = group,
             Size = TextSizeConstants.Normal
         };
+        CachedSettings.font = group.Id;
+    }
+
+    private void UpdateOnlineSettings(Settings settings)
+    {
+        SettingsClient.UpdateSettings(settings.ToDto());
     }
     
+    /// <summary>
+    /// Update the active text size used in the website.
+    /// </summary>
+    /// <param name="size">Font size to change to.</param>
     private void UpdateTextSize(TextSizeEnum size)
     {
         switch (size)
@@ -651,6 +793,7 @@ public partial class Chat : ComponentBase
                     FontGroup = _theme.TextStyling.FontGroup,
                     Size = TextSizeConstants.Small
                 };
+                CachedSettings.fontsize = 1;
                 break;
             case TextSizeEnum.Normal:
                 _theme.TextStyling.Size = TextSizeConstants.Normal;
@@ -660,6 +803,7 @@ public partial class Chat : ComponentBase
                     FontGroup = _theme.TextStyling.FontGroup,
                     Size = TextSizeConstants.Normal
                 };
+                CachedSettings.fontsize = 2;
                 break;
             case TextSizeEnum.Large:
                 _theme.TextStyling.Size = TextSizeConstants.Large;
@@ -669,6 +813,7 @@ public partial class Chat : ComponentBase
                     FontGroup = _theme.TextStyling.FontGroup,
                     Size = TextSizeConstants.Large
                 };
+                CachedSettings.fontsize = 3;
                 break;
             case TextSizeEnum.VerySmall:
                 _theme.TextStyling.Size = TextSizeConstants.VerySmall;
@@ -678,6 +823,7 @@ public partial class Chat : ComponentBase
                     FontGroup = _theme.TextStyling.FontGroup,
                     Size = TextSizeConstants.VerySmall
                 };
+                CachedSettings.fontsize = 0;
                 break;
             case TextSizeEnum.VeryLarge:
                 _theme.TextStyling.Size = TextSizeConstants.VeryLarge;
@@ -687,7 +833,10 @@ public partial class Chat : ComponentBase
                     FontGroup = _theme.TextStyling.FontGroup,
                     Size = TextSizeConstants.VeryLarge
                 };
+                CachedSettings.fontsize = 4;
                 break;
         }
+
+        Console.WriteLine("Update cached settings font size to " + CachedSettings.fontsize + "");
     }
 }

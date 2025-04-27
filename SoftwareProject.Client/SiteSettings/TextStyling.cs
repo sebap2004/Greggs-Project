@@ -1,4 +1,4 @@
-﻿namespace SoftwareProject.Client.Data;
+﻿namespace SoftwareProject.Client.SiteSettings;
 
 /// <summary>
 /// Represents complete text styling configuration, including font group and text size.

@@ -28,6 +28,7 @@ builder.Services.AddTransient<AccountService>();
 builder.Services.AddTransient<ApiService>();
 builder.Services.AddScoped<IMessageService, MessageClient>();
 builder.Services.AddScoped<ITopicService, TopicClient>();
+builder.Services.AddScoped<ISettingsService, SettingsClient>();
 builder.Services.AddMudMarkdownServices();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthStateProvider>();
