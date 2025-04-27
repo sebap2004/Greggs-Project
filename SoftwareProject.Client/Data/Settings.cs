@@ -2,6 +2,10 @@
 
 namespace SoftwareProject.Client.Data;
 
+/// <summary>
+/// Settings contains references to the Settings table in the database.
+/// Use this to access the columns on the Settings table.
+/// </summary>
 public class Settings
 {
     [Key]

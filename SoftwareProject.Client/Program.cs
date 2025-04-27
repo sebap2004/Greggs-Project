@@ -19,10 +19,11 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
 });
 
-
+// Get the connection string from the appsettings.json file.
 builder.Services.AddDbContextFactory<ChatbotDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatbotDbConnection")));
 
+// Create services and APIs to connect to the database and store data locally.
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddTransient<AccountService>();
 builder.Services.AddTransient<ApiService>();
