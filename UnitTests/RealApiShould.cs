@@ -1,5 +1,5 @@
 using RichardSzalay.MockHttp;
-using SoftwareProject.Backend;
+using SoftwareProject.Client.Backend;
 
 namespace UnitTests;
 
