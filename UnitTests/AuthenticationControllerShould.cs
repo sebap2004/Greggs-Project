@@ -156,8 +156,10 @@ public class AuthenticationControllerShould
         Assert.Equal("Account data is null", badRequest.Value);
     }
     
+    ///<summary>
     /// When the Register method is called on tge AccountController with empty fields
     /// checks a bad request is returned.
+    /// </summary>
     [Theory]
     [InlineData("username", "email", "")]
     [InlineData("", "email", "password")]
