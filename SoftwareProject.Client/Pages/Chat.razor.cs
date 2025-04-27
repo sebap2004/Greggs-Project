@@ -441,22 +441,6 @@ public partial class Chat : ComponentBase
                 Console.WriteLine("Message created status: " + creationAttempt);
             }
         }
-
-        // If the language is NOT english, call translation API to translate prompt.
-        // Translation of prompt facilitates response to prompt in the same language.
-        if (Language != Languages.English)
-        {
-            Console.WriteLine("Translating question: " + (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion +
-                              " to " + Language.Name);
-            var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
-                {
-                    Text = tempQuestion,
-                    Language = Language.Code
-                }
-            ); // Call google API
-            var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
-            tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
-        }
         
         // Get AI response
         Console.WriteLine("Sending message to AI: " + tempQuestion + "");
@@ -467,7 +451,23 @@ public partial class Chat : ComponentBase
         // If summarise text enabled, Just use the last message.
         if (SummariseText)
         {
-            response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
+            // If the language is NOT english, call translation API to translate prompt.
+            // Translation of prompt facilitates response to prompt in the same language.
+            if (Language != Languages.English)
+            {
+                Console.WriteLine("Translating question: " + (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion +
+                                  " to " + Language.Name);
+                var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
+                    {
+                        Text = (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion,
+                        Language = Language.Code
+                    }
+                ); // Call google API
+                var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
+                tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
+                Console.WriteLine("Translated question: " + tempQuestion);
+            }
+            response = await ai.GetMessage(tempQuestion, !UseAI);
         }
         // If summarise text enabled, use the latest N amount of messages, where N is the set ContextLength
         else
@@ -502,7 +502,22 @@ public partial class Chat : ComponentBase
                 }
                 context += "DO NOT REFERENCE THIS CONTEXT IN YOUR RESPONSE. Based on this previous context, answer this question: " + offlineMessage.content + " \n";
                 Console.WriteLine(context);
-                response = await ai.GetMessage(context, !UseAI);
+                // If the language is NOT english, call translation API to translate prompt.
+                // Translation of prompt facilitates response to prompt in the same language.
+                if (Language != Languages.English)
+                {
+                    Console.WriteLine("Translating question: " + (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion +
+                                      " to " + Language.Name);
+                    var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
+                        {
+                            Text = context,
+                            Language = Language.Code
+                        }
+                    ); // Call google API
+                    var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
+                    tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
+                }
+                response = await ai.GetMessage(tempQuestion, !UseAI);
             }
             else
             {
@@ -520,7 +535,22 @@ public partial class Chat : ComponentBase
                 }
                 context += "DO NOT REFERENCE THIS CONTEXT IN YOUR RESPONSE. Based on this previous context, answer this question: " + offlineMessage.content + " \n";
                 Console.WriteLine(context);
-                response = await ai.GetMessage(context, !UseAI);
+                // If the language is NOT english, call translation API to translate prompt.
+                // Translation of prompt facilitates response to prompt in the same language.
+                if (Language != Languages.English)
+                {
+                    Console.WriteLine("Translating question: " + (SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion +
+                                      " to " + Language.Name);
+                    var translation = await http.PostAsJsonAsync("api/translate", new TranslateRequest
+                        {
+                            Text = context,
+                            Language = Language.Code
+                        }
+                    ); // Call google API
+                    var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
+                    tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
+                }
+                response = await ai.GetMessage(tempQuestion, !UseAI);
             }
         }
         
