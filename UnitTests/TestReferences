@@ -1,0 +1,11 @@
+MessageControllerShould.cs
+Microsoft (no date) Integration tests in ASP.NET Core. Available at: https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-9.0 (Accessed: 27 April 2025).
+
+LoginPageNavigation.cs
+Playwright .NET (no date) Writing tests. Available at: https://playwright.dev/dotnet/docs/writing-tests (Accessed: 27 April 2025).
+
+AuthenticationControllerShould.cs
+HeroWong (2021) ‘How to unit test HttpContext.SignInAsync()?’, Stack Overflow. Available at: https://stackoverflow.com/q/47198341 (Accessed: 27 April 2025).
+
+GeminiClientShould.cs & RealApiShould.cs
+bUnit (no date) Mocking HttpClient. Available at: https://bunit.dev/docs/test-doubles/mocking-httpclient.html (Accessed: 27 April 2025).

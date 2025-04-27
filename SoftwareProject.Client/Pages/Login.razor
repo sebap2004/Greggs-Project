@@ -3,7 +3,6 @@
 @using SoftwareProject.Client.Layout
 @using SoftwareProject.Services
 @layout WelcomePageLayout
-@inject AccountService accountService
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider AuthStateProvider
 @inject HttpClient http
@@ -13,8 +12,26 @@
     <MudText GutterBottom="true" Typo="Typo.h3"><b>Sign Up or Log In</b></MudText>
     <MudPaper Class="mt-4" Width="50%">
         <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+            <MudTabPanel Text="Log In">
+                <EditForm Model=@account FormName="loginForm" OnValidSubmit="AttemptLogin">
+                    <DataAnnotationsValidator/>
+                    <MudCard Elevation="0" Class="p-0">
+                        <MudCardContent>
+                            <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
+                            <MudTextField @bind-Value="account.email" T="string" Label="Email"  id="login-email" Class="mt-3"/>
+                            <MudTextField @bind-Value="account.password" T="string" Label="Password" id="login-password" HelperText="Choose a strong password" Class="mt-3"
+                                          InputType="InputType.Password"/>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton ButtonType="ButtonType.Submit" id="login-button" Variant="Variant.Filled" Color="Color.Primary"
+                                       Class="ml-auto">Log In
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </EditForm>
+            </MudTabPanel>
             <MudTabPanel Text="Sign Up">
-                <EditForm Model=@account OnValidSubmit="AttemptRegister">
+                <EditForm Model=@account FormName="RegisterForm" OnValidSubmit="AttemptRegister">
                     <DataAnnotationsValidator/>
                     <MudCard Elevation="0" Class="p-0">
                         <MudCardContent>
@@ -29,24 +46,6 @@
                         <MudCardActions>
                             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary"
                                        Class="ml-auto">Register
-                            </MudButton>
-                        </MudCardActions>
-                    </MudCard>
-                </EditForm>
-            </MudTabPanel>
-            <MudTabPanel Text="Sign In">
-                <EditForm Model=@account OnValidSubmit="AttemptLogin">
-                    <DataAnnotationsValidator/>
-                    <MudCard Elevation="0" Class="p-0">
-                        <MudCardContent>
-                            <MudText GutterBottom="true" Typo="Typo.h4"><b>Log In</b></MudText>
-                            <MudTextField @bind-Value="account.email" T="string" Label="Email"  id="email" Class="mt-3"/>
-                            <MudTextField @bind-Value="account.password" T="string" Label="Password"  id="password" HelperText="Choose a strong password" Class="mt-3"
-                                          InputType="InputType.Password"/>
-                        </MudCardContent>
-                        <MudCardActions>
-                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary"
-                                       Class="ml-auto">Log In
                             </MudButton>
                         </MudCardActions>
                     </MudCard>

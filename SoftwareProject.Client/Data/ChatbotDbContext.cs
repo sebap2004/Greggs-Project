@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SoftwareProject.Client.Data;
 
 namespace SoftwareProject.Data;
 
@@ -11,7 +12,10 @@ public class ChatbotDbContext : DbContext
     public ChatbotDbContext(DbContextOptions<ChatbotDbContext> options) : base(options) { }
     
     /// <summary>
-    /// Calls the Account table from the greggsproject database.
+    /// Calls and assigns the tables from the greggsproject database.
     /// </summary>
     public DbSet<Account> Account { get; set; }
+    public DbSet<Topic> Topic { get; set; }
+    public DbSet<Message> Message { get; set; }
+    public DbSet<Settings> Settings { get; set; }
 }

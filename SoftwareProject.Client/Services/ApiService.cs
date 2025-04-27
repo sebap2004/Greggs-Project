@@ -25,11 +25,10 @@ public class ApiService
         string apiKey = "AIzaSyCAZDUnJ_C2YQSJ_YfZVHaJrsTQpwZbqG8";
         var httpClient = new HttpClient();
         _geminiClient = new GeminiClient(httpClient, apiKey);
-
         var fakeHttpClient = A.Fake<HttpClient>();
         _fakeGeminiClient = new FakeGeminiClient(fakeHttpClient, apiKey);
     }
-
+  
     /// <summary>
     /// Gets prompt input and returns a response from the real/stub API
     /// </summary>

@@ -1,17 +1,26 @@
 ﻿@page "/chat"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
+@using SoftwareProject.Client.Data
+@using SoftwareProject.Client.Interfaces
 @using SoftwareProject.Services
 @using SoftwareProject.Client.Layout
 @using SoftwareProject.Client.Services
+@using SoftwareProject.Client.Models
+@using SoftwareProject.Client.SiteSettings
+@using MudExtensions
 @inject AuthenticationStateProvider AuthStateProvider
 @inject HttpClient http
 @inject NavigationManager NavigationManager
 @inject ApiService ai
+@inject IMagicIndexedDb magicDb
 @inject ISnackbar Snackbar
+@inject IMessageService MessageClient
+@inject ITopicService TopicClient
+@inject ISettingsService SettingsClient
 
 
-<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode"/>
+<MudThemeProvider @key="activeTextStyling" Theme="@_theme" IsDarkMode="IsDarkMode"/>
 <MudPopoverProvider/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
@@ -28,28 +37,67 @@
             <Authorized>
                <MudButton Size="Size.Large" OnClick="() => QuickSettingsUp = !QuickSettingsUp" EndIcon="@DropdownIcon">
                   @context.User.FindFirst(ClaimTypes.Name)?.Value
-                  <MudPopover AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight" Open="QuickSettingsUp">
+                  <MudPopover AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight"
+                              Open="QuickSettingsUp">
                      <MudPaper Class="is-display-flex p-3 is-flex-direction-column is-align-items-flex-start"
                                Width="20rem" Elevation="0">
                         <MudText Typo="Typo.h6"><b>Quick Settings</b></MudText>
                         <MudStack Class="is-align-items-center" Style="width: 100%" Row="true">
-                           <MudText>Use Fake</MudText>
+                           <MudText>Use real AI API</MudText>
                            <MudSpacer></MudSpacer>
-                           <MudToggleIconButton @bind-Toggled="UseFake"
-                                                Icon="@Icons.Material.Filled.CheckCircle"
-                                                Color="@Color.Success"
-                                                ToggledIcon="@Icons.Material.Filled.Cancel"
-                                                ToggledColor="@Color.Error"
-                                                title="@(UseFake ? "On" : "Off")"/>
+                           <MudSwitch Color="Color.Primary" @bind-Value="UseAI"></MudSwitch>
                         </MudStack>
-                        <MudSelect Value="Fonts[0]" Variant="Variant.Outlined" Class="mb-2" FullWidth="true" T="string" Label="Font">
-                           <MudSelectItem Value="Fonts[0]" T="string">Default</MudSelectItem>
-                           <MudSelectItem Value="Fonts[1]" T="string">Calibri</MudSelectItem>
-                           <MudSelectItem Value="Fonts[2]" T="string">Cool font</MudSelectItem>
-                           <MudSelectItem Value="Fonts[3]" T="string">Shit fucking font</MudSelectItem>
+                        <MudSlider Step="1" T="int" @bind-Value="ContextLength" TickMarks="true" Max="10">AI Context
+                           Length: @ContextLength</MudSlider>
+                        <MudSelect @bind-Value="CurrentTextFontGroup" Variant="Variant.Outlined" Class="mb-2"
+                                   FullWidth="true" T="TextFontGroup"
+                                   Label="Font">
+                           <MudSelectItem Value="TextFonts.Default" T="TextFontGroup">Default</MudSelectItem>
+                           <MudSelectItem Value="TextFonts.Dyslexia" T="TextFontGroup">Dyslexic</MudSelectItem>
+                           <MudSelectItem Value="TextFonts.Arial" T="TextFontGroup">Arial</MudSelectItem>
                         </MudSelect>
-                        <MudNumericField Value="11" FullWidth="true" Class="mb-2" Label="Font Size" Variant="Variant.Outlined" Min="11" Max="50" />
-                        <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error" OnClick="Logout">Logout</MudButton>
+                        <MudSelect @bind-Value="CurrentTextSize" Variant="Variant.Outlined" FullWidth="true"
+                                   Class="mb-2" T="TextSizeEnum">
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VerySmall">Very Small</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Small">Small</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Normal">Normal</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.Large">Large</MudSelectItem>
+                           <MudSelectItem T="TextSizeEnum" Value="TextSizeEnum.VeryLarge">Very Large</MudSelectItem>
+                        </MudSelect>
+                        <MudSelect @bind-Value="Language" Variant="Variant.Outlined" Class="mb-2" FullWidth="true"
+                                   T="Language" Label="Language">
+                           <MudSelectItem Value="Languages.English" T="Language">@Languages.English.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.French" T="Language">@Languages.French.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Japanese"
+                                          T="Language">@Languages.Japanese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Chinese" T="Language">@Languages.Chinese.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.Spanish" T="Language">@Languages.Spanish.Name</MudSelectItem>
+                           <MudSelectItem Value="Languages.German" T="Language">@Languages.German.Name</MudSelectItem>
+                        </MudSelect>
+                        <MudText GutterBottom="true" Class="mt-2" Align="Align.Center"><b>Storage Mode</b></MudText>
+                        <MudButtonGroup Class="mb-2" FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
+                           <MudButton FullWidth="true" Color="Color.Primary" Variant="localVariant"
+                                      OnClick="() => isLocal = true">Local
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="onlineVariant"
+                                      OnClick="() => isLocal = false">Online
+                           </MudButton>
+                        </MudButtonGroup>
+                        <MudText GutterBottom="true" Class="mt-2" Align="Align.Center"><b>AI Response Type</b></MudText>
+                        <MudButtonGroup Class="mb-2" FullWidth="true" Variant="Variant.Filled" OverrideStyles="false">
+                           <MudButton FullWidth="true" Color="Color.Primary" Variant="detailedResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Long">Detailed
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Secondary" Variant="conciseResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Short">Concise
+                           </MudButton>
+                           <MudButton FullWidth="true" Color="Color.Tertiary" Variant="formalResponseTypeVariant"
+                                      OnClick="() => CurrentResponseType = ResponseTypes.Formal">Formal
+                           </MudButton>
+                        </MudButtonGroup>
+                        <MudButton Class="is-align-self-flex-end" Variant="Variant.Filled" Color="Color.Error"
+                                   OnClick="Logout">Logout
+                        </MudButton>
                      </MudPaper>
                   </MudPopover>
                </MudButton>
@@ -59,64 +107,141 @@
             </NotAuthorized>
          </AuthorizeView>
       </CascadingAuthenticationState>
-
    </MudAppBar>
-   <MudDrawer id="nav-drawer" Width="20%" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-      <MudList Dense="true" T="string">
-         <MudListItem>
-            Test topic 1 - my brother has sepsis and wants to kill himself?
-         </MudListItem>
-         <MudListItem>
-            Test topic 2
-         </MudListItem>
-         <MudListItem>
-            Test topic 3
-         </MudListItem>
-      </MudList>
-   </MudDrawer>
-   <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
-      <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
-         <MudPaper Elevation="0" Class="is-flex-grow-1 is-overflow-y-scroll">
 
-            @foreach (Message response in apiResponses)
+   @if (!isLoading)
+   {
+      <MudDrawer id="nav-drawer" Width="20%" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+         <MudStack Class="mt-2 mx-2">
+            <MudButton OnClick="NewTopic" Color="Color.Primary" Variant="Variant.Filled" FullWidth="true">New Chat
+            </MudButton>
+         </MudStack>
+
+         <MudList Dense="true" T="string">
+            @if (isLocal)
             {
-               if (response.isUser)
+               foreach (var topic in CachedLocalTopicList)
                {
-                  <MudChat ChatPosition="ChatBubblePosition.End">
-                     <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.Arta" Value="@response.content"></MudMarkdown>
-                     </MudChatBubble>
-                  </MudChat>
+                  <MudListItem Class="d-flex" OnClick="() => UpdateActiveLocalTopic(topic)">
+                     <div class="d-flex is-align-items-center">
+                        <MudText
+                           Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@topic.Topic</MudText>
+                        <MudSpacer></MudSpacer>
+                        <MudIconButton OnClick="async () => { await DeleteLocalTopic(topic); NewTopic(); }"
+                                       Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                     </div>
+                  </MudListItem>
+               }
+            }
+            else
+            {
+               foreach (var onlineTopic in CachedOnlineTopicList)
+               {
+                  <MudListItem Class="d-flex" OnClick="() => UpdateActiveOnlineTopic(onlineTopic)">
+                     <div class="d-flex is-align-items-center">
+                        <MudText
+                           Style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@onlineTopic.topicname</MudText>
+                        <MudSpacer></MudSpacer>
+                        <MudIconButton OnClick="async () => { await DeleteOnlineTopic(onlineTopic); NewTopic();  }"
+                                       Color="Color.Error" Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                     </div>
+                  </MudListItem>
+               }
+            }
+         </MudList>
+      </MudDrawer>
+      <MudMainContent Style="height: calc(100vh - var(--mud-appbar-height))" Class="mt-16 pa-4">
+         <MudPaper class="d-flex flex-column p-0" style="height: 100%;">
+            <MudPaper Elevation="0" Class="is-flex-grow-1 is-overflow-y-scroll">
+               @if (isLocal)
+               {
+                  @foreach (LocalMessageModel response in LocalMessages)
+                  {
+                     if (response.isHuman)
+                     {
+                        <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
+                           <MudChatBubble>
+                              <MudMarkdown Styling="new MudMarkdownStyling()" CodeBlockTheme="CodeBlockTheme.Dark"
+                                           Value="@response.content"></MudMarkdown>
+                           </MudChatBubble>
+                        </MudChat>
+                     }
+                     else
+                     {
+                        <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
+                           <MudChatBubble>
+                              <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark" Value="@response.content"></MudMarkdown>
+                           </MudChatBubble>
+                        </MudChat>
+                     }
+                  }
                }
                else
                {
-                  <MudChat ChatPosition="ChatBubblePosition.Start">
-                     <MudChatBubble>
-                        <MudMarkdown CodeBlockTheme="CodeBlockTheme.A11yDark" Value="@response.content"></MudMarkdown>
-                     </MudChatBubble>
-                  </MudChat>
+                  @foreach (var response in OnlineMessages)
+                  {
+                     if (!response.AiResponse)
+                     {
+                        <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.End">
+                           <MudChatBubble>
+                              <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark"
+                                           Value="@response.MessageText"></MudMarkdown>
+                           </MudChatBubble>
+                        </MudChat>
+                     }
+                     else
+                     {
+                        <MudChat Class="mt-2" ChatPosition="ChatBubblePosition.Start">
+                           <MudChatBubble>
+                              <MudMarkdown CodeBlockTheme="CodeBlockTheme.Dark"
+                                           Value="@response.MessageText"></MudMarkdown>
+                           </MudChatBubble>
+                        </MudChat>
+                     }
+                  }
                }
-            }
-
-         </MudPaper>
-         <MudPaper Elevation="0" Style="background-color: transparent" Height="10%">
-            <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
-               <MudPaper Style="background-color: transparent" Elevation="0" Width="89%">
-                  <MudTextField AutoGrow="true" OnKeyDown="PromptEnterHandler" @bind-Value="Question" T="string"
-                                Immediate="true" Variant="Variant.Outlined" Label="Message"/>
-               </MudPaper>
-               <MudPaper Style="background-color: transparent" Elevation="0" Width="10%" Class="d-flex justify-center">
-                  <MudButton Disabled="SendingDisabled" OnClick="Submit" StartIcon="@Icons.Material.Filled.Send"
-                             Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Send
-                  </MudButton>
+            </MudPaper>
+            <MudPaper Elevation="0" Style="background-color: transparent" Height="12%">
+               <MudPaper Elevation="0" class="d-flex flex-grow-1 gap-4 p-3">
+                  <MudPaper Elevation="0" Width="11%" align="center"
+                            Class="d-flex justify-center is-align-items-center">
+                     <MudTooltip Color="Color.Primary" Delay="1000" Text="Summarises long blocks of text.">
+                        <MudButton Variant="Variant.Filled" OnClick="() => SummariseText = !SummariseText"
+                                   StartIcon="@SummariseTextLabel" Color="SummariseButtonColor">Summarise
+                        </MudButton>
+                     </MudTooltip>
+                  </MudPaper>
+                  <MudPaper Style="background-color: transparent" Elevation="0" Width="90%">
+                     <MudTextField Disabled="SendingDisabled" AutoGrow="true" MaxLines="2"
+                                   OnKeyDown="PromptEnterHandler"
+                                   @bind-Value="Question" T="string"
+                                   Immediate="true" Variant="Variant.Outlined" Label="Message"/>
+                  </MudPaper>
+                  <MudPaper Style="background-color: transparent" Elevation="0" Width="10%"
+                            Class="d-flex justify-center">
+                     <MudButton Disabled="SendingDisabled" OnClick="Submit" StartIcon="@Icons.Material.Filled.Send"
+                                Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Send
+                     </MudButton>
+                  </MudPaper>
                </MudPaper>
             </MudPaper>
          </MudPaper>
+      </MudMainContent>
+   }
+   else
+   {
+      <MudPaper Class="is-display-flex is-justify-content-center is-flex-direction-row is-align-items-center"
+                Height="100%">
+         <MudLoading Darken="true" Loading="true" Text="Connecting...">
+
+         </MudLoading>
       </MudPaper>
-   </MudMainContent>
+   }
+
+
 </MudLayout>
 <div id="blazor-error-ui" data-nosnippet>
-   An unhandled error has occurresd.
+   An unhandled error has occurred Erm this is bad.
    <a href="." class="reload">Reload</a>
    <span class="dismiss">🗙</span>
 </div>

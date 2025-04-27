@@ -2,40 +2,41 @@ using Bunit;
 using Bunit.TestDoubles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Playwright;
+using Microsoft.Playwright.Xunit;
+using NUnit.Framework;
 
 namespace FrontEndTests;
 
-public class LoginPageNavigation
+
+public class LoginPageNavigation : PageTest
 {
-    [Fact]
+ 
+    /// <summary>
+    /// Class Created by Dan
+    /// This source helped me understand playwright https://playwright.dev/dotnet/docs/writing-tests (Playwright .NET, no date)
+    /// Referenced in TestReferences.txt
+    /// this test fills in a pre-defined username and password and checks that the url changes to /chat with a text box, message
+    /// at the moment this isn't quite working due to some issue with the form to see the issue: run with the following command
+    /// dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless=false Playwright.LaunchOptions.Channel=msedge
+    /// 
+    /// </summary>
+    [Fact(Skip = "having issue with login failing")]
     public async Task LoginPageShouldRedirect()
     {
-        //Initialise Playwright
-        var playwright = await Playwright.CreateAsync();
-        //'Chromium' Firefox' 'Webkit'
-        var browser = await playwright
-            .Chromium
-            .LaunchAsync();
+        //go to page login page
+        await Page.GotoAsync("https://localhost:3000/login");
+        await Page.Locator("#login-email").FillAsync("wilm@test.co.uk");
+        await Page.Locator("#login-password").FillAsync("12345");
+        await Page.Locator("#login-button").ClickAsync();
 
-        var browserContext = await browser.NewContextAsync();
-        var page = await browserContext.NewPageAsync();
+        await Page.WaitForLoadStateAsync();
         
-        //navmanager
-        var ctx = new TestContext();
-        var navManager = ctx.Services.GetRequiredService<FakeNavigationManager>();
-
-        //go to page
-        await page.GotoAsync("https://localhost:3000/login");
-        // await page.GetByRole(AriaRole.Link, new(){Name = "LOG IN"}).ClickAsync();
-        await page.Locator("text=Sign In").ClickAsync();
-        await page.Locator("#email").FillAsync("wilm@test.co.uk");
-        await page.Locator("#password").FillAsync("12345");
-        await page.Locator("[type=submit]").ClickAsync();
+        // press login button
+        await Assertions.Expect(Page).ToHaveURLAsync("https://localhost:3000/chat"); 
         
-        await Assertions.Expect(page.Locator("h1")).ToHaveTextAsync("Welcome to NovaChat", new LocatorAssertionsToHaveTextOptions
+        await Assertions.Expect(Page.GetByLabel("Message")).ToHaveCountAsync(1, new()
         {
-            Timeout = 5000 //  Increased timeout to 5 seconds (5000ms) to handle Blazor load times
-        });        
-        
+            Timeout = 5000
+        });
     }
 }

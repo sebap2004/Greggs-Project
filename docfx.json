@@ -47,7 +47,7 @@
       "_appName": "Software Project Documentation",
       "_appTitle": "Software Project Documentation",
       "_enableSearch": true,
-      "pdf": false
+      "pdf": true
     }
   }
 }

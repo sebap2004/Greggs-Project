@@ -5,6 +5,14 @@ namespace UnitTests;
 
 public class RealApiShould
 {
+    /// <summary>
+    /// Class Created by Dan
+    /// Used website as reference point for these tests https://bunit.dev/docs/test-doubles/mocking-httpclient.html (bUnit, no date)
+    /// Referenced in TestReferences.txt
+    /// Tests a successful API call will return the expected result.
+    /// The MockHttp library (MockHttpMessageHandler) is used to simulate a valid reply using Json and fake variables.
+    /// The test checks result of the api call matches the expected value.
+    /// </summary>
     [Fact]
     public async Task GetResponse_OnSuccess_ReturnsTextFromValidApiResponse()
     {
@@ -26,7 +34,7 @@ public class RealApiShould
                         }}
                     ]
                 }}");
-            //https://stackoverflow.com/questions/49956455/mock-httpclient-with-multiple-requests
+        
         var httpClient = new HttpClient(mockHttp);
         var api = new RealApi();
         

@@ -9,8 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
         <PackageReference Include="bunit.core" Version="1.39.5" />
         <PackageReference Include="bunit.web" Version="1.39.5" />
+        <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="8.1.0" />
+        <PackageReference Include="Google.Cloud.Translate.V3" Version="3.9.0" />
+        <PackageReference Include="Magic.IndexedDb" Version="2.0.0-alpha6" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
         <PackageReference Include="Moq" Version="4.20.72" />
@@ -29,6 +33,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SoftwareProject.Client\SoftwareProject.Client.csproj" />
+      <ProjectReference Include="..\SoftwareProject\SoftwareProject.csproj" />
     </ItemGroup>
 
 </Project>
