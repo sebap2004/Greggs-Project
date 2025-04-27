@@ -6,6 +6,11 @@ namespace UnitTests;
 
 public class GeminiClientShould
 {
+    
+    /// <summary>
+    /// his method is testing that a successful API call made through GeminiClient returns the expected response text. 
+    /// Mocked HTTP is used to simulate a valid reply using JSON and fake variables. The code asserts the reply's output matches the expected value.
+    /// </summary>
     [Fact]
     public async Task GeminiCall_ReturnsCorrectText_FromValidApiResponse()
     {
@@ -39,6 +44,10 @@ public class GeminiClientShould
         Assert.Equal(fakeResponse, result);
     }
 
+    /// <summary>
+    /// Tests that GeminiClient returns null when the API call returns a http error. 
+    /// To do this a mocked HTTP response is used to simulate the error to verify proper handling.
+    /// </summary>
     [Fact]
     public async Task GeminiCall_ReturnsNull_FromHttpError()
     {      
@@ -59,6 +68,11 @@ public class GeminiClientShould
         // Assert
         Assert.Null(result);
     }
+    
+    /// <summary>
+    /// /// This method tests that GeminiClient returns null when the API responds with invalid JSON. 
+    /// Mocked response sends broken JSON to verify error handling correctly works.
+    /// </summary>
     
     [Fact]
     public async Task GeminiCall_ReturnsNull_FromJsonError()
@@ -83,6 +97,10 @@ public class GeminiClientShould
         Assert.Null(result);
     }
     
+    /// <summary>
+    /// This method tests that TestGeminiConnection returns true when the response is done successfully. 
+    /// Simulates a valid response with status code 200 ( 200 means OK).
+    /// </summary>
     [Fact]
     public async Task TestGeminiConnection_ReturnsTrue_UponSuccess()
     {
@@ -105,6 +123,10 @@ public class GeminiClientShould
         Assert.True(result);
     }
     
+    /// <summary>
+    /// This method tests that TestGeminiConnection returns false when the response is done unsuccessfully. 
+    /// Simulates a failed response with status code 500 (500 means Internal Server Error).
+    /// </summary>
     [Fact]
     public async Task TestGeminiConnection_ReturnsFalse_UponFailure()
     {

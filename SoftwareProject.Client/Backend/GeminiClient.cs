@@ -8,7 +8,7 @@ public class GeminiClient(HttpClient httpClient, string apiKey) : IApiClient
 {
     private readonly RealApi _realApi = new();
 
-    public async Task<string> GeminiCall(string prompt)
+    public async Task<string?> GeminiCall(string prompt)
     {
         try
         {

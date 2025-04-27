@@ -5,6 +5,9 @@ namespace UnitTests;
 
 public class RealApiShould
 {
+    /// <summary>
+    /// Tests a successful API call will return the expected result. Mocked HTTP is used to simulate a valid reply using Json and fake variables. The code asserts the replies output matches the expected value.
+    /// </summary>
     [Fact]
     public async Task GetResponse_OnSuccess_ReturnsTextFromValidApiResponse()
     {
@@ -26,7 +29,7 @@ public class RealApiShould
                         }}
                     ]
                 }}");
-            //https://stackoverflow.com/questions/49956455/mock-httpclient-with-multiple-requests
+        
         var httpClient = new HttpClient(mockHttp);
         var api = new RealApi();
         
