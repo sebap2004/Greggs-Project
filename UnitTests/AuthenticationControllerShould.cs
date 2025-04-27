@@ -17,22 +17,32 @@ public class AuthenticationControllerShould
     private Mock<IServiceProvider> serviceProviderMock;
     private Mock<IAccountService> accountServiceMock;
     
+    /// <summary>
+    /// The Authentication Controller had several methods that were awkward to mock, (HttpContext.SignAsync and SignOutAsync
+    /// in ControllerBase). To mock these methods, it was necessary to initialise the Controller's ControllerContext with a custom 
+    /// HttpContext, where RequestServices was replaced with a mock service provider (serviceProviderMock). This mock service provider 
+    /// returns the authentication service mock, which contains the mocked implementations of SignInAsync and SignOutAsync.
+    /// got the idea from https://stackoverflow.com/questions/47198341/how-to-unit-test-httpcontext-signinasync (HeroWong, 2021)
+    /// </summary>
     public AuthenticationControllerShould()
     {
         authServiceMock = new Mock<IAuthenticationService>();
         authServiceMock
-            .Setup(_ => _.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()))
-            .Returns(Task.CompletedTask);
-        authServiceMock
-            .Setup(_ => _.SignOutAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<AuthenticationProperties>()))
+            .Setup(a => a.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()))
             .Returns(Task.CompletedTask);
         serviceProviderMock = new Mock<IServiceProvider>();
         serviceProviderMock
-            .Setup(_ => _.GetService(typeof(IAuthenticationService)))
+            .Setup(s => s.GetService(typeof(IAuthenticationService)))
             .Returns(authServiceMock.Object);        
         accountServiceMock = new Mock<IAccountService>(MockBehavior.Strict);
     }
     
+    /// <summary>
+    /// Initialisation of controller adapted from (HeroWong, 2021).
+    /// Tests calling lLoginAccount on the AuthenticationController with a valid username and password.
+    /// Verifies that the correct methods — SignInAsync and LoginAccount (mocked services) — are called
+    /// and that a successful result is returned with the expected object and properties.
+    /// </summary>
     [Fact]
     public async Task LoginSubmit_OnSuccess_ShouldReturnSuccessWithAccount()
     {
@@ -55,7 +65,7 @@ public class AuthenticationControllerShould
                     RequestServices = serviceProviderMock.Object
                 }
             }
-        };
+        }; //(HeroWong, 2021)
         
         //act
         var result = await controller.Login(new AccountModel
@@ -84,6 +94,12 @@ public class AuthenticationControllerShould
         authServiceMock.Verify(a => a.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()));
     }
     
+    /// <summary>
+    /// Initialisation of controller adapted from (HeroWong, 2021).
+    /// When the Register method is called on the AccountController with valid data.
+    /// Verifies that the correct methods — SignInAsync and CreateAccount (mocked services) — are called
+    /// and that a successful result is returned with the expected object and properties.
+    /// </summary>
     [Fact]
     public async Task Register_OnSuccess_ShouldCreateNewAccount()
     {
@@ -103,7 +119,7 @@ public class AuthenticationControllerShould
                     RequestServices = serviceProviderMock.Object
                 }
             }
-        };
+        }; //(HeroWong, 2021)
         
         //act
         var result = await controller.Register(new AccountModel
@@ -121,10 +137,14 @@ public class AuthenticationControllerShould
         authServiceMock.Verify(a => a.SignInAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<ClaimsPrincipal>(), It.IsAny<AuthenticationProperties>()));
     }
     
+    /// <summary>
+    /// When the Register method is called on tge AccountController with invalid data,
+    /// checks a bad request is returned.
+    /// </summary>
     [Fact]
     public async Task  Register_WhenAccountModelIsNull_ShouldReturnBadRequest()
     {
-        //arange
+        //arrange
         var controller = new AuthenticationController(accountServiceMock.Object);
         
         //act
@@ -135,6 +155,8 @@ public class AuthenticationControllerShould
         Assert.Equal("Account data is null", badRequest.Value);
     }
     
+    /// When the Register method is called on tge AccountController with empty fields
+    /// checks a bad request is returned.
     [Theory]
     [InlineData("username", "email", "")]
     [InlineData("", "email", "password")]
@@ -157,7 +179,12 @@ public class AuthenticationControllerShould
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("Required fields are missing", badRequest.Value);
     }
-
+    
+    /// <summary>
+    /// Initialisation of controller adapted from (HeroWong, 2021).
+    /// When the GetCurrentUser method is called on the AccountController, 
+    /// checks that success is returned (200) with a list of claims. 
+    /// </summary>
     [Fact]
     public async Task GetCurrentUser_OnSuccess_ShouldReturnClaims()
     {
@@ -179,7 +206,7 @@ public class AuthenticationControllerShould
                     User = new ClaimsPrincipal(identity)
                 },
             }
-        };
+        }; //(HeroWong, 2021). 
         
         //act
         var result = await controller.GetCurrentUser();
@@ -191,10 +218,19 @@ public class AuthenticationControllerShould
         Assert.NotNull(okResult.Value);
     }
     
+    /// <summary>
+    /// Initialisation of controller adapted from (HeroWong, 2021).
+    /// When logout out method is called
+    /// Verifies that the correct methods — SignOutAsync (mocked services) — are called
+    /// Check that status is ok (200) 
+    /// </summary>
     [Fact]
     public async Task Logout_OnSuccess_ShouldReturnOk()
     {
         //arrange
+        authServiceMock
+            .Setup(_ => _.SignOutAsync(It.IsAny<HttpContext>(), It.IsAny<string>(), It.IsAny<AuthenticationProperties>()))
+            .Returns(Task.CompletedTask);
         var controller = new AuthenticationController(accountServiceMock.Object)
         {
             ControllerContext = new ControllerContext
@@ -203,7 +239,7 @@ public class AuthenticationControllerShould
                     RequestServices = serviceProviderMock.Object
                 }
             }
-        };
+        }; //(HeroWong, 2021)
         
         //act
         var result = await controller.Logout();
