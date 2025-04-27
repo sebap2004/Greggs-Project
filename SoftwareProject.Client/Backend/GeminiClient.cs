@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using SoftwareProject.Client.Interfaces;
 using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Backend;
@@ -27,17 +28,17 @@ public class GeminiClient(HttpClient httpClient, string apiKey) : IApiClient
             return await _realApi.GetResponse(prompt, httpClient, apiKey);
         } catch (HttpRequestException ex)
         {
-            Console.WriteLine($"API Request Error: {ex.Message}");
+            Console.WriteLine($"Request error: {ex.Message}");
             return null;
         }
         catch (JsonException ex)
         {
-            Console.WriteLine($"JSON Parsing Error: {ex.Message}");
+            Console.WriteLine($"JSON parse error: {ex.Message}");
             return null;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Unexpected Error: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
             return null;
         }
     }

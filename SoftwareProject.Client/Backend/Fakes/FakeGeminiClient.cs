@@ -1,10 +1,11 @@
+using SoftwareProject.Client.Interfaces;
 using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Backend.Fakes;
 
 /// <summary>
 /// Connects to the fake API.
-/// Any requests will receive an fixed fake response
+/// Any requests will receive a fixed fake response
 /// </summary>
 internal class FakeGeminiClient(HttpClient httpClient, string apiKey) : IApiClient
 {

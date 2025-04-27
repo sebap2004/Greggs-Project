@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text;
+using SoftwareProject.Client.Interfaces;
 using SoftwareProject.Interfaces;
 
 namespace SoftwareProject.Client.Backend.Fakes;
@@ -25,7 +26,6 @@ public class FakeApi : IApiCall
         };
         
         var fakeHttpClient = new HttpClient(new FakeHttpMessageHandler(fakeResponse));
-        // Changed from Get to Post
         var request = new HttpRequestMessage(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={apiKey}");
         
         HttpResponseMessage response = await fakeHttpClient.SendAsync(request);
