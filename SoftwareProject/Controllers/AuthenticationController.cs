@@ -95,7 +95,8 @@ public class AuthenticationController : ControllerBase
         
         try
         {
-            var status = await accountService.CreateAccount(account.ToAccount());
+            var toAccount = account.ToAccount();
+            var status = await accountService.CreateAccount(toAccount);
             Console.WriteLine("Status is " + status.status);
             if (status.status == RegisterStatus.Success)
             {

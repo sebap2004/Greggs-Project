@@ -15,6 +15,7 @@ public partial class Login : ComponentBase
     private Account account = new Account();
     private RegisterModel registerModel;
     private LoginModel loginModel;
+    private bool AttemptingLogin = false;
 
     /// <summary>
     /// Instantiate a new RegisterModel and LoginModel class for account creation and login.
@@ -33,13 +34,14 @@ public partial class Login : ComponentBase
     /// </summary>
     private async Task AttemptLogin()
     {
+        AttemptingLogin = true;
         var loginAttempt = await loginModel.LoginSubmit();
         
         if (loginAttempt == LoginStatus.Success)
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
-                customProvider.NotifyAuthenticationStateChanged();
+                await customProvider.NotifyAuthenticationStateChanged();
                 snackbar.Add("Login Successful!", Severity.Success);
                 navigationManager.NavigateTo("/chat");
                 StateHasChanged();
@@ -49,20 +51,21 @@ public partial class Login : ComponentBase
         {
             snackbar.Add("Login Failed", Severity.Error);
         }
+        AttemptingLogin = false;
     }
     
     /// <summary>
     /// Attempt to create an account for the website.
     /// </summary>
-    /// <param name="editContext">Edit context passed in through the frontend web form.</param>
-    private async Task AttemptRegister(EditContext editContext)
+    private async Task AttemptRegister()
     {
-        var registerAttempt = await registerModel.RegisterAccount(editContext);
+        AttemptingLogin = true;
+        var registerAttempt = await registerModel.RegisterAccount();
         if (registerAttempt == RegisterStatus.Success)
         {
             if (AuthStateProvider is CookieAuthStateProvider customProvider)
             {
-                customProvider.NotifyAuthenticationStateChanged();
+                await customProvider.NotifyAuthenticationStateChanged();
                 snackbar.Add("Register Successful!", Severity.Success);
                 navigationManager.NavigateTo("/chat");
             }
@@ -71,5 +74,6 @@ public partial class Login : ComponentBase
         {
             snackbar.Add("Login Failed", Severity.Error);
         }
+        AttemptingLogin = false;
     }
 }

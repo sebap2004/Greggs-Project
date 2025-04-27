@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Data.SqlClient;
 using SoftwareProject.Data;
@@ -9,11 +10,49 @@ namespace SoftwareProject.Client.Models;
 public class RegisterModel
 {
     // CLASS VARIABLES
+    /// <summary>
+    /// Account to be created
+    /// </summary>
     private Account account;
+    
+    /// <summary>
+    /// HTTP client to be used in the request
+    /// </summary>
     private HttpClient httpClient;
 
-    public string firstPassword = "";
-    public string secondPassword = "";
+
+    /// <summary>
+    /// Username property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required]
+    public string username { get; set; }    
+    
+    /// <summary>
+    /// Email property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required]
+    [EmailAddress]
+    public string email { get; set; }
+    
+    
+    /// <summary>
+    /// First password bound to the EditForm
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required (ErrorMessage = "Password is required")]
+    [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+    public string firstPassword { get; set; }
+    
+    
+    /// <summary>
+    /// Second password bound to the EditForm
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required (ErrorMessage = "Repeat password is required")]
+    [Compare(nameof(firstPassword), ErrorMessage = "Passwords do not match")]
+    public string secondPassword { get; set; }
 
     /// <summary>
     /// CONSTRUCTOR
@@ -31,7 +70,7 @@ public class RegisterModel
     /// </summary>
     /// <param name="editContext">Tracks the changes made in the form</param>
     /// <param name="httpClient">HTTP client used for making requests to the authentication api</param>
-    public async Task<RegisterStatus> RegisterAccount(EditContext editContext)
+    public async Task<RegisterStatus> RegisterAccount()
     {
         // Validates password.
         if (firstPassword == secondPassword)
@@ -41,13 +80,14 @@ public class RegisterModel
             // Insert into table.
             try
             {
-                var newAccount = (Account)editContext.Model;
-                newAccount.account_id = 0;
+                var newAccount = new Account
+                {
+                    email = email,
+                    password = firstPassword,
+                    username = username,
+                };
                 Console.WriteLine("Starting Register Process.");
-                var jsonContent = System.Text.Json.JsonSerializer.Serialize(newAccount.AccountModel);
-                Console.WriteLine($"Request body: {jsonContent}");
-
-                var registerAttempt = await httpClient.PostAsJsonAsync("api/authentication/register", newAccount.AccountModel);
+                var registerAttempt = await httpClient.PostAsJsonAsync("api/authentication/register", newAccount.AccountModel());
                 if (registerAttempt.IsSuccessStatusCode)
                 {
                     return RegisterStatus.Success;

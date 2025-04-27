@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Json;
 using Microsoft.Data.SqlClient;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
@@ -9,8 +10,32 @@ namespace SoftwareProject.Client.Models;
 public class LoginModel
 {
     // CLASS VARIABLES
+    /// <summary>
+    /// Account to be created
+    /// </summary>
     private Account account;
+    
+    /// <summary>
+    /// HTTP client to be used in the request
+    /// </summary>
     private HttpClient httpClient;
+
+    /// <summary>
+    /// Email property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required(ErrorMessage = "Email address is required.")]
+    [EmailAddress]
+    public string email { get; set; }
+    
+    
+    /// <summary>
+    /// Password property bound to the EditForm.
+    /// Attributes are validation properties.
+    /// </summary>
+    [Required(ErrorMessage = "Password is required.")]
+    [DataType(DataType.Password)]
+    public string password { get; set; }  
 
     /// <summary>
     /// CONSTRUCTOR
@@ -34,13 +59,16 @@ public class LoginModel
             Console.WriteLine("Starting Login Process.");
 
             // These lines are required, otherwise the httpclient won't send the request.
-            // TODO: Consider making login and register data transfer for specific purposes
-            account.username = "login";
-
-            var jsonContent = System.Text.Json.JsonSerializer.Serialize(account.AccountModel);
+            account = new()
+            {
+                username = "login",
+                email = email,
+                password = password,
+            };
+            var jsonContent = System.Text.Json.JsonSerializer.Serialize(account.AccountModel());
             Console.WriteLine($"Request body: {jsonContent}");
             // Sends a post request to the authentication api. 
-            var checkAccount = await httpClient.PostAsJsonAsync("api/authentication/login", account.AccountModel);
+            var checkAccount = await httpClient.PostAsJsonAsync("api/authentication/login", account.AccountModel());
 
             if (checkAccount.IsSuccessStatusCode)
             {
