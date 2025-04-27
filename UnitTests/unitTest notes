@@ -1,9 +1,3 @@
 Had to create a solution.sln  that contained both projects to be able to test project
 Then used rider to add test project using xUnit, had slight issue where had to use dotnet 7  and then edit .cssproj file to use dotnet nine
 Wanted to mock account service but class was missing interface that was needed to make it mockable so added interface containing for its login and create account methods.
-Then in test newed up the LoginModel to test it but realised it also needed NavigationManager. Tried mocking up as it was abstract but this didn’t work but then it complained it wasn’t initilised.
-Having a quick google saw bUnit has a mockNavigationManager that was usable so I added it to the project using the package manager in rider
-Added setup method and verify method to make sure the accountService method was being called properly when loginSubmit is called. Then made sure that navigation manager had been called correctly with the right uri (base uri)
-Similar steps where then repeated for createAcccount on RegisterModel.
-Then realised that register model should forward to a page when account is created so added this to registerModel and added checking of it to the unitTest. (base uri + “login”)
-
