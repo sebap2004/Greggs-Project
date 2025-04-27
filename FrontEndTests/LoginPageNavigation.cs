@@ -12,6 +12,7 @@ public class LoginPageNavigation : PageTest
 {
  
     /// <summary>
+    /// Class Created by Dan
     /// This source helped me understand playwright https://playwright.dev/dotnet/docs/writing-tests (Playwright .NET, no date)
     /// Referenced in TestReferences.txt
     /// this test fills in a pre-defined username and password and checks that the url changes to /chat with a text box, message

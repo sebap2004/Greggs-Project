@@ -18,6 +18,7 @@ public class AuthenticationControllerShould
     private Mock<IAccountService> accountServiceMock;
     
     /// <summary>
+    /// Class Created by Dan
     /// The Authentication Controller had several methods that were awkward to mock, (HttpContext.SignAsync and SignOutAsync
     /// in ControllerBase). To mock these methods, it was necessary to initialise the Controller's ControllerContext with a custom 
     /// HttpContext, where RequestServices was replaced with a mock service provider (serviceProviderMock). This mock service provider 

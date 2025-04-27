@@ -6,6 +6,7 @@ namespace UnitTests;
 public class RealApiShould
 {
     /// <summary>
+    /// Class Created by Dan
     /// Used website as reference point for these tests https://bunit.dev/docs/test-doubles/mocking-httpclient.html (bUnit, no date)
     /// Referenced in TestReferences.txt
     /// Tests a successful API call will return the expected result.

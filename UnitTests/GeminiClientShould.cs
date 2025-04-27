@@ -8,6 +8,7 @@ public class GeminiClientShould
 {
     
     /// <summary>
+    /// Class Created by Dan
     /// Used website as reference point for these tests https://bunit.dev/docs/test-doubles/mocking-httpclient.html (bUnit, no date)
     /// Referenced in TestReferences.txt
     /// This method is testing that a successful API call made through GeminiClient returns the expected response text. 

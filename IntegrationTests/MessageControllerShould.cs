@@ -6,6 +6,7 @@ using SoftwareProject.Client.Data;
 namespace IntegrationTests;
 
 /// <summary>
+/// Class Created by Dan
 /// see https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-9.0 (Microsoft, no date) Code wasn't directly copied but was used for inspiration
 /// Referenced in TestReferences.txt
 /// created a new webApplication factory (uses factory pattern)
