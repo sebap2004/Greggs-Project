@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Json;
 using Microsoft.Data.SqlClient;
 using SoftwareProject.Data;
 using SoftwareProject.Interfaces;
@@ -11,6 +12,14 @@ public class LoginModel
     // CLASS VARIABLES
     private Account account;
     private HttpClient httpClient;
+
+    [Required]
+    [EmailAddress]
+    public string email { get; set; }
+    
+    [Required]
+    [DataType(DataType.Password)]
+    public string password { get; set; }  
 
     /// <summary>
     /// CONSTRUCTOR

@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Data.SqlClient;
 using SoftwareProject.Data;
@@ -12,8 +13,20 @@ public class RegisterModel
     private Account account;
     private HttpClient httpClient;
 
-    public string firstPassword = "";
-    public string secondPassword = "";
+    [Required]
+    public string username { get; set; }    
+    
+    [Required]
+    [EmailAddress]
+    public string email { get; set; }
+    
+    [Required]
+    [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+    public string firstPassword { get; set; }
+    
+    [Required]
+    [Compare(nameof(firstPassword))]
+    public string secondPassword { get; set; }
 
     /// <summary>
     /// CONSTRUCTOR
