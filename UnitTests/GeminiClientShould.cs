@@ -8,8 +8,11 @@ public class GeminiClientShould
 {
     
     /// <summary>
-    /// his method is testing that a successful API call made through GeminiClient returns the expected response text. 
-    /// Mocked HTTP is used to simulate a valid reply using JSON and fake variables. The code asserts the reply's output matches the expected value.
+    /// Used website as reference point for these tests https://bunit.dev/docs/test-doubles/mocking-httpclient.html (bUnit, no date)
+    /// Referenced in TestReferences.txt
+    /// This method is testing that a successful API call made through GeminiClient returns the expected response text. 
+    /// The MockHttp library (MockHttpMessageHandler) is used to simulate a valid reply using Json and fake variables.
+    /// The test checks result of the api call matches the expected value.
     /// </summary>
     [Fact]
     public async Task GeminiCall_ReturnsCorrectText_FromValidApiResponse()
@@ -70,8 +73,8 @@ public class GeminiClientShould
     }
     
     /// <summary>
-    /// /// This method tests that GeminiClient returns null when the API responds with invalid JSON. 
-    /// Mocked response sends broken JSON to verify error handling correctly works.
+    /// This method tests that GeminiClient returns null when the API responds with invalid JSON. 
+    /// To do this a mocked response sends broken JSON to verify error handling correctly works.
     /// </summary>
     
     [Fact]
@@ -98,8 +101,8 @@ public class GeminiClientShould
     }
     
     /// <summary>
-    /// This method tests that TestGeminiConnection returns true when the response is done successfully. 
-    /// Simulates a valid response with status code 200 ( 200 means OK).
+    /// This method tests that TestGeminiConnection returns true on a successful response. 
+    /// The MockHttp library (MockHttpMessageHandler) is used to simulate a valid response with status code 200 (OK).
     /// </summary>
     [Fact]
     public async Task TestGeminiConnection_ReturnsTrue_UponSuccess()
@@ -124,8 +127,8 @@ public class GeminiClientShould
     }
     
     /// <summary>
-    /// This method tests that TestGeminiConnection returns false when the response is done unsuccessfully. 
-    /// Simulates a failed response with status code 500 (500 means Internal Server Error).
+    /// This method tests that TestGeminiConnection returns false on an unsuccessful response. 
+    /// The MockHttp library (MockHttpMessageHandler) is used to simulates a failed response with status code 500 (Internal Server Error).
     /// </summary>
     [Fact]
     public async Task TestGeminiConnection_ReturnsFalse_UponFailure()

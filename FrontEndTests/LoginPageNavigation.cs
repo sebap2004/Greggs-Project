@@ -12,9 +12,12 @@ public class LoginPageNavigation : PageTest
 {
  
     /// <summary>
+    /// This source helped me understand playwright https://playwright.dev/dotnet/docs/writing-tests (Playwright .NET, no date)
+    /// Referenced in TestReferences.txt
     /// this test fills in a pre-defined username and password and checks that the url changes to /chat with a text box, message
     /// at the moment this isn't quite working due to some issue with the form to see the issue: run with the following command
     /// dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless=false Playwright.LaunchOptions.Channel=msedge
+    /// 
     /// </summary>
     [Fact(Skip = "having issue with login failing")]
     public async Task LoginPageShouldRedirect()

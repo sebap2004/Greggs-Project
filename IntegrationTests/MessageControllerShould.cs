@@ -5,10 +5,21 @@ using SoftwareProject.Client.Data;
 
 namespace IntegrationTests;
 
+/// <summary>
+/// see https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-9.0 (Microsoft, no date) Code wasn't directly copied but was used for inspiration
+/// Referenced in TestReferences.txt
+/// created a new webApplication factory (uses factory pattern)
+/// </summary>
 public class MessageControllerShould
 {
     private readonly string baseUrl = "api/message";
     
+    /// <summary>
+    /// The WebApplicationFactory is used to create a test server instance of our application (Program).
+    /// A sample json message is then created using JsonContent.Create.
+    /// The PostAsync method is invoked with the json message.
+    /// The test then checks to see that the server responded with ok.
+    /// </summary>
     [Fact]
     public async Task PostAsync_WithValidMessage_ShouldReturnSuccess()
     {
@@ -27,6 +38,11 @@ public class MessageControllerShould
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
     
+    /// <summary>
+    /// The WebApplicationFactory is used to create a test server instance of our application (Program).
+    /// The GetAsync method is invoked with a topic id (1) that should always be in the database by default.
+    /// The test checks the GetAsync method returns (200 ok) and the returned body text is not empty.
+    /// </summary>
     [Fact]
     public async Task GetAsync_WithValidTopic_ShouldReturnListOfMessages()
     {

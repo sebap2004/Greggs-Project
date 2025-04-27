@@ -6,3 +6,6 @@ Playwright .NET (no date) Writing tests. Available at: https://playwright.dev/do
 
 AuthenticationControllerShould.cs
 HeroWong (2021) ‘How to unit test HttpContext.SignInAsync()?’, Stack Overflow. Available at: https://stackoverflow.com/q/47198341 (Accessed: 27 April 2025).
+
+GeminiClientShould.cs & RealApiShould.cs
+bUnit (no date) Mocking HttpClient. Available at: https://bunit.dev/docs/test-doubles/mocking-httpclient.html (Accessed: 27 April 2025).

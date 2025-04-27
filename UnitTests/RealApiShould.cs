@@ -6,7 +6,11 @@ namespace UnitTests;
 public class RealApiShould
 {
     /// <summary>
-    /// Tests a successful API call will return the expected result. Mocked HTTP is used to simulate a valid reply using Json and fake variables. The code asserts the replies output matches the expected value.
+    /// Used website as reference point for these tests https://bunit.dev/docs/test-doubles/mocking-httpclient.html (bUnit, no date)
+    /// Referenced in TestReferences.txt
+    /// Tests a successful API call will return the expected result.
+    /// The MockHttp library (MockHttpMessageHandler) is used to simulate a valid reply using Json and fake variables.
+    /// The test checks result of the api call matches the expected value.
     /// </summary>
     [Fact]
     public async Task GetResponse_OnSuccess_ReturnsTextFromValidApiResponse()
