@@ -8,7 +8,7 @@ namespace SoftwareProject.Client.Backend;
 /// <summary>
 /// Formats and posts the prompt and returns Gemini response 
 /// </summary>
-public class RealApi : IApiClient
+public class RealApi : IApiCall
 {
     /// <summary>
     /// Formats and posts the prompt. Receives and returns response
@@ -43,15 +43,5 @@ public class RealApi : IApiClient
         var text = json.RootElement.GetProperty("candidates")[0].GetProperty("content").GetProperty("parts")[0].GetProperty("text").GetString();
 
         return text;
-    }
-
-    /// <summary>
-    /// Not used.
-    /// </summary>
-    /// <param name="prompt"></param>
-    /// <returns></returns>
-    public Task<string> GeminiCall(string prompt)
-    {
-        return Task.FromResult("");;
     }
 }
