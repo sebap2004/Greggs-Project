@@ -25,11 +25,16 @@ public partial class Login : ComponentBase
     /// This method is created because field variables in the component are created before the class injection.
     /// Whereas the method is run after meaning the parameters cannot be passed in a field variable.
     /// </summary>
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         registerModel = new RegisterModel(account, http);
         loginModel = new LoginModel(account, http);
-        return Task.CompletedTask;
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.Identity!.IsAuthenticated)
+        {
+            navigationManager.NavigateTo("/chat");
+        }
     }
 
     /// <summary>

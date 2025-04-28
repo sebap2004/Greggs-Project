@@ -252,8 +252,8 @@ public partial class Chat : ComponentBase
         var user = authState.User;
         if (!user.Identity!.IsAuthenticated)
         {
-            // NavigationManager.NavigateTo($"/access-denied/{Uri.EscapeDataString("notauthorized")}");
-            // return;
+            NavigationManager.NavigateTo("/notauthorised");
+            return;
         }
         string userIDString = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0";
         userID = Int32.Parse(userIDString);
