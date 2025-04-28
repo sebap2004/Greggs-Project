@@ -469,8 +469,9 @@ public partial class Chat : ComponentBase
                 var translatedQuestion = await translation.Content.ReadAsStringAsync(); // Get response
                 tempQuestion = translatedQuestion; // Override tempQuestion with the translated question. This one is not stored in the database.
                 Console.WriteLine("Translated question: " + tempQuestion);
+                response = await ai.GetMessage(tempQuestion, !UseAI);
             }
-            response = await ai.GetMessage(tempQuestion, !UseAI);
+            response = await ai.GetMessage((SummariseText ? "SUMMARISE THIS TEXT: " : "") + tempQuestion, !UseAI);
         }
         // If summarise text enabled, use the latest N amount of messages, where N is the set ContextLength
         else
